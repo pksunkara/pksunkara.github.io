@@ -1,0 +1,7 @@
+language: go
+install: go get -v github.com/spf13/hugo
+script: echo OK
+after_script: git subtree push --prefix=public https://pksunkara:$TOKEN@github.com/pksunkara/pksunkara.github.io master > /dev/null 2>&1
+branches:
+  only:
+    - develop
