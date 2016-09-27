@@ -2,10 +2,9 @@ baseurl: http://pksunkara.com/
 languageCode: en-us
 title: pksunkara
 params:
-  gplus: 112496434648475402756
+  gplus: "112496434648475402756"
   twitter: pksunkara
   github: pksunkara
   facebook: pksunkara
-  descritpion: pksunkara
-  descritpion: My personal blog
+  description: My personal blog
 ...

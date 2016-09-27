@@ -1,109 +1,116 @@
 
 <!DOCTYPE html>
 <html lang="en-us">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="MobileOptimized" content="320" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <head>
+		<meta property="og:title" content=" Gomu: Configuration Management &middot;  pksunkara" />
+		<meta property="og:site_name" content="pksunkara" />
+		<meta property="og:url" content="http://pksunkara.com/posts/gomu-configuration-management/" />
 
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+		<meta property="og:type" content="article" />
+		<meta property="og:article:published_time" content="2015-01-19T00:00:00Z" />
+		<meta property="og:article:tag" content="gomu" />
+		<meta property="og:article:tag" content="golang" />
+		<meta property="og:article:tag" content="web" />
+		
 
-        <meta property="og:title" content=" Gomu: Configuration Management &middot;  pksunkara" />
-        <meta property="og:site_name" content="pksunkara" />
-        <meta property="og:url" content="http://pksunkara.com/posts/gomu-configuration-management/" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@pksunkara" />
+		<meta name="twitter:creator" content="@pksunkara" />
+		<meta name="twitter:title" content="Gomu: Configuration Management" />
+		<meta name="twitter:description" content="" />
+		<meta name="twitter:url" content="http://pksunkara.com/posts/gomu-configuration-management/" />
 
-    
-        <meta property="og:type" content="article" />
-        <meta property="og:article:published_time" content="2015-01-19T00:00:00Z" />
-        <meta property="og:article:tag" content="gomu" />
-        <meta property="og:article:tag" content="golang" />
-        <meta property="og:article:tag" content="web" />
-        
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Article",
+			"headline": "Gomu: Configuration Management",
+			"author": {
+				"@type": "Person",
+				"name": "http://profiles.google.com/112496434648475402756?rel=author"
+			},
+			"datePublished": "2015-01-19",
+			"description": "",
+			"wordCount":  588 
+		}
+		</script>
+	
 
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@pksunkara" />
-        <meta name="twitter:creator" content="@pksunkara" />
-        <meta name="twitter:title" content="Gomu: Configuration Management" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:url" content="http://pksunkara.com/posts/gomu-configuration-management/" />
-    
+		<title> Gomu: Configuration Management &middot;  pksunkara</title>
 
-        <title> Gomu: Configuration Management &middot;  pksunkara</title>
+	
+		<meta name="description" content="My personal blog" />
+	
 
-    
-        <meta name="description" content="" />
-    
-        
-        <meta name="HandheldFriendly" content="True" />
-        <meta name="MobileOptimized" content="320" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		  
 
-        
-          
+	
+		<link href="http://pksunkara.com/index.xml" rel="alternate" type="application/rss+xml" title="pksunkara" />
+	
 
-    
-        <link href="http://pksunkara.com/index.xml" rel="alternate" type="application/rss+xml" title="pksunkara" />
-    
+	
 
-    
-        <link rel="canonical" href="http://pksunkara.com/posts/gomu-configuration-management/" />
+		<link rel="canonical" href="http://pksunkara.com/posts/gomu-configuration-management/" />
 
-    
-    <script type="application/ld+json">
-    { 
-        "@context": "http://schema.org",
-        "@type": "Article",
-        "headline": "Gomu: Configuration Management",
-        "author": {
-            "@type": "Person",
-            "name": "http://profiles.google.com/1.124964346484754e\x2b20?rel=author"
-        },
-        "datePublished": "2015-01-19",
-        "description": "",
-        "wordCount":  588 
-    }
-    </script>
-    
-    </head>
-    <body>
-        <header id="header">
-            <a id="logo" href="http://pksunkara.com/"><img src="https://www.gravatar.com/avatar/39863b6141d1be3ec211dca4b061cd5e.png?s=400" alt="pksunkara" /></a>
-            <h1><a href="http://pksunkara.com/">pksunkara</a></h1>
-            <p></p>
+		<link rel="stylesheet" type="text/css" href="http://pksunkara.com/css/crisp.css">
+		<link rel="stylesheet" type="text/css" href="http://pksunkara.com/css/rrssb.css">
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700%7CBree+Serif">
 
-            <div id="follow-icons">
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+		<script type="text/javascript" src="http://pksunkara.com/js/gist.min.js"></script>
+		<script type="text/javascript" src="http://pksunkara.com/js/rrssb.min.js"></script>
+	</head>
+	<body>
+		<header id="header">
+			<a id="logo" href="http://pksunkara.com/"><img src="https://www.gravatar.com/avatar/39863b6141d1be3ec211dca4b061cd5e.png?s=400" alt="pksunkara" /></a>
+			<h1><a href="http://pksunkara.com/">pksunkara</a></h1>
+			<p></p>
+
+			<div id="follow-icons">
 	<a href="http://github.com/pksunkara" rel="me"><i class="fa fa-github-square fa-2x"></i></a>
 	<a href="http://twitter.com/pksunkara" rel="me"><i class="fa fa-twitter-square fa-2x"></i></a>
 	<a href="http://facebook.com/pksunkara" rel="me"><i class="fa fa-facebook-square fa-2x"></i></a>
-	<a href="http://plus.google.com/" rel="author"><i class="fa fa-google-plus-square fa-2x"></i></a>
+	<a href="http://plus.google.com/112496434648475402756" rel="me"><i class="fa fa-google-plus-square fa-2x"></i></a>
 	<a href="http://pksunkara.com/index.xml" rel="me"><i class="fa fa-rss-square fa-2x"></i></a> 
 </div>
 
-            <h6><a href="/about">About</a></h6>
+			<h6><a href="/about">About</a></h6>
 
-        </header>
+		</header>
 
 <main id="content">
 
 <article id="" class="posts">
-    <div class="post-stamp">
-        <time datetime="2015-01-19T00:00:00Z">
-            19 Jan 2015
-        </time>
-        <span class="taglist">
-        
-        &middot;
-        
-            <a href="http://pksunkara.com/tags/gomu/">gomu</a>
-        
-            <a href="http://pksunkara.com/tags/golang/">golang</a>
-        
-            <a href="http://pksunkara.com/tags/web/">web</a>
-        
-        
-        </span>
-    </div>
-    <h1 class="post-title">Gomu: Configuration Management</h1>
-    <p>Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.</p>
+	<div class="post-stamp">
+		<time datetime="2015-01-19T00:00:00Z">
+			Jan 19, 2015
+		</time>
+		<span class="taglist">
+		
+			&middot;
+			
+				<a href="http://pksunkara.com/tags/gomu/">gomu</a>
+		
+				<a href="http://pksunkara.com/tags/golang/">golang</a>
+		
+				<a href="http://pksunkara.com/tags/web/">web</a>
+		
+		
+		</span>
+	</div>
+	<h1 class="post-title">Gomu: Configuration Management</h1>
+	<p>Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.</p>
 
 <p><a href="https://rubyonrails.org">Rails</a> does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.</p>
 
@@ -146,7 +153,7 @@
 <li>Merge different environment files when required</li>
 </ul>
 
-    <div id="social-bar">
+	<div id="social-bar">
 	<ul class="rrssb-buttons clearfix">
       <li class="email">
           <a href="mailto:?subject=Gomu%3a%20Configuration%20Management&amp;body=http://pksunkara.com/posts/gomu-configuration-management/">
@@ -258,18 +265,18 @@
   </ul>
 </div>
 
-    <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <h5>About the author</h5>
-  <section>
-    <p><a href="http://github.com/pksunkara" itemprop="name" rel="author">Pavan Kumar Sunkara</a> is a developer and a blogger, curious about any new technologies. <a href="/about" rel="me">More info...</a></p>
-  </section>
+	<div itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<h5>About the author</h5>
+	<section>
+		<p><a href="http://github.com/pksunkara" itemprop="name" rel="author">Pavan Kumar Sunkara</a> is a developer and a blogger, curious about any new technologies. <a href="/about" rel="me">More info...</a></p>
+	</section>
 </div>
 
-    <div id="comments">
-    
-    
-    
-    
+	<div id="comments">
+	
+		
+		
+	
 </div>
 
 </article>
@@ -279,30 +286,13 @@
 			<section id="footer-message">&copy; pksunkara. All rights reserved. Powered by <a href="http://gohugo.io" target="_blank">Hugo</a>. <a href="https://github.com/kathyqian/crisp-ghost-theme" target="_blank">Crisp</a> theme by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.</section>
 		</footer>
 
-    <script>
-      (function(c,f){asyncLoader=function(i,h){i.foreach(function(k,j){e(j,d(j),h)});if(typeof h.callback=="function"){var g=setInterval(function(){if(f.readyState==="complete"){clearInterval(g);h.callback()}},10)}};var d=function(g){var h=g.split(".");return h[h.length-1]},e=function(h,i,g){switch(i){case"js":a(h,g);break;case"css":b(h);break;default:break}},a=function(i,h){var g=document.createElement("script");g.type="text/javascript";g.async=true;g.src=i;document.getElementsByTagName("head")[0].appendChild(g)},b=function(g){var h=document.createElement("link");h.type="text/css";h.rel="stylesheet";h.href=g;document.getElementsByTagName("head")[0].appendChild(h)};Array.prototype.foreach=function(h){for(var g=0;g<this.length;g++){h(g,this[g])}}})(this,document);
+		<script>
+			(function(c,f){asyncLoader=function(i,h){i.foreach(function(k,j){e(j,d(j),h)});if(typeof h.callback=="function"){var g=setInterval(function(){if(f.readyState==="complete"){clearInterval(g);h.callback()}},10)}};var d=function(g){var h=g.split(".");return h[h.length-1]},e=function(h,i,g){switch(i){case"js":a(h,g);break;case"css":b(h);break;default:break}},a=function(i,h){var g=document.createElement("script");g.type="text/javascript";g.async=true;g.src=i;document.getElementsByTagName("head")[0].appendChild(g)},b=function(g){var h=document.createElement("link");h.type="text/css";h.rel="stylesheet";h.href=g;document.getElementsByTagName("head")[0].appendChild(h)};Array.prototype.foreach=function(h){for(var g=0;g<this.length;g++){h(g,this[g])}}})(this,document);
+			hljs.initHighlighting();
+		</script>
 
-      var WebFontConfig={google:{families:["Open Sans:300italic,700italic,300,700","Bree+Serif"]}};
-      asyncLoader([
-        "//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css",
-        "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js",
-        "//cdnjs.cloudflare.com/ajax/libs/webfont/1.5.16/webfontloader.js",
-        "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"
-      ],{
-        callback:function(){
-          asyncLoader([
-            "http:\/\/pksunkara.com\/css/crisp.css",
-            "http:\/\/pksunkara.com\/css/rrssb.css",
-            "http:\/\/pksunkara.com\/js/gist.min.js", 
-            "http:\/\/pksunkara.com\/js/rrssb.min.js",
-            "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css"
-          ], { callback:function() {
-              hljs.initHighlighting();
-          }});
-        }
-      });
-    </script>
 	
+
 	</body>
 </html>
 
