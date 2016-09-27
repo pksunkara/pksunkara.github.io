@@ -1,10 +1,10 @@
-+++
-date = "2014-02-12T00:00:00"
-draft = false
-title = "Gomu: Introduction"
-tags = ["gomu", "golang", "web"]
-categories = ["programming"]
-+++
+---
+date: "2014-02-12"
+draft: false
+title: "Gomu: Introduction"
+tags: ["gomu", "golang", "web"]
+categories: ["programming"]
+---
 
 I have recently started tinkering with the [Go](https://golang.org) programming language and I am impressed by its potential.
 

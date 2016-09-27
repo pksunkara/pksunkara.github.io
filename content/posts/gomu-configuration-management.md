@@ -1,10 +1,10 @@
-+++
-date = "2015-01-19T00:00:00"
-draft = false
-title = "Gomu: Configuration Management"
-tags = ["gomu", "golang", "web"]
-categories = ["programming"]
-+++
+---
+date: "2015-01-19"
+draft: false
+title: "Gomu: Configuration Management"
+tags: ["gomu", "golang", "web"]
+categories: ["programming"]
+---
 
 Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework. 
 
