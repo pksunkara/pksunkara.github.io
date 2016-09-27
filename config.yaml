@@ -1,5 +1,11 @@
 baseurl: http://pksunkara.com/
 languageCode: en-us
 title: pksunkara
-theme: crisp
+params:
+  gplus: 112496434648475402756
+  twitter: pksunkara
+  github: pksunkara
+  facebook: pksunkara
+  descritpion: pksunkara
+  descritpion: My personal blog
 ...
