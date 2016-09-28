@@ -1,5 +1,5 @@
 language: go
-install: go get -v github.com/spf13/hugo
+install: echo OK
 script: echo OK
 after_script: git push -f https://pksunkara:$TOKEN@github.com/pksunkara/pksunkara.github.io `git subtree split --prefix=public`:master > /dev/null 2>&1
 branches:

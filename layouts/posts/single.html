@@ -2,7 +2,7 @@
 {{ partial "header.html" . }}
 <main id="content">
 
-<article id="{{ .Slug }}" class="{{ .Type }}">
+<article id="{{ .Slug }}" class="{{ .Section }}">
 	<div class="post-stamp">
 		<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
 			{{ .Date.Format "Jan _2, 2006" }}
@@ -12,7 +12,7 @@
 			&middot;
 			{{ range $index, $tag := .Params.tags }}
 				<a href="{{ $baseurl }}tags/{{ $tag | urlize }}/">{{ $tag }}</a>
-		{{ end }}
+			{{ end }}
 		{{ end }}
 		</span>
 	</div>

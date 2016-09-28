@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on pksunkara</title>
-    <link>http://pksunkara.com/posts/</link>
-    <description>Recent content in Posts on pksunkara</description>
+    <title>Posts-rsses on pksunkara</title>
+    <link>http://pksunkara.com/posts/index.xml</link>
+    <description>Recent content in Posts-rsses on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Jan 2015 00:00:00 +0000</lastBuildDate>
@@ -62,10 +62,10 @@
     
     <item>
       <title>Gomu: Introduction</title>
-      <link>http://pksunkara.com/posts/gomu/</link>
+      <link>http://pksunkara.com/posts/gomu-introduction/</link>
       <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://pksunkara.com/posts/gomu/</guid>
+      <guid>http://pksunkara.com/posts/gomu-introduction/</guid>
       <description>
 
 &lt;p&gt;I have recently started tinkering with the &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; programming language and I am impressed by its potential.&lt;/p&gt;

@@ -2,12 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pksunkara</title>
-    <link>http://pksunkara.com/</link>
+    <link>http://pksunkara.com/index.xml</link>
     <description>Recent content on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Sep 2016 17:55:24 +0200</lastBuildDate>
     <atom:link href="http://pksunkara.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>http://pksunkara.com/about</link>
+      <pubDate>Tue, 27 Sep 2016 17:55:24 +0200</pubDate>
+      
+      <guid>http://pksunkara.com/about</guid>
+      <description>&lt;p&gt;I am Pavan Kumar Sunkara, a software developer at Apiary. I mainly work on &lt;a href=&#34;https://apiblueprint.org&#34;&gt;API Blueprint&lt;/a&gt; and other API related stuff.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Gomu: Configuration Management</title>
@@ -62,10 +72,10 @@
     
     <item>
       <title>Gomu: Introduction</title>
-      <link>http://pksunkara.com/posts/gomu/</link>
+      <link>http://pksunkara.com/posts/gomu-introduction/</link>
       <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://pksunkara.com/posts/gomu/</guid>
+      <guid>http://pksunkara.com/posts/gomu-introduction/</guid>
       <description>
 
 &lt;p&gt;I have recently started tinkering with the &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; programming language and I am impressed by its potential.&lt;/p&gt;

@@ -11,6 +11,8 @@ params:
   description: My personal blog
 social:
   twitter: pksunkara
+  facebook: pksunkara
 taxonomies:
   tag: tags
   category: categories
+metaDataFormat: yaml
