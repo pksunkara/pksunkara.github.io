@@ -6,8 +6,266 @@
     <description>Recent content in Posts-rsses on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Oct 2016 15:25:32 +0200</lastBuildDate>
     <atom:link href="http://pksunkara.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cloudant: CouchDB as Backend</title>
+      <link>http://pksunkara.com/posts/cloudant-couchdb-as-backend/</link>
+      <pubDate>Sat, 01 Oct 2016 15:25:32 +0200</pubDate>
+      
+      <guid>http://pksunkara.com/posts/cloudant-couchdb-as-backend/</guid>
+      <description>
+
+&lt;p&gt;There have been a &lt;a href=&#34;http://blog.mattwoodward.com/2012/03/definitive-guide-to-couchdb.html&#34;&gt;lot&lt;/a&gt; &lt;a href=&#34;http://www.staticshin.com/programming/easy-user-accounts-management-with-couchdb/&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;https://nolanlawson.com/2013/11/15/couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site/&#34;&gt;guides&lt;/a&gt; on how to use &lt;a href=&#34;http://couchdb.apache.org&#34;&gt;CouchDB&lt;/a&gt; as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use &lt;a href=&#34;https://cloudant.com&#34;&gt;Cloudant&lt;/a&gt;&amp;rsquo;s CouchDB as a backend directly for one of my Single Page Applications [&lt;strong&gt;SPA&lt;/strong&gt;]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.&lt;/p&gt;
+
+&lt;h2 id=&#34;limitations&#34;&gt;Limitations&lt;/h2&gt;
+
+&lt;p&gt;The number one major limitation of CouchDB-as-a-backend is that every user can read all the data. This makes it not suitable for some kind of applications (finance etc..) but really well suited for other kinds of things. One famous example of this would be &lt;a href=&#34;https://npmjs.com&#34;&gt;NPM&lt;/a&gt;, Node.js package manager.&lt;/p&gt;
+
+&lt;p&gt;The other major limitation is that there&amp;rsquo;s no password recovery. You can&amp;rsquo;t just say &amp;ldquo;&lt;em&gt;give your email, we’ll send you a new one&lt;/em&gt;&amp;rdquo;. Fortunately, you can bypass this by using &lt;a href=&#34;https://en.wikipedia.org/wiki/Single_sign-on&#34;&gt;Single sign-on&lt;/a&gt;. I have personally decided to use &lt;a href=&#34;https://auth0.com&#34;&gt;Auth0&lt;/a&gt; in my &lt;strong&gt;SPA&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;setting-up&#34;&gt;Setting up&lt;/h2&gt;
+
+&lt;p&gt;I have listed below the steps on how to achieve this &lt;a href=&#34;https://cloudant.com&#34;&gt;Cloudant&lt;/a&gt;. I am going to assume that you have an account ready to go with username &lt;strong&gt;name&lt;/strong&gt; and password &lt;strong&gt;pass&lt;/strong&gt;. Let&amp;rsquo;s use the &lt;a href=&#34;https://npmjs.com&#34;&gt;NPM&lt;/a&gt; service as an example.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-users-database&#34;&gt;Create Users Database&lt;/h3&gt;
+
+&lt;p&gt;You need to create an &lt;strong&gt;_users&lt;/strong&gt; database which will be used for user authentication and authorization.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X PUT -u name:pass https://name.cloudant.com/_users
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;turn-off-cloudant-security&#34;&gt;Turn off Cloudant Security&lt;/h6&gt;
+
+&lt;p&gt;You need to turn off &lt;a href=&#34;https://cloudant.com&#34;&gt;Cloudant&lt;/a&gt;&amp;rsquo;s security for this database so that you can allow anyone to register themselves as user.&lt;/p&gt;
+
+&lt;p&gt;Create the security document which needs to be uploaded as &lt;strong&gt;security.json&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;couchdb_auth_only&amp;quot;: true,
+  &amp;quot;members&amp;quot;: {
+    &amp;quot;names&amp;quot;: [],
+    &amp;quot;roles&amp;quot;: []
+  },
+  &amp;quot;admins&amp;quot;: {
+    &amp;quot;names&amp;quot;: [],
+    &amp;quot;roles&amp;quot;: []
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Upload it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X PUT -u name:pass https://name.cloudant.com/_users/_security \
+-H &amp;quot;Content-Type: application/json&amp;quot; \
+-d @security.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;create-application-database&#34;&gt;Create Application Database&lt;/h3&gt;
+
+&lt;p&gt;You need to create a database which will be used as backend of your application. Let&amp;rsquo;s create one called &lt;strong&gt;npm&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X PUT -u name:pass https://name.cloudant.com/npm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;make-it-public&#34;&gt;Make it public&lt;/h6&gt;
+
+&lt;p&gt;You need to turn off &lt;a href=&#34;https://cloudant.com&#34;&gt;Cloudant&lt;/a&gt;&amp;rsquo;s security for this database so that you can allow all users to read and write.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X PUT -u name:pass https://name.cloudant.com/npm/_security \
+-H &amp;quot;Content-Type: application/json&amp;quot; \
+-d @security.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;secure-application-for-user&#34;&gt;Secure Application for User&lt;/h3&gt;
+
+&lt;p&gt;You need to add a validation function which runs whenever someone&amp;rsquo;s trying to write to the application database.&lt;/p&gt;
+
+&lt;p&gt;Create the validation function as &lt;strong&gt;validation.json&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;_id&amp;quot;: &amp;quot;_design/_auth&amp;quot;,
+  &amp;quot;language&amp;quot;: &amp;quot;javascript&amp;quot;,
+  &amp;quot;validate_doc_update&amp;quot;: &amp;quot;function(newDoc, oldDoc, userCtx) {\n\n  function require(beTrue, key, message) {\n    var err = {};\n    err[key] = message;\n\n    if (!beTrue) throw(err);\n  }\n\n  require(userCtx.name, &#39;unauthorized&#39;, &#39;You need to login&#39;);\n\n  if (oldDoc) {\n    require((userCtx.roles.indexOf(&#39;_admin&#39;) != -1 || userCtx.name == oldDoc.user), &#39;forbidden&#39;, &#39;You are not allowed to update it&#39;);\n  }\n}\n&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Upload it as a design document.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X POST -u name:pass https://name.cloudant.com/npm
+-H &amp;quot;Content-Type: application/json&amp;quot; \
+-d @validation.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This validation function is explained &lt;a href=&#34;#app-explanation&#34;&gt;below&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;secure-user-data&#34;&gt;Secure User Data&lt;/h3&gt;
+
+&lt;p&gt;You need to secure the authentication database data for users.&lt;/p&gt;
+
+&lt;p&gt;Create the validation function as &lt;strong&gt;authentication.json&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;_id&amp;quot;: &amp;quot;_design/_auth&amp;quot;,
+  &amp;quot;language&amp;quot;: &amp;quot;javascript&amp;quot;,
+  &amp;quot;validate_doc_update&amp;quot;: &amp;quot;function(newDoc, oldDoc, userCtx) {\n  if (newDoc._deleted === true) {\n    if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1 &amp;amp;&amp;amp; userCtx.name != oldDoc.name) {\n      throw({forbidden: &#39;Only admins may delete other user docs.&#39;});\n    }\n\n    return;\n  }\n\n  if ((oldDoc &amp;amp;&amp;amp; oldDoc.type !== &#39;user&#39;) || newDoc.type !== &#39;user&#39;) {\n    throw({forbidden : &#39;doc.type must be user&#39;});\n  }\n\n  if (!newDoc.name) {\n    throw({forbidden: &#39;doc.name is required&#39;});\n  }\n\n  if (!newDoc.roles) {\n    throw({forbidden: &#39;doc.roles must exist&#39;});\n  }\n\n  if (!isArray(newDoc.roles)) {\n    throw({forbidden: &#39;doc.roles must be an array&#39;});\n  }\n\n  for (var idx = 0; idx &amp;lt; newDoc.roles.length; idx++) {\n    if (typeof newDoc.roles[idx] !== &#39;string&#39;) {\n      throw({forbidden: &#39;doc.roles can only contain strings&#39;});\n    }\n  }\n\n  if (newDoc._id !== (&#39;org.couchdb.user:&#39; + newDoc.name)) {\n    throw({forbidden: &#39;Doc ID must be of the form org.couchdb.user:name&#39;});\n  }\n\n  if (oldDoc) {\n    if (oldDoc.name !== newDoc.name) {\n      throw({forbidden: &#39;Usernames can not be changed.&#39;});\n    }\n  }\n\n  if (newDoc.password_sha &amp;amp;&amp;amp; !newDoc.salt) {\n    throw({forbidden: &#39;Users with password_sha must have a salt. See /_utils/script/couch.js for example code.&#39;});\n  }\n\n  if (newDoc.password_scheme === \&amp;quot;pbkdf2\&amp;quot;) {\n    if (typeof(newDoc.iterations) !== \&amp;quot;number\&amp;quot;) {\n       throw({forbidden: \&amp;quot;iterations must be a number.\&amp;quot;});\n    }\n\n    if (typeof(newDoc.derived_key) !== \&amp;quot;string\&amp;quot;) {\n       throw({forbidden: \&amp;quot;derived_key must be a string.\&amp;quot;});\n    }\n  }\n\n  if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1) {\n    if (oldDoc) {\n      if (userCtx.name !== newDoc.name) {\n        throw({forbidden: &#39;You may only update your own user document.&#39;});\n      }\n\n      var oldRoles = oldDoc.roles.sort();\n      var newRoles = newDoc.roles.sort();\n\n      if (oldRoles.length !== newRoles.length) {\n        throw({forbidden: &#39;Only _admin may edit roles&#39;});\n      }\n\n      for (var i = 0; i &amp;lt; oldRoles.length; i++) {\n        if (oldRoles[i] !== newRoles[i]) {\n          throw({forbidden: &#39;Only _admin may edit roles&#39;});\n        }\n      }\n    } else if (newDoc.roles.length &amp;gt; 0) {\n      throw({forbidden: &#39;Only _admin may set roles&#39;});\n    }\n  }\n\n  for (var i = 0; i &amp;lt; newDoc.roles.length; i++) {\n    if (newDoc.roles[i][0] === &#39;_&#39;) {\n      throw({forbidden: &#39;No system roles (starting with underscore) in users db.&#39;});\n    }\n  }\n\n  if (newDoc.name[0] === &#39;_&#39;) {\n    throw({forbidden: &#39;Username may not start with underscore.&#39;});\n  }\n\n  var badUserNameChars = [&#39;:&#39;];\n\n  for (var i = 0; i &amp;lt; badUserNameChars.length; i++) {\n    if (newDoc.name.indexOf(badUserNameChars[i]) &amp;gt;= 0) {\n      throw({forbidden: &#39;Character `&#39; + badUserNameChars[i] + &#39;` is not allowed in usernames.&#39;});\n    }\n  }\n}&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Upload it as a design document.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -X POST -u name:pass https://name.cloudant.com/_users
+-H &amp;quot;Content-Type: application/json&amp;quot; \
+-d @authentication.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This validation function is explained &lt;a href=&#34;#user-explanation&#34;&gt;below&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;explanations&#34;&gt;Explanations&lt;/h2&gt;
+
+&lt;p&gt;This section explains how the validation functions work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;app-explanation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;application-database&#34;&gt;Application Database&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function(newDoc, oldDoc, userCtx) {
+
+  function require(beTrue, key, message) {
+    var err = {};
+    err[key] = message;
+
+    if (!beTrue) throw(err);
+  }
+
+  // You need the user to be logged in
+  require(userCtx.name, &#39;unauthorized&#39;, &#39;You need to login&#39;);
+
+  // If the user is updating a document, you need to make sure he owns it
+  if (oldDoc) {
+    require((userCtx.roles.indexOf(&#39;_admin&#39;) != -1 || userCtx.name == oldDoc.user), &#39;forbidden&#39;, &#39;You are not allowed to update it&#39;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;user-explanation&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;users-database&#34;&gt;Users Database&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function(newDoc, oldDoc, userCtx) {
+  if (newDoc._deleted === true) {
+    // Allow deletes by admins and matching users without checking the other fields
+    if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1 &amp;amp;&amp;amp; userCtx.name != oldDoc.name) {
+      throw({forbidden: &#39;Only admins may delete other user docs.&#39;});
+    }
+
+    return;
+  }
+
+  // We only allow user docs for now
+  if ((oldDoc &amp;amp;&amp;amp; oldDoc.type !== &#39;user&#39;) || newDoc.type !== &#39;user&#39;) {
+    throw({forbidden : &#39;doc.type must be user&#39;});
+  }
+
+  if (!newDoc.name) {
+    throw({forbidden: &#39;doc.name is required&#39;});
+  }
+
+  if (!newDoc.roles) {
+    throw({forbidden: &#39;doc.roles must exist&#39;});
+  }
+
+  if (!isArray(newDoc.roles)) {
+    throw({forbidden: &#39;doc.roles must be an array&#39;});
+  }
+
+  for (var idx = 0; idx &amp;lt; newDoc.roles.length; idx++) {
+    if (typeof newDoc.roles[idx] !== &#39;string&#39;) {
+      throw({forbidden: &#39;doc.roles can only contain strings&#39;});
+    }
+  }
+
+  if (newDoc._id !== (&#39;org.couchdb.user:&#39; + newDoc.name)) {
+    throw({forbidden: &#39;Doc ID must be of the form org.couchdb.user:name&#39;});
+  }
+
+  // Don&#39;t allow usernames to be changed
+  if (oldDoc) {
+    if (oldDoc.name !== newDoc.name) {
+      throw({forbidden: &#39;Usernames can not be changed.&#39;});
+    }
+  }
+
+  // Password logic
+  if (newDoc.password_sha &amp;amp;&amp;amp; !newDoc.salt) {
+    throw({forbidden: &#39;Users with password_sha must have a salt. See /_utils/script/couch.js for example code.&#39;});
+  }
+
+  if (newDoc.password_scheme === &amp;quot;pbkdf2&amp;quot;) {
+    if (typeof(newDoc.iterations) !== &amp;quot;number&amp;quot;) {
+       throw({forbidden: &amp;quot;iterations must be a number.&amp;quot;});
+    }
+
+    if (typeof(newDoc.derived_key) !== &amp;quot;string&amp;quot;) {
+       throw({forbidden: &amp;quot;derived_key must be a string.&amp;quot;});
+    }
+  }
+
+  // If user is not server admin
+  if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1) {
+    if (oldDoc) {
+      // Allow user to update only their documents
+      if (userCtx.name !== newDoc.name) {
+        throw({forbidden: &#39;You may only update your own user document.&#39;});
+      }
+
+      // Validate role updates
+      var oldRoles = oldDoc.roles.sort();
+      var newRoles = newDoc.roles.sort();
+
+      if (oldRoles.length !== newRoles.length) {
+        throw({forbidden: &#39;Only _admin may edit roles&#39;});
+      }
+
+      for (var i = 0; i &amp;lt; oldRoles.length; i++) {
+        if (oldRoles[i] !== newRoles[i]) {
+          throw({forbidden: &#39;Only _admin may edit roles&#39;});
+        }
+      }
+    } else if (newDoc.roles.length &amp;gt; 0) {
+      throw({forbidden: &#39;Only _admin may set roles&#39;});
+    }
+  }
+
+  // Character validations
+  for (var i = 0; i &amp;lt; newDoc.roles.length; i++) {
+    if (newDoc.roles[i][0] === &#39;_&#39;) {
+      throw({forbidden: &#39;No system roles (starting with underscore) in users db.&#39;});
+    }
+  }
+
+  if (newDoc.name[0] === &#39;_&#39;) {
+    throw({forbidden: &#39;Username may not start with underscore.&#39;});
+  }
+
+  var badUserNameChars = [&#39;:&#39;];
+
+  for (var i = 0; i &amp;lt; badUserNameChars.length; i++) {
+    if (newDoc.name.indexOf(badUserNameChars[i]) &amp;gt;= 0) {
+      throw({forbidden: &#39;Character `&#39; + badUserNameChars[i] + &#39;` is not allowed in usernames.&#39;});
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;addendum&#34;&gt;Addendum&lt;/h2&gt;
+
+&lt;p&gt;You need to make sure that every data document you create in the application database needs to have an &lt;strong&gt;user&lt;/strong&gt; field which need to be filled with the username of the user. Otherwise the validation function will keep throwing up forbidden errors.&lt;/p&gt;
+
+&lt;p&gt;You are now ready to use CouchDB-as-a-backend on &lt;a href=&#34;https://cloudant.com&#34;&gt;Cloudant&lt;/a&gt;. Enjoy!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Gomu: Configuration Management</title>
@@ -78,21 +336,21 @@
 
 &lt;p&gt;I have been entertaining the thoughts of building an easy-to-use web framework for a long time. I contributed to the development of &lt;a href=&#34;https://flatironjs.org&#34;&gt;flatiron&lt;/a&gt; and learned a lot. This is a big nail I am going to use my new hammer on.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-use-go&#34;&gt;Why use Go?&lt;/h3&gt;
+&lt;h2 id=&#34;why-use-go&#34;&gt;Why use Go?&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; is faster and takes less memory than ruby/node and it will only become better in the future.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-another-framework&#34;&gt;Why another framework?&lt;/h3&gt;
+&lt;h2 id=&#34;why-another-framework&#34;&gt;Why another framework?&lt;/h2&gt;
 
 &lt;p&gt;Most of the programmers who use &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; would prefer to develop using a few utility libraries rather than using a web framework. &lt;strong&gt;This is not for them&lt;/strong&gt;. This is for people who want to rapidly develop a website leveraging the benefits provided by &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;There are a few good attempts at this like &lt;a href=&#34;https://github.com/codegangsta/martini&#34;&gt;Martini&lt;/a&gt;, &lt;a href=&#34;http://robfig.github.io/revel&#34;&gt;Revel&lt;/a&gt; and &lt;a href=&#34;http://beego.me&#34;&gt;Beego&lt;/a&gt;. But I am not satisfied with any of them. Martini is more similar to &lt;a href=&#34;https://sinatrarb.com&#34;&gt;Sinatra&lt;/a&gt; and &lt;a href=&#34;https://expressjs.org&#34;&gt;Express&lt;/a&gt; rather than &lt;a href=&#34;https://rubyonrails.org&#34;&gt;Rails&lt;/a&gt; therefore requiring a lot more effort from developer.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-are-you-saying-all-this&#34;&gt;Why are you saying all this?&lt;/h3&gt;
+&lt;h2 id=&#34;why-are-you-saying-all-this&#34;&gt;Why are you saying all this?&lt;/h2&gt;
 
 &lt;p&gt;This blog is going to be my journal for ideas and discussions about the web framework project design and execution. I also hope to list the necessary requirements and pain points in the cycle of web application development.&lt;/p&gt;
 
-&lt;h3 id=&#34;what-kind-of-name-is-gomu&#34;&gt;What kind of name is Gomu?&lt;/h3&gt;
+&lt;h2 id=&#34;what-kind-of-name-is-gomu&#34;&gt;What kind of name is Gomu?&lt;/h2&gt;
 
 &lt;p&gt;I wanted to use the letters &lt;em&gt;go&lt;/em&gt; and &lt;strong&gt;&amp;ldquo;Gomu&amp;rdquo;&lt;/strong&gt; means rubber in Japanese. It fits since I plan to make the framework very flexible and opinionated.&lt;/p&gt;
 </description>

@@ -77,21 +77,21 @@
 
 &lt;p&gt;I have been entertaining the thoughts of building an easy-to-use web framework for a long time. I contributed to the development of &lt;a href=&#34;https://flatironjs.org&#34;&gt;flatiron&lt;/a&gt; and learned a lot. This is a big nail I am going to use my new hammer on.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-use-go&#34;&gt;Why use Go?&lt;/h3&gt;
+&lt;h2 id=&#34;why-use-go&#34;&gt;Why use Go?&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; is faster and takes less memory than ruby/node and it will only become better in the future.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-another-framework&#34;&gt;Why another framework?&lt;/h3&gt;
+&lt;h2 id=&#34;why-another-framework&#34;&gt;Why another framework?&lt;/h2&gt;
 
 &lt;p&gt;Most of the programmers who use &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; would prefer to develop using a few utility libraries rather than using a web framework. &lt;strong&gt;This is not for them&lt;/strong&gt;. This is for people who want to rapidly develop a website leveraging the benefits provided by &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;There are a few good attempts at this like &lt;a href=&#34;https://github.com/codegangsta/martini&#34;&gt;Martini&lt;/a&gt;, &lt;a href=&#34;http://robfig.github.io/revel&#34;&gt;Revel&lt;/a&gt; and &lt;a href=&#34;http://beego.me&#34;&gt;Beego&lt;/a&gt;. But I am not satisfied with any of them. Martini is more similar to &lt;a href=&#34;https://sinatrarb.com&#34;&gt;Sinatra&lt;/a&gt; and &lt;a href=&#34;https://expressjs.org&#34;&gt;Express&lt;/a&gt; rather than &lt;a href=&#34;https://rubyonrails.org&#34;&gt;Rails&lt;/a&gt; therefore requiring a lot more effort from developer.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-are-you-saying-all-this&#34;&gt;Why are you saying all this?&lt;/h3&gt;
+&lt;h2 id=&#34;why-are-you-saying-all-this&#34;&gt;Why are you saying all this?&lt;/h2&gt;
 
 &lt;p&gt;This blog is going to be my journal for ideas and discussions about the web framework project design and execution. I also hope to list the necessary requirements and pain points in the cycle of web application development.&lt;/p&gt;
 
-&lt;h3 id=&#34;what-kind-of-name-is-gomu&#34;&gt;What kind of name is Gomu?&lt;/h3&gt;
+&lt;h2 id=&#34;what-kind-of-name-is-gomu&#34;&gt;What kind of name is Gomu?&lt;/h2&gt;
 
 &lt;p&gt;I wanted to use the letters &lt;em&gt;go&lt;/em&gt; and &lt;strong&gt;&amp;ldquo;Gomu&amp;rdquo;&lt;/strong&gt; means rubber in Japanese. It fits since I plan to make the framework very flexible and opinionated.&lt;/p&gt;
 </description>
