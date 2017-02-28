@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pksunkara</title>
-    <link>http://pksunkara.com/tags/web/index.xml</link>
+    <link>http://pksunkara.com/tags/javascript/index.xml</link>
     <description>Recent content on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://pksunkara.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://pksunkara.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Complex Vue.js App Structure</title>
@@ -205,95 +205,6 @@ export default {
 
 &lt;li&gt;&lt;p&gt;&lt;em&gt;Why are there no root actions and mutations in vuex?&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Gomu: Configuration Management</title>
-      <link>http://pksunkara.com/posts/gomu-configuration-management/</link>
-      <pubDate>Mon, 19 Jan 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://pksunkara.com/posts/gomu-configuration-management/</guid>
-      <description>&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://rubyonrails.org&#34;&gt;Rails&lt;/a&gt; does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.&lt;/p&gt;
-
-&lt;p&gt;Two years ago, during this time &lt;a href=&#34;https://heroku.com&#34;&gt;Heroku&lt;/a&gt; published a website detailing a concept called &lt;a href=&#34;http://12factor.net&#34;&gt;The Twelve-Factor App&lt;/a&gt;. We can see that configuration is listed third in the list. I would like to quote some of their sentences.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;An application’s config is everything that is likely to vary between deploys (staging, production, developer environments, etc)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Being run in different environments is something that a web application cannot avoid. A normal web application would need at least 3 different environments. One for &lt;strong&gt;production&lt;/strong&gt;, one for &lt;strong&gt;development&lt;/strong&gt; and the last for &lt;strong&gt;test&lt;/strong&gt;. A good configuration system should support multiple environments.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Apps sometimes store config as constants in the code. This is a violation of twelve-factor, which requires strict separation of config from code.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is the driving force behind using a configuration management system. Some might say that this would complicate the overall code by adding yet another module. It would also take more time to develop this system. But, with the rise of module/package managers, it is just a matter of plugging in the system. In order to reduce further complexity, Retrieving a configuration value from the system should be as simple as writing a variable name.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The twelve-factor app stores config in environment variables&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Most of the current configuration managers use files to store the config. This method still doesn’t solve the problem of needing to check in the config files to the repo. As mentioned above, the ideal method of storing config is using environment variables (also known as &lt;strong&gt;env vars&lt;/strong&gt; or &lt;strong&gt;env&lt;/strong&gt;). On average, a web application needs at least 10 config variables. It will be difficult and annoying for the developer to use and maintain such high number of env vars which is why most of them opt to check in the config files into their code repository.&lt;/p&gt;
-
-&lt;p&gt;Therefore, an ideal configuration system should support both env vars and config files. It would be even better if the system could merge the env vars with the config files in a hierarchical way. Maybe it can support command line arguments too.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;As more deploys of the app are created, new environment names are necessary, such as staging or qa. As the project grows further, developers may add their own special environments like joes-staging etc.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Most people don’t realize that there is a hidden problem in this. For example, if a developer wants to use some config like database info from &lt;strong&gt;staging&lt;/strong&gt; environment for their personal &lt;strong&gt;joes-staging&lt;/strong&gt; environment, they need to keep monitoring the &lt;strong&gt;staging&lt;/strong&gt; environment for any changes and have to update their personal environment config file. One way to mitigate this issue is to provide a way for environment config files to merge with each other.&lt;/p&gt;
-
-&lt;p&gt;Then, in the above example, all Joe has to create is a &lt;strong&gt;joes.staging&lt;/strong&gt; environment with the required config and leave the database config empty. When the configuration manager needs to retrieve database config for his environment, it will fallback to &lt;strong&gt;staging&lt;/strong&gt; environment config.&lt;/p&gt;
-
-&lt;p&gt;Let us recap. A good configuration manager should:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Support multiple environments in files&lt;/li&gt;
-&lt;li&gt;Be easy to retrieve a config value&lt;/li&gt;
-&lt;li&gt;Merge env vars, command line args with config in files&lt;/li&gt;
-&lt;li&gt;Merge different environment files when required&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Gomu: Introduction</title>
-      <link>http://pksunkara.com/posts/gomu-introduction/</link>
-      <pubDate>Wed, 12 Feb 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://pksunkara.com/posts/gomu-introduction/</guid>
-      <description>
-
-&lt;p&gt;I have recently started tinkering with the &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; programming language and I am impressed by its potential.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; is better than some of the major programming languages at many tasks like concurrency, run time, memory, etc. In my opinion, its ease of deployment ranks high on that list. Everything gets compiled into a single binary and it&amp;rsquo;s just a matter of uploading it.&lt;/p&gt;
-
-&lt;p&gt;I have used Go for my recent project &lt;a href=&#34;https://github.com/pksunkara/alpaca&#34;&gt;Alpaca&lt;/a&gt; which given a web api, generates client libraries in ruby, python, node and php. You can use a tool called &lt;a href=&#34;https://github.com/laher/goxc&#34;&gt;goxc&lt;/a&gt; to build binaries for all the important operating systems and architectures. All users have to do is download the appropriate binary and start running it.&lt;/p&gt;
-
-&lt;p&gt;I can definitely say that &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; is my new hammer.&lt;/p&gt;
-
-&lt;p&gt;I have been entertaining the thoughts of building an easy-to-use web framework for a long time. I contributed to the development of &lt;a href=&#34;https://flatironjs.org&#34;&gt;flatiron&lt;/a&gt; and learned a lot. This is a big nail I am going to use my new hammer on.&lt;/p&gt;
-
-&lt;h2 id=&#34;why-use-go&#34;&gt;Why use Go?&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; is faster and takes less memory than ruby/node and it will only become better in the future.&lt;/p&gt;
-
-&lt;h2 id=&#34;why-another-framework&#34;&gt;Why another framework?&lt;/h2&gt;
-
-&lt;p&gt;Most of the programmers who use &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; would prefer to develop using a few utility libraries rather than using a web framework. &lt;strong&gt;This is not for them&lt;/strong&gt;. This is for people who want to rapidly develop a website leveraging the benefits provided by &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;There are a few good attempts at this like &lt;a href=&#34;https://github.com/codegangsta/martini&#34;&gt;Martini&lt;/a&gt;, &lt;a href=&#34;http://robfig.github.io/revel&#34;&gt;Revel&lt;/a&gt; and &lt;a href=&#34;http://beego.me&#34;&gt;Beego&lt;/a&gt;. But I am not satisfied with any of them. Martini is more similar to &lt;a href=&#34;https://sinatrarb.com&#34;&gt;Sinatra&lt;/a&gt; and &lt;a href=&#34;https://expressjs.org&#34;&gt;Express&lt;/a&gt; rather than &lt;a href=&#34;https://rubyonrails.org&#34;&gt;Rails&lt;/a&gt; therefore requiring a lot more effort from developer.&lt;/p&gt;
-
-&lt;h2 id=&#34;why-are-you-saying-all-this&#34;&gt;Why are you saying all this?&lt;/h2&gt;
-
-&lt;p&gt;This blog is going to be my journal for ideas and discussions about the web framework project design and execution. I also hope to list the necessary requirements and pain points in the cycle of web application development.&lt;/p&gt;
-
-&lt;h2 id=&#34;what-kind-of-name-is-gomu&#34;&gt;What kind of name is Gomu?&lt;/h2&gt;
-
-&lt;p&gt;I wanted to use the letters &lt;em&gt;go&lt;/em&gt; and &lt;strong&gt;&amp;ldquo;Gomu&amp;rdquo;&lt;/strong&gt; means rubber in Japanese. It fits since I plan to make the framework very flexible and opinionated.&lt;/p&gt;
 </description>
     </item>
     

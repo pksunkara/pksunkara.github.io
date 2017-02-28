@@ -6,8 +6,208 @@
     <description>Recent content on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Oct 2016 15:25:32 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jan 2017 03:23:55 +0530</lastBuildDate>
     <atom:link href="http://pksunkara.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Complex Vue.js App Structure</title>
+      <link>http://pksunkara.com/posts/complex-vuejs-app-structure/</link>
+      <pubDate>Wed, 25 Jan 2017 03:23:55 +0530</pubDate>
+      
+      <guid>http://pksunkara.com/posts/complex-vuejs-app-structure/</guid>
+      <description>
+
+&lt;p&gt;I have always liked it whenever a framework provides it&amp;rsquo;s own generators and/or boilerplates. It&amp;rsquo;s what I liked about &lt;a href=&#34;http://rubyonrails.org&#34;&gt;Ruby on Rails&lt;/a&gt; the most after the &lt;a href=&#34;https://en.wikipedia.org/wiki/Model–view–controller&#34;&gt;MVC&lt;/a&gt; concept. Developers can understand a lot about the framework and the way it&amp;rsquo;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;/p&gt;
+
+&lt;p&gt;When I started looking into &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt;, I was happy to discover that they have a small generator tool called &lt;strong&gt;vue-cli&lt;/strong&gt; which can be used with official boilerplates provided at &lt;a href=&#34;https://github.com/vuejs-templates&#34;&gt;vuejs-templates&lt;/a&gt;. Unfortunately, the happiness didn&amp;rsquo;t last long because the boilerplates are simple applications meant to get you started with &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt;. They don&amp;rsquo;t deal with all the other necessary packages such as &lt;a href=&#34;https://vuex.vuejs.org/en/&#34;&gt;vuex&lt;/a&gt;, &lt;a href=&#34;https://router.vuejs.org/en/&#34;&gt;vue-router&lt;/a&gt;, etc.. which are needed for a complex &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; application. They did allow the tool to use third party boilerplates which resulted in me creating &lt;a href=&#34;https://github.com/pksunkara/spoiler&#34;&gt;spoiler&lt;/a&gt; built upon the official webpack boilerplate.&lt;/p&gt;
+
+&lt;p&gt;I would like to describe below about what I think should be the directory and file structure of a complex &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; application and it&amp;rsquo;s conventions.&lt;/p&gt;
+
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;The following example assumes that you will be using webpack build config from &lt;a href=&#34;https://github.com/vuejs-templates/webpack&#34;&gt;vuejs-templates/webpack&lt;/a&gt; boilerplate.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s also assume that you want to have a page named &lt;strong&gt;Hello&lt;/strong&gt;, it will need a &lt;a href=&#34;https://vuejs.org&#34;&gt;vue.js&lt;/a&gt; component named &lt;strong&gt;Hello&lt;/strong&gt; and a &lt;a href=&#34;https://vuex.vuejs.org/en/&#34;&gt;vuex&lt;/a&gt; module named &lt;strong&gt;Hello&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;.
+├─ src
+│  ├─ assets               # module assets (processed by webpack)
+│  │  └─ ...
+│  ├─ components
+│  │  └─ Hello.vue         # Hello component
+│  │  └─ index.js          # component exporter
+│  │  └─ ...
+│  ├─ modules
+│  │  └─ Hello.js          # Hello module
+│  │  └─ index.js          # vuex module exporter
+│  │  └─ ...
+│  ├─ App.vue              # main app component
+│  ├─ main.js              # app entry file
+│  ├─ router.js            # app route configuration
+│  └─ store.js             # assemble vuex store
+├─ public                  # static assets (directly copied)
+│  └─ ...
+├─ index.html              # index.html template
+└─ package.json            # build scripts and dependencies
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;index-html&#34;&gt;index.html&lt;/h4&gt;
+
+&lt;p&gt;This is the main HTML template for your application. You can link your static assets inside the &lt;strong&gt;head&lt;/strong&gt; tag while your processed assets will be auto injected in &lt;strong&gt;body&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;link rel=&amp;quot;shortcut icon&amp;quot; type=&amp;quot;image/png&amp;quot; href=&amp;quot;/assets/images/favicon.png&amp;quot;/&amp;gt;
+  &amp;lt;/head&amp;gt;
+
+  &amp;lt;body&amp;gt;
+    &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-store-js&#34;&gt;src/store.js&lt;/h4&gt;
+
+&lt;p&gt;This is the file which initiates the &lt;a href=&#34;https://vuex.vuejs.org/en/&#34;&gt;vuex&lt;/a&gt; store with the given modules.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import Vue from &#39;vue&#39;;
+import Vuex from &#39;vuex&#39;;
+import { Hello } from &#39;@/modules&#39;;
+
+Vue.use(Vuex);
+
+/* eslint-disable no-new */
+const store = new Vuex.Store({
+  modules: {
+    Hello,
+  },
+});
+
+export default store;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-router-js&#34;&gt;src/router.js&lt;/h4&gt;
+
+&lt;p&gt;This is the file which initiates the &lt;a href=&#34;https://router.vuejs.org/en/&#34;&gt;vue-router&lt;/a&gt; with the given components.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import Vue from &#39;vue&#39;;
+import VueRouter from &#39;vue-router&#39;;
+import { Hello } from &#39;@/components&#39;;
+
+Vue.use(VueRouter);
+
+const routes = [
+  { path: &#39;/&#39;, component: Hello },
+];
+
+/* eslint-disable no-new */
+export default new VueRouter({
+  routes,
+  mode: &#39;history&#39;,
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-app-vue&#34;&gt;src/App.vue&lt;/h4&gt;
+
+&lt;p&gt;This is the application&amp;rsquo;s main &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; component which is basically just a wrapper for &lt;a href=&#34;https://router.vuejs.org/en/&#34;&gt;vue-router&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;
+    &amp;lt;router-view&amp;gt;&amp;lt;/router-view&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+export default {};
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-main-js&#34;&gt;src/main.js&lt;/h4&gt;
+
+&lt;p&gt;This is the application entry file where you initiate your &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; application with a router, store and the main &lt;strong&gt;App.vue&lt;/strong&gt; component.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import Vue from &#39;vue&#39;;
+import router from &#39;@/router&#39;;
+import store from &#39;@/store&#39;;
+import App from &#39;@/App&#39;;
+
+/* eslint-disable no-new */
+new Vue({
+  el: &#39;#app&#39;,
+  router,
+  store,
+  render: h =&amp;gt; h(App),
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-modules-index-js&#34;&gt;src/modules/index.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import Hello from &#39;@/modules/Hello&#39;;
+
+export {
+  Hello,
+};
+
+export default {};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-modules-hello-js&#34;&gt;src/modules/Hello.js&lt;/h4&gt;
+
+&lt;p&gt;This file represents a sample &lt;a href=&#34;https://vuex.vuejs.org/en/&#34;&gt;vuex&lt;/a&gt; module.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;export default {
+  namespaced: true,
+  state: {
+    message: &#39;Hello Vue!&#39;,
+  },
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-components-index-js&#34;&gt;src/components/index.js&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import Hello from &#39;@/components/Hello&#39;;
+
+export {
+  Hello,
+};
+
+export default {};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;src-components-hello-vue&#34;&gt;src/components/Hello.vue&lt;/h4&gt;
+
+&lt;p&gt;This file represents a sample &lt;a href=&#34;https://vuejs.org&#34;&gt;Vue.js&lt;/a&gt; component which will be used by the &lt;a href=&#34;https://router.vuejs.org/en/&#34;&gt;vue-router&lt;/a&gt;. Please note that &lt;strong&gt;Hello&lt;/strong&gt; module&amp;rsquo;s state is being used in here.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div class=&amp;quot;hello&amp;quot;&amp;gt;
+    &amp;lt;h1&amp;gt;{{ message }}&amp;lt;/h1&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+import { mapState } from &#39;vuex&#39;;
+
+export default {
+  data() {
+    return {};
+  },
+  computed: mapState({
+    message: state =&amp;gt; state.Hello.message,
+  }),
+};
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Why is &lt;strong&gt;router.js&lt;/strong&gt; a single file?&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Why are there no root actions and mutations in vuex?&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Cloudant: CouchDB as Backend</title>
