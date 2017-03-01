@@ -9,7 +9,7 @@ title: "Complex Vue.js App Structure"
 
 I have always liked it whenever a framework provides it's own generators and/or boilerplates. It's what I liked about [Ruby on Rails](http://rubyonrails.org) the most after the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) concept. Developers can understand a lot about the framework and the way it's intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.
 
-When I started looking into [Vue.js][], I was happy to discover that they have a small generator tool called **vue-cli** which can be used with official boilerplates provided at [vuejs-templates](https://github.com/vuejs-templates). Unfortunately, the happiness didn't last long because the boilerplates are simple applications meant to get you started with [Vue.js][]. They don't deal with all the other necessary packages such as [vuex][], [vue-router][], etc.. which are needed for a complex [Vue.js][] application. They did allow the tool to use third party boilerplates which resulted in me creating [spoiler](https://github.com/pksunkara/spoiler) built upon the official webpack boilerplate.
+When I started looking into [Vue.js][], I was happy to discover that they have a small generator tool called **vue-cli** which can be used with official boilerplates provided at [vuejs-templates](https://github.com/vuejs-templates). Unfortunately, the happiness didn't last long because the boilerplates are simple applications meant to get you started with [Vue.js][]. They don't deal with all the other necessary packages such as [vuex][], [vue-router][], etc.. which are needed for a complex [Vue.js][] application. *(__EDIT__: At the time of writing this post, vue-router wasn't present in the boilerplate)*. They did allow the tool to use third party boilerplates which resulted in me creating [spoiler](https://github.com/pksunkara/spoiler) built upon the official webpack boilerplate.
 
 I would like to describe below about what I think should be the directory and file structure of a complex [Vue.js][] application and it's conventions.
 
@@ -26,16 +26,16 @@ Let's also assume that you want to have a page named **Hello**, it will need a [
 │  │  └─ ...
 │  ├─ components
 │  │  └─ Hello.vue         # Hello component
-│  │  └─ index.js          # component exporter
 │  │  └─ ...
-│  ├─ modules
+│  ├─ store
 │  │  └─ Hello.js          # Hello module
-│  │  └─ index.js          # vuex module exporter
+│  │  └─ index.js          # assemble vuex store
+│  │  └─ ...
+│  ├─ router
+│  │  └─ index.js          # app route configuration
 │  │  └─ ...
 │  ├─ App.vue              # main app component
-│  ├─ main.js              # app entry file
-│  ├─ router.js            # app route configuration
-│  └─ store.js             # assemble vuex store
+│  └─ main.js              # app entry file
 ├─ public                  # static assets (directly copied)
 │  └─ ...
 ├─ index.html              # index.html template
@@ -59,14 +59,36 @@ This is the main HTML template for your application. You can link your static as
 </html>
 ```
 
-#### src/store.js
+#### src/router/index.js
 
-This is the file which initiates the [vuex][] store with the given modules.
+This is the file which initiates [vue-router][] with the given components.
+
+```js
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Hello from '@/components/Hello';
+
+Vue.use(VueRouter);
+
+const routes = [
+  { path: '/', name: 'Hello', component: Hello },
+];
+
+/* eslint-disable no-new */
+export default new VueRouter({
+  routes,
+  mode: 'history',
+});
+```
+
+#### src/store/index.js
+
+This is the file which initiates [vuex][] store with the given modules.
 
 ```js
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { Hello } from '@/modules';
+import Hello from '@/store/Hello';
 
 Vue.use(Vuex);
 
@@ -78,28 +100,6 @@ const store = new Vuex.Store({
 });
 
 export default store;
-```
-
-#### src/router.js
-
-This is the file which initiates the [vue-router][] with the given components.
-
-```js
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import { Hello } from '@/components';
-
-Vue.use(VueRouter);
-
-const routes = [
-  { path: '/', component: Hello },
-];
-
-/* eslint-disable no-new */
-export default new VueRouter({
-  routes,
-  mode: 'history',
-});
 ```
 
 #### src/App.vue
@@ -137,21 +137,7 @@ new Vue({
 });
 ```
 
-#### src/modules/index.js
-
-
-
-```js
-import Hello from '@/modules/Hello';
-
-export {
-  Hello,
-};
-
-export default {};
-```
-
-#### src/modules/Hello.js
+#### src/store/Hello.js
 
 This file represents a sample [vuex][] module.
 
@@ -162,18 +148,6 @@ export default {
     message: 'Hello Vue!',
   },
 };
-```
-
-#### src/components/index.js
-
-```js
-import Hello from '@/components/Hello';
-
-export {
-  Hello,
-};
-
-export default {};
 ```
 
 #### src/components/Hello.vue
@@ -203,9 +177,17 @@ export default {
 
 ## Questions
 
-1. *Why is __router.js__ a single file?*
+#### Why is router a directory instead of a single file?
 
-2. *Why are there no root actions and mutations in vuex?*
+When applications grow, the number of routes grow. They might contain **beforeEnter** hooks and so on and sometimes you might want to put all that in a separate file, or files. With a subdirectory you can keep this all in one place without bloating one router.js file.
+
+#### Why are there no root actions and mutations in vuex?
+
+In large applications, almost everything should be as independent of each other for better maintainability and readability of the codebase. Having root actions and mutations will hamper that and thus is not recommended.
+
+## Final Comments
+
+I wish the official webpack template supports [vue-router][], [vuex][], etc.. and hopefully guide lot of developers to the correct way of using [Vue.js][]. I also wish it contains some subcommands which can be used when creating a new component or module so that the official conventions are encouraged.
 
 [Vue.js]: https://vuejs.org
 [vuex]: https://vuex.vuejs.org/en/

@@ -49,7 +49,7 @@
 			},
 			"datePublished": "2017-01-25",
 			"description": "",
-			"wordCount":  686 
+			"wordCount":  800 
 		}
 		</script>
 	
@@ -125,7 +125,7 @@
 
 <p>I have always liked it whenever a framework provides it&rsquo;s own generators and/or boilerplates. It&rsquo;s what I liked about <a href="http://rubyonrails.org">Ruby on Rails</a> the most after the <a href="https://en.wikipedia.org/wiki/Model–view–controller">MVC</a> concept. Developers can understand a lot about the framework and the way it&rsquo;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.</p>
 
-<p>When I started looking into <a href="https://vuejs.org">Vue.js</a>, I was happy to discover that they have a small generator tool called <strong>vue-cli</strong> which can be used with official boilerplates provided at <a href="https://github.com/vuejs-templates">vuejs-templates</a>. Unfortunately, the happiness didn&rsquo;t last long because the boilerplates are simple applications meant to get you started with <a href="https://vuejs.org">Vue.js</a>. They don&rsquo;t deal with all the other necessary packages such as <a href="https://vuex.vuejs.org/en/">vuex</a>, <a href="https://router.vuejs.org/en/">vue-router</a>, etc.. which are needed for a complex <a href="https://vuejs.org">Vue.js</a> application. They did allow the tool to use third party boilerplates which resulted in me creating <a href="https://github.com/pksunkara/spoiler">spoiler</a> built upon the official webpack boilerplate.</p>
+<p>When I started looking into <a href="https://vuejs.org">Vue.js</a>, I was happy to discover that they have a small generator tool called <strong>vue-cli</strong> which can be used with official boilerplates provided at <a href="https://github.com/vuejs-templates">vuejs-templates</a>. Unfortunately, the happiness didn&rsquo;t last long because the boilerplates are simple applications meant to get you started with <a href="https://vuejs.org">Vue.js</a>. They don&rsquo;t deal with all the other necessary packages such as <a href="https://vuex.vuejs.org/en/">vuex</a>, <a href="https://router.vuejs.org/en/">vue-router</a>, etc.. which are needed for a complex <a href="https://vuejs.org">Vue.js</a> application. <em>(<strong>EDIT</strong>: At the time of writing this post, vue-router wasn&rsquo;t present in the boilerplate)</em>. They did allow the tool to use third party boilerplates which resulted in me creating <a href="https://github.com/pksunkara/spoiler">spoiler</a> built upon the official webpack boilerplate.</p>
 
 <p>I would like to describe below about what I think should be the directory and file structure of a complex <a href="https://vuejs.org">Vue.js</a> application and it&rsquo;s conventions.</p>
 
@@ -141,16 +141,16 @@
 │  │  └─ ...
 │  ├─ components
 │  │  └─ Hello.vue         # Hello component
-│  │  └─ index.js          # component exporter
 │  │  └─ ...
-│  ├─ modules
+│  ├─ store
 │  │  └─ Hello.js          # Hello module
-│  │  └─ index.js          # vuex module exporter
+│  │  └─ index.js          # assemble vuex store
+│  │  └─ ...
+│  ├─ router
+│  │  └─ index.js          # app route configuration
 │  │  └─ ...
 │  ├─ App.vue              # main app component
-│  ├─ main.js              # app entry file
-│  ├─ router.js            # app route configuration
-│  └─ store.js             # assemble vuex store
+│  └─ main.js              # app entry file
 ├─ public                  # static assets (directly copied)
 │  └─ ...
 ├─ index.html              # index.html template
@@ -173,13 +173,34 @@
 &lt;/html&gt;
 </code></pre>
 
-<h4 id="src-store-js">src/store.js</h4>
+<h4 id="src-router-index-js">src/router/index.js</h4>
 
-<p>This is the file which initiates the <a href="https://vuex.vuejs.org/en/">vuex</a> store with the given modules.</p>
+<p>This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p>
+
+<pre><code class="language-js">import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Hello from '@/components/Hello';
+
+Vue.use(VueRouter);
+
+const routes = [
+  { path: '/', name: 'Hello', component: Hello },
+];
+
+/* eslint-disable no-new */
+export default new VueRouter({
+  routes,
+  mode: 'history',
+});
+</code></pre>
+
+<h4 id="src-store-index-js">src/store/index.js</h4>
+
+<p>This is the file which initiates <a href="https://vuex.vuejs.org/en/">vuex</a> store with the given modules.</p>
 
 <pre><code class="language-js">import Vue from 'vue';
 import Vuex from 'vuex';
-import { Hello } from '@/modules';
+import Hello from '@/store/Hello';
 
 Vue.use(Vuex);
 
@@ -191,27 +212,6 @@ const store = new Vuex.Store({
 });
 
 export default store;
-</code></pre>
-
-<h4 id="src-router-js">src/router.js</h4>
-
-<p>This is the file which initiates the <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p>
-
-<pre><code class="language-js">import Vue from 'vue';
-import VueRouter from 'vue-router';
-import { Hello } from '@/components';
-
-Vue.use(VueRouter);
-
-const routes = [
-  { path: '/', component: Hello },
-];
-
-/* eslint-disable no-new */
-export default new VueRouter({
-  routes,
-  mode: 'history',
-});
 </code></pre>
 
 <h4 id="src-app-vue">src/App.vue</h4>
@@ -247,18 +247,7 @@ new Vue({
 });
 </code></pre>
 
-<h4 id="src-modules-index-js">src/modules/index.js</h4>
-
-<pre><code class="language-js">import Hello from '@/modules/Hello';
-
-export {
-  Hello,
-};
-
-export default {};
-</code></pre>
-
-<h4 id="src-modules-hello-js">src/modules/Hello.js</h4>
+<h4 id="src-store-hello-js">src/store/Hello.js</h4>
 
 <p>This file represents a sample <a href="https://vuex.vuejs.org/en/">vuex</a> module.</p>
 
@@ -268,17 +257,6 @@ export default {};
     message: 'Hello Vue!',
   },
 };
-</code></pre>
-
-<h4 id="src-components-index-js">src/components/index.js</h4>
-
-<pre><code class="language-js">import Hello from '@/components/Hello';
-
-export {
-  Hello,
-};
-
-export default {};
 </code></pre>
 
 <h4 id="src-components-hello-vue">src/components/Hello.vue</h4>
@@ -307,11 +285,17 @@ export default {
 
 <h2 id="questions">Questions</h2>
 
-<ol>
-<li><p><em>Why is <strong>router.js</strong> a single file?</em></p></li>
+<h4 id="why-is-router-a-directory-instead-of-a-single-file">Why is router a directory instead of a single file?</h4>
 
-<li><p><em>Why are there no root actions and mutations in vuex?</em></p></li>
-</ol>
+<p>When applications grow, the number of routes grow. They might contain <strong>beforeEnter</strong> hooks and so on and sometimes you might want to put all that in a separate file, or files. With a subdirectory you can keep this all in one place without bloating one router.js file.</p>
+
+<h4 id="why-are-there-no-root-actions-and-mutations-in-vuex">Why are there no root actions and mutations in vuex?</h4>
+
+<p>In large applications, almost everything should be as independent of each other for better maintainability and readability of the codebase. Having root actions and mutations will hamper that and thus is not recommended.</p>
+
+<h2 id="final-comments">Final Comments</h2>
+
+<p>I wish the official webpack template supports <a href="https://router.vuejs.org/en/">vue-router</a>, <a href="https://vuex.vuejs.org/en/">vuex</a>, etc.. and hopefully guide lot of developers to the correct way of using <a href="https://vuejs.org">Vue.js</a>. I also wish it contains some subcommands which can be used when creating a new component or module so that the official conventions are encouraged.</p>
 
 	<div id="social-bar">
 	<ul class="rrssb-buttons clearfix">
