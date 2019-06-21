@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://pksunkara.com/</loc>
+    <loc>http://pksunkara.com/categories/</loc>
     <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -12,18 +14,102 @@
   </url>
   
   <url>
+    <loc>http://pksunkara.com/posts/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/frontend/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/javascript/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/categories/programming/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/vue/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/web/</loc>
+    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://pksunkara.com/posts/cloudant-couchdb-as-backend/</loc>
     <lastmod>2016-10-01T15:25:32+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pksunkara.com/about</loc>
+    <loc>http://pksunkara.com/tags/cloudant/</loc>
+    <lastmod>2016-10-01T15:25:32+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/couchdb/</loc>
+    <lastmod>2016-10-01T15:25:32+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/database/</loc>
+    <lastmod>2016-10-01T15:25:32+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/about/</loc>
     <lastmod>2016-09-27T17:55:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/page/</loc>
+    <lastmod>2016-09-27T17:55:24+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pksunkara.com/posts/gomu-configuration-management/</loc>
     <lastmod>2015-01-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/golang/</loc>
+    <lastmod>2015-01-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/gomu/</loc>
+    <lastmod>2015-01-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

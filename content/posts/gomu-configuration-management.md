@@ -7,7 +7,7 @@ categories: ["programming"]
 authors: ["pksunkara"]
 ---
 
-Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework. 
+Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.
 
 [Rails](https://rubyonrails.org) does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.
 
@@ -21,9 +21,9 @@ Being run in different environments is something that a web application cannot a
 
 This is the driving force behind using a configuration management system. Some might say that this would complicate the overall code by adding yet another module. It would also take more time to develop this system. But, with the rise of module/package managers, it is just a matter of plugging in the system. In order to reduce further complexity, Retrieving a configuration value from the system should be as simple as writing a variable name.
 
-> The twelve-factor app stores config in environment variables 
+> The twelve-factor app stores config in environment variables
 
-Most of the current configuration managers use files to store the config. This method still doesn’t solve the problem of needing to check in the config files to the repo. As mentioned above, the ideal method of storing config is using environment variables (also known as **env vars** or **env**). On average, a web application needs at least 10 config variables. It will be difficult and annoying for the developer to use and maintain such high number of env vars which is why most of them opt to check in the config files into their code repository. 
+Most of the current configuration managers use files to store the config. This method still doesn’t solve the problem of needing to check in the config files to the repo. As mentioned above, the ideal method of storing config is using environment variables (also known as **env vars** or **env**). On average, a web application needs at least 10 config variables. It will be difficult and annoying for the developer to use and maintain such high number of env vars which is why most of them opt to check in the config files into their code repository.
 
 Therefore, an ideal configuration system should support both env vars and config files. It would be even better if the system could merge the env vars with the config files in a hierarchical way. Maybe it can support command line arguments too.
 

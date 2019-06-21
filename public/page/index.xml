@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Page-rsses on pksunkara</title>
-    <link>http://pksunkara.com/page/index.xml</link>
-    <description>Recent content in Page-rsses on pksunkara</description>
+    <title>Pages on pksunkara</title>
+    <link>http://pksunkara.com/page/</link>
+    <description>Recent content in Pages on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 27 Sep 2016 17:55:24 +0200</lastBuildDate>
-    <atom:link href="http://pksunkara.com/page/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://pksunkara.com/page/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>About</title>
-      <link>http://pksunkara.com/about</link>
+      <link>http://pksunkara.com/about/</link>
       <pubDate>Tue, 27 Sep 2016 17:55:24 +0200</pubDate>
       
-      <guid>http://pksunkara.com/about</guid>
-      <description>&lt;p&gt;I am Pavan Kumar Sunkara, a software developer at Apiary. I mainly work on &lt;a href=&#34;https://apiblueprint.org&#34;&gt;API Blueprint&lt;/a&gt; and other API related stuff.&lt;/p&gt;
-</description>
+      <guid>http://pksunkara.com/about/</guid>
+      <description>I am Pavan Kumar Sunkara, a software developer at Apiary. I mainly work on API Blueprint and other API related stuff.</description>
     </item>
     
   </channel>

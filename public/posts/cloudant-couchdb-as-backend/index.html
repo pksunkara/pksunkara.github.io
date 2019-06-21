@@ -1,125 +1,108 @@
 
 <!DOCTYPE html>
 <html lang="en-us">
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="HandheldFriendly" content="True" />
-		<meta name="MobileOptimized" content="320" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		
-
-  <meta name="twitter:card" content="summary"/>
-
-
-
+    <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cloudant: CouchDB as Backend"/>
 <meta name="twitter:description" content="There have been a lot of guides on how to use CouchDB as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use Cloudant&rsquo;s CouchDB as a backend directly for one of my Single Page Applications [SPA]. This blog post gives a little perspective on the limitations of the idea and how to achieve it."/>
 <meta name="twitter:site" content="@pksunkara"/>
 
-
-		<meta property="og:title" content="Cloudant: CouchDB as Backend" />
+    <meta property="og:title" content="Cloudant: CouchDB as Backend" />
 <meta property="og:description" content="There have been a lot of guides on how to use CouchDB as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use Cloudant&rsquo;s CouchDB as a backend directly for one of my Single Page Applications [SPA]. This blog post gives a little perspective on the limitations of the idea and how to achieve it." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://pksunkara.com/posts/cloudant-couchdb-as-backend/" />
+<meta property="article:published_time" content="2016-10-01T15:25:32&#43;02:00"/>
+<meta property="article:modified_time" content="2016-10-01T15:25:32&#43;02:00"/>
 
 
-<meta property="og:updated_time" content="2016-10-01T15:25:32&#43;02:00"/>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Article",
+      "headline": "Cloudant: CouchDB as Backend",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "datePublished": "2016-10-01",
+      "description": "",
+      "wordCount":  1372 
+    }
+    </script>
+    
 
+    <title> Cloudant: CouchDB as Backend &middot;  pksunkara</title>
 
+    <meta name="description" content="My personal blog" />
 
+    
+    
 
+    
+    <link href="http://pksunkara.com/index.xml" rel="alternate" type="application/rss+xml" title="pksunkara" />
+    
 
+    
 
+    <link rel="canonical" href="http://pksunkara.com/posts/cloudant-couchdb-as-backend/" />
 
+    <link rel="stylesheet" type="text/css" href="http://pksunkara.com/css/crisp.css">
+    <link rel="stylesheet" type="text/css" href="http://pksunkara.com/css/rrssb.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700%7CBree+Serif">
 
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script type="text/javascript" src="http://pksunkara.com/js/gist.min.js"></script>
+    <script type="text/javascript" src="http://pksunkara.com/js/rrssb.min.js"></script>
+  </head>
+  <body>
+    <header id="header">
+      <a id="logo" href="http://pksunkara.com/"><img src="https://www.gravatar.com/avatar/39863b6141d1be3ec211dca4b061cd5e.png?s=400" alt="pksunkara" /></a>
+      <h1><a href="http://pksunkara.com/">pksunkara</a></h1>
+      <p></p>
 
-
-
-	
-		<script type="application/ld+json">
-		{
-			"@context": "http://schema.org",
-			"@type": "Article",
-			"headline": "Cloudant: CouchDB as Backend",
-			"author": {
-				"@type": "Person",
-				"name": "http://profiles.google.com/112496434648475402756?rel=author"
-			},
-			"datePublished": "2016-10-01",
-			"description": "",
-			"wordCount":  1372 
-		}
-		</script>
-	
-
-		<title> Cloudant: CouchDB as Backend &middot;  pksunkara</title>
-
-		<meta name="description" content="My personal blog" />
-
-		
-		  
-
-	
-		<link href="http://pksunkara.com/index.xml" rel="alternate" type="application/rss+xml" title="pksunkara" />
-	
-
-	
-
-		<link rel="canonical" href="http://pksunkara.com/posts/cloudant-couchdb-as-backend/" />
-
-		<link rel="stylesheet" type="text/css" href="http://pksunkara.com/css/crisp.css">
-		<link rel="stylesheet" type="text/css" href="http://pksunkara.com/css/rrssb.css">
-		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700%7CBree+Serif">
-
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
-		<script type="text/javascript" src="http://pksunkara.com/js/gist.min.js"></script>
-		<script type="text/javascript" src="http://pksunkara.com/js/rrssb.min.js"></script>
-	</head>
-	<body>
-		<header id="header">
-			<a id="logo" href="http://pksunkara.com/"><img src="https://www.gravatar.com/avatar/39863b6141d1be3ec211dca4b061cd5e.png?s=400" alt="pksunkara" /></a>
-			<h1><a href="http://pksunkara.com/">pksunkara</a></h1>
-			<p></p>
-
-			<div id="follow-icons">
-	<a href="http://github.com/pksunkara" rel="me"><i class="fa fa-github-square fa-2x"></i></a>
-	<a href="http://twitter.com/pksunkara" rel="me"><i class="fa fa-twitter-square fa-2x"></i></a>
-	<a href="http://facebook.com/pksunkara" rel="me"><i class="fa fa-facebook-square fa-2x"></i></a>
-	<a href="http://plus.google.com/112496434648475402756" rel="me"><i class="fa fa-google-plus-square fa-2x"></i></a>
-	<a href="http://pksunkara.com/index.xml" rel="me"><i class="fa fa-rss-square fa-2x"></i></a>
+      <div id="follow-icons">
+  <a href="http://github.com/pksunkara" rel="me"><i class="fa fa-github-square fa-2x"></i></a>
+  <a href="http://twitter.com/pksunkara" rel="me"><i class="fa fa-twitter-square fa-2x"></i></a>
+  <a href="http://facebook.com/pksunkara" rel="me"><i class="fa fa-facebook-square fa-2x"></i></a>
+  <a href="http://pksunkara.com/index.xml" rel="me"><i class="fa fa-rss-square fa-2x"></i></a>
 </div>
 
-			<h6><a href="/about">About</a></h6>
+      <h6><a href="/about">About</a></h6>
 
-		</header>
+    </header>
 
 <main id="content">
 
 <article id="" class="posts">
-	<div class="post-stamp">
-		<time datetime="2016-10-01T15:25:32&#43;02:00">
-			Oct  1, 2016
-		</time>
-		<span class="taglist">
-		
-			&middot;
-			
-				<a href="http://pksunkara.com/tags/database/">database</a>
-			
-				<a href="http://pksunkara.com/tags/couchdb/">couchdb</a>
-			
-				<a href="http://pksunkara.com/tags/cloudant/">cloudant</a>
-			
-		
-		</span>
-	</div>
-	<h1 class="post-title">Cloudant: CouchDB as Backend</h1>
-	
+  <div class="post-stamp">
+    <time datetime="2016-10-01T15:25:32&#43;02:00">
+      Oct  1, 2016
+    </time>
+    <span class="taglist">
+    
+      &middot;
+      
+        <a href="http://pksunkara.com/tags/database/">database</a>
+      
+        <a href="http://pksunkara.com/tags/couchdb/">couchdb</a>
+      
+        <a href="http://pksunkara.com/tags/cloudant/">cloudant</a>
+      
+    
+    </span>
+  </div>
+  <h1 class="post-title">Cloudant: CouchDB as Backend</h1>
+  
 
 <p>There have been a <a href="http://blog.mattwoodward.com/2012/03/definitive-guide-to-couchdb.html">lot</a> <a href="http://www.staticshin.com/programming/easy-user-accounts-management-with-couchdb/">of</a> <a href="https://nolanlawson.com/2013/11/15/couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site/">guides</a> on how to use <a href="http://couchdb.apache.org">CouchDB</a> as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use <a href="https://cloudant.com">Cloudant</a>&rsquo;s CouchDB as a backend directly for one of my Single Page Applications [<strong>SPA</strong>]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.</p>
 
@@ -369,8 +352,8 @@
 
 <p>You are now ready to use CouchDB-as-a-backend on <a href="https://cloudant.com">Cloudant</a>. Enjoy!</p>
 
-	<div id="social-bar">
-	<ul class="rrssb-buttons clearfix">
+  <div id="social-bar">
+  <ul class="rrssb-buttons clearfix">
       <li class="email">
           <a href="mailto:?subject=Cloudant%3a%20CouchDB%20as%20Backend&amp;body=http://pksunkara.com/posts/cloudant-couchdb-as-backend/">
               <span class="icon">
@@ -391,17 +374,17 @@
               <span class="text">Facebook</span>
           </a>
       </li>
-			<li class="twitter">
+      <li class="twitter">
           <a href="http://twitter.com/home?status=Cloudant%3a%20CouchDB%20as%20Backend%20http://pksunkara.com/posts/cloudant-couchdb-as-backend/" class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
-		                  <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32 c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155 C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965 C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683 c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851 C26.275,7.229,25.39,8.196,24.253,8.756z"/>
+                      <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32 c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155 C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965 C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683 c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851 C26.275,7.229,25.39,8.196,24.253,8.756z"/>
                   </svg>
               </span>
               <span class="text">Twitter</span>
           </a>
       </li>
-			<li class="linkedin">
+      <li class="linkedin">
           <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://pksunkara.com/posts/cloudant-couchdb-as-backend/&amp;title=Cloudant%3a%20CouchDB%20as%20Backend&amp;summary=There%20have%20been%20a%20lot%20of%20guides%20on%20how%20to%20use%20CouchDB%20as%20a%20database%20for%20the%20web%20while%20restricting%20users%20to%20write%20only%20the%20data%20they%20own.%20I%20have%20been%20recently%20experimenting%20with%20how%20to%20use%20Cloudant%26rsquo%3bs%20CouchDB%20as%20a%20backend%20directly%20for%20one%20of%20my%20Single%20Page%20Applications%20%5bSPA%5d.%20This%20blog%20post%20gives%20a%20little%20perspective%20on%20the%20limitations%20of%20the%20idea%20and%20how%20to%20achieve%20it...." class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -412,13 +395,13 @@
           </a>
       </li>
       <li class="tumblr">
-					<script>
-						document.write('<a href="http://www.tumblr.com/share?v=3&amp;u=' + encodeURIComponent('http:\/\/pksunkara.com\/posts\/cloudant-couchdb-as-backend\/') + '&amp;t=Cloudant: CouchDB as Backend" class="popup">');
-					</script>
+          <script>
+            document.write('<a href="http://www.tumblr.com/share?v=3&amp;u=' + encodeURIComponent('http:\/\/pksunkara.com\/posts\/cloudant-couchdb-as-backend\/') + '&amp;t=Cloudant: CouchDB as Backend" class="popup">');
+          </script>
               <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
-											<path d="M18.02 21.842c-2.029 0.052-2.422-1.396-2.439-2.446v-7.294h4.729V7.874h-4.71V1.592c0 0-3.653 0-3.714 0 s-0.167 0.053-0.182 0.186c-0.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 c1.863-0.03 3.934-0.795 4.392-1.453l-1.22-3.539C19.595 21.6 18.7 21.8 18 21.842z"/>
-									</svg>
+                      <path d="M18.02 21.842c-2.029 0.052-2.422-1.396-2.439-2.446v-7.294h4.729V7.874h-4.71V1.592c0 0-3.653 0-3.714 0 s-0.167 0.053-0.182 0.186c-0.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 c1.863-0.03 3.934-0.795 4.392-1.453l-1.22-3.539C19.595 21.6 18.7 21.8 18 21.842z"/>
+                  </svg>
               </span>
               <span class="text">Tumblr</span>
           <script>document.write('</a>');</script>
@@ -427,42 +410,29 @@
           <a href="http://www.reddit.com/submit?url=http://pksunkara.com/posts/cloudant-couchdb-as-backend/">
               <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
-											<g>
-													<path d="M11.794 15.316c0-1.029-0.835-1.895-1.866-1.895c-1.03 0-1.893 0.865-1.893 1.895s0.863 1.9 1.9 1.9 C10.958 17.2 11.8 16.3 11.8 15.316z"/>
-													<path d="M18.1 13.422c-1.029 0-1.895 0.864-1.895 1.895c0 1 0.9 1.9 1.9 1.865c1.031 0 1.869-0.836 1.869-1.865 C19.969 14.3 19.1 13.4 18.1 13.422z"/>
-													<path d="M17.527 19.791c-0.678 0.678-1.826 1.006-3.514 1.006c-0.004 0-0.009 0-0.014 0c-0.004 0-0.01 0-0.015 0 c-1.686 0-2.834-0.328-3.51-1.005c-0.264-0.265-0.693-0.265-0.958 0c-0.264 0.265-0.264 0.7 0 1 c0.943 0.9 2.4 1.4 4.5 1.402c0.005 0 0 0 0 0c0.005 0 0 0 0 0c2.066 0 3.527-0.459 4.47-1.402 c0.265-0.264 0.265-0.693 0.002-0.958C18.221 19.5 17.8 19.5 17.5 19.791z"/>
-													<path d="M27.707 13.267c0-1.785-1.453-3.237-3.236-3.237c-0.793 0-1.518 0.287-2.082 0.761c-2.039-1.295-4.646-2.069-7.438-2.219 l1.483-4.691l4.062 0.956c0.071 1.4 1.3 2.6 2.7 2.555c1.488 0 2.695-1.208 2.695-2.695C25.881 3.2 24.7 2 23.2 2 c-1.059 0-1.979 0.616-2.42 1.508l-4.633-1.091c-0.344-0.081-0.693 0.118-0.803 0.455l-1.793 5.7 C10.548 8.6 7.7 9.4 5.6 10.75C5.006 10.3 4.3 10 3.5 10.029c-1.785 0-3.237 1.452-3.237 3.2 c0 1.1 0.6 2.1 1.4 2.69c-0.04 0.272-0.061 0.551-0.061 0.831c0 2.3 1.3 4.4 3.7 5.9 c2.299 1.5 5.3 2.3 8.6 2.325c3.228 0 6.271-0.825 8.571-2.325c2.387-1.56 3.7-3.66 3.7-5.917 c0-0.26-0.016-0.514-0.051-0.768C27.088 15.5 27.7 14.4 27.7 13.267z M23.186 3.355c0.74 0 1.3 0.6 1.3 1.3 c0 0.738-0.6 1.34-1.34 1.34s-1.342-0.602-1.342-1.34C21.844 4 22.4 3.4 23.2 3.355z M1.648 13.3 c0-1.038 0.844-1.882 1.882-1.882c0.31 0 0.6 0.1 0.9 0.209c-1.049 0.868-1.813 1.861-2.26 2.9 C1.832 14.2 1.6 13.8 1.6 13.267z M21.773 21.57c-2.082 1.357-4.863 2.105-7.831 2.105c-2.967 0-5.747-0.748-7.828-2.105 c-1.991-1.301-3.088-3-3.088-4.782c0-1.784 1.097-3.484 3.088-4.784c2.081-1.358 4.861-2.106 7.828-2.106 c2.967 0 5.7 0.7 7.8 2.106c1.99 1.3 3.1 3 3.1 4.784C24.859 18.6 23.8 20.3 21.8 21.57z M25.787 14.6 c-0.432-1.084-1.191-2.095-2.244-2.977c0.273-0.156 0.59-0.245 0.928-0.245c1.035 0 1.9 0.8 1.9 1.9 C26.354 13.8 26.1 14.3 25.8 14.605z"/>
-											</g>
-									</svg>
+                      <g>
+                          <path d="M11.794 15.316c0-1.029-0.835-1.895-1.866-1.895c-1.03 0-1.893 0.865-1.893 1.895s0.863 1.9 1.9 1.9 C10.958 17.2 11.8 16.3 11.8 15.316z"/>
+                          <path d="M18.1 13.422c-1.029 0-1.895 0.864-1.895 1.895c0 1 0.9 1.9 1.9 1.865c1.031 0 1.869-0.836 1.869-1.865 C19.969 14.3 19.1 13.4 18.1 13.422z"/>
+                          <path d="M17.527 19.791c-0.678 0.678-1.826 1.006-3.514 1.006c-0.004 0-0.009 0-0.014 0c-0.004 0-0.01 0-0.015 0 c-1.686 0-2.834-0.328-3.51-1.005c-0.264-0.265-0.693-0.265-0.958 0c-0.264 0.265-0.264 0.7 0 1 c0.943 0.9 2.4 1.4 4.5 1.402c0.005 0 0 0 0 0c0.005 0 0 0 0 0c2.066 0 3.527-0.459 4.47-1.402 c0.265-0.264 0.265-0.693 0.002-0.958C18.221 19.5 17.8 19.5 17.5 19.791z"/>
+                          <path d="M27.707 13.267c0-1.785-1.453-3.237-3.236-3.237c-0.793 0-1.518 0.287-2.082 0.761c-2.039-1.295-4.646-2.069-7.438-2.219 l1.483-4.691l4.062 0.956c0.071 1.4 1.3 2.6 2.7 2.555c1.488 0 2.695-1.208 2.695-2.695C25.881 3.2 24.7 2 23.2 2 c-1.059 0-1.979 0.616-2.42 1.508l-4.633-1.091c-0.344-0.081-0.693 0.118-0.803 0.455l-1.793 5.7 C10.548 8.6 7.7 9.4 5.6 10.75C5.006 10.3 4.3 10 3.5 10.029c-1.785 0-3.237 1.452-3.237 3.2 c0 1.1 0.6 2.1 1.4 2.69c-0.04 0.272-0.061 0.551-0.061 0.831c0 2.3 1.3 4.4 3.7 5.9 c2.299 1.5 5.3 2.3 8.6 2.325c3.228 0 6.271-0.825 8.571-2.325c2.387-1.56 3.7-3.66 3.7-5.917 c0-0.26-0.016-0.514-0.051-0.768C27.088 15.5 27.7 14.4 27.7 13.267z M23.186 3.355c0.74 0 1.3 0.6 1.3 1.3 c0 0.738-0.6 1.34-1.34 1.34s-1.342-0.602-1.342-1.34C21.844 4 22.4 3.4 23.2 3.355z M1.648 13.3 c0-1.038 0.844-1.882 1.882-1.882c0.31 0 0.6 0.1 0.9 0.209c-1.049 0.868-1.813 1.861-2.26 2.9 C1.832 14.2 1.6 13.8 1.6 13.267z M21.773 21.57c-2.082 1.357-4.863 2.105-7.831 2.105c-2.967 0-5.747-0.748-7.828-2.105 c-1.991-1.301-3.088-3-3.088-4.782c0-1.784 1.097-3.484 3.088-4.784c2.081-1.358 4.861-2.106 7.828-2.106 c2.967 0 5.7 0.7 7.8 2.106c1.99 1.3 3.1 3 3.1 4.784C24.859 18.6 23.8 20.3 21.8 21.57z M25.787 14.6 c-0.432-1.084-1.191-2.095-2.244-2.977c0.273-0.156 0.59-0.245 0.928-0.245c1.035 0 1.9 0.8 1.9 1.9 C26.354 13.8 26.1 14.3 25.8 14.605z"/>
+                      </g>
+                  </svg>
               </span>
               <span class="text">Reddit</span>
           </a>
       </li>
-      <li class="googleplus">
-          <a href="https://plus.google.com/share?url=http://pksunkara.com/posts/cloudant-couchdb-as-backend/" class="popup">
-              <span class="icon">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
-                      <g>
-                          <path d="M14.703,15.854l-1.219-0.948c-0.372-0.308-0.88-0.715-0.88-1.459c0-0.748,0.508-1.223,0.95-1.663 c1.42-1.119,2.839-2.309,2.839-4.817c0-2.58-1.621-3.937-2.399-4.581h2.097l2.202-1.383h-6.67c-1.83,0-4.467,0.433-6.398,2.027 C3.768,4.287,3.059,6.018,3.059,7.576c0,2.634,2.022,5.328,5.604,5.328c0.339,0,0.71-0.033,1.083-0.068 c-0.167,0.408-0.336,0.748-0.336,1.324c0,1.04,0.551,1.685,1.011,2.297c-1.524,0.104-4.37,0.273-6.467,1.562 c-1.998,1.188-2.605,2.916-2.605,4.137c0,2.512,2.358,4.84,7.289,4.84c5.822,0,8.904-3.223,8.904-6.41 c0.008-2.327-1.359-3.489-2.829-4.731H14.703z M10.269,11.951c-2.912,0-4.231-3.765-4.231-6.037c0-0.884,0.168-1.797,0.744-2.511 c0.543-0.679,1.489-1.12,2.372-1.12c2.807,0,4.256,3.798,4.256,6.242c0,0.612-0.067,1.694-0.845,2.478 c-0.537,0.55-1.438,0.948-2.295,0.951V11.951z M10.302,25.609c-3.621,0-5.957-1.732-5.957-4.142c0-2.408,2.165-3.223,2.911-3.492 c1.421-0.479,3.25-0.545,3.555-0.545c0.338,0,0.52,0,0.766,0.034c2.574,1.838,3.706,2.757,3.706,4.479 c-0.002,2.073-1.736,3.665-4.982,3.649L10.302,25.609z"/>
-                          <polygon points="23.254,11.89 23.254,8.521 21.569,8.521 21.569,11.89 18.202,11.89 18.202,13.604 21.569,13.604 21.569,17.004 23.254,17.004 23.254,13.604 26.653,13.604 26.653,11.89"/>
-                      </g>
-                  </svg>
-              </span>
-              <span class="text">Google+</span>
-          </a>
-      </li>
       <li class="pinterest">
           <script>
-						var imgurl = "http:\/\/pksunkara.com\/logo.png";
-						var firstimg = document.getElementsByClassName("posts")[0].getElementsByTagName("img")[0];
-						if (firstimg !== undefined) {
-							imgurl = firstimg.src;
-						}
-						document.write('<a href="http://pinterest.com/pin/create/button/?url=http:\/\/pksunkara.com\/posts\/cloudant-couchdb-as-backend\/&amp;media=' + imgurl + '&amp;description=Cloudant: CouchDB as Backend" class="popup">');
-					</script>
+            var imgurl = "http:\/\/pksunkara.com\/logo.png";
+            var firstimg = document.getElementsByClassName("posts")[0].getElementsByTagName("img")[0];
+            if (firstimg !== undefined) {
+              imgurl = firstimg.src;
+            }
+            document.write('<a href="http://pinterest.com/pin/create/button/?url=http:\/\/pksunkara.com\/posts\/cloudant-couchdb-as-backend\/&amp;media=' + imgurl + '&amp;description=Cloudant: CouchDB as Backend" class="popup">');
+          </script>
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
-		                  <path d="M14.021,1.57C6.96,1.57,1.236,7.293,1.236,14.355c0,7.062,5.724,12.785,12.785,12.785c7.061,0,12.785-5.725,12.785-12.785 C26.807,7.294,21.082,1.57,14.021,1.57z M15.261,18.655c-1.161-0.09-1.649-0.666-2.559-1.219c-0.501,2.626-1.113,5.145-2.925,6.458 c-0.559-3.971,0.822-6.951,1.462-10.116c-1.093-1.84,0.132-5.545,2.438-4.632c2.837,1.123-2.458,6.842,1.099,7.557 c3.711,0.744,5.227-6.439,2.925-8.775c-3.325-3.374-9.678-0.077-8.897,4.754c0.19,1.178,1.408,1.538,0.489,3.168 C7.165,15.378,6.53,13.7,6.611,11.462c0.131-3.662,3.291-6.227,6.46-6.582c4.007-0.448,7.771,1.474,8.29,5.239 c0.579,4.255-1.816,8.865-6.102,8.533L15.261,18.655z"/>
+                      <path d="M14.021,1.57C6.96,1.57,1.236,7.293,1.236,14.355c0,7.062,5.724,12.785,12.785,12.785c7.061,0,12.785-5.725,12.785-12.785 C26.807,7.294,21.082,1.57,14.021,1.57z M15.261,18.655c-1.161-0.09-1.649-0.666-2.559-1.219c-0.501,2.626-1.113,5.145-2.925,6.458 c-0.559-3.971,0.822-6.951,1.462-10.116c-1.093-1.84,0.132-5.545,2.438-4.632c2.837,1.123-2.458,6.842,1.099,7.557 c3.711,0.744,5.227-6.439,2.925-8.775c-3.325-3.374-9.678-0.077-8.897,4.754c0.19,1.178,1.408,1.538,0.489,3.168 C7.165,15.378,6.53,13.7,6.611,11.462c0.131-3.662,3.291-6.227,6.46-6.582c4.007-0.448,7.771,1.474,8.29,5.239 c0.579,4.255-1.816,8.865-6.102,8.533L15.261,18.655z"/>
                   </svg>
               </span>
               <span class="text">Pinterest</span>
@@ -481,55 +451,63 @@
   </ul>
 </div>
 
-	<div itemprop="author" itemscope itemtype="http://schema.org/Person">
-	<h5>About the author</h5>
-	<section>
-		<p><a href="http://github.com/pksunkara" itemprop="name" rel="author">Pavan Kumar Sunkara</a> is a developer and a blogger, curious about any new technologies. <a href="/about" rel="me">More info...</a></p>
-	</section>
+  <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <h5>About the author</h5>
+  <section>
+    <p><a href="http://github.com/pksunkara" itemprop="name" rel="author">Pavan Kumar Sunkara</a> is a developer and a blogger, curious about any new technologies. <a href="/about" rel="me">More info...</a></p>
+  </section>
 </div>
 
-	<div id="comments">
-	
-		<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'pksunkara';
-    var disqus_identifier = 'http:\/\/pksunkara.com\/posts\/cloudant-couchdb-as-backend\/';
-    var disqus_title = 'Cloudant: CouchDB as Backend';
-    var disqus_url = 'http:\/\/pksunkara.com\/posts\/cloudant-couchdb-as-backend\/';
-
+  
+<div id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pksunkara" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-	
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
+
 
 </article>
 
 </main>
-		<footer id="footer">
-			<section id="footer-message">&copy; pksunkara. All rights reserved. Powered by <a href="http://gohugo.io" target="_blank">Hugo</a>. <a href="https://github.com/kathyqian/crisp-ghost-theme" target="_blank">Crisp</a> theme by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.</section>
-		</footer>
+    <footer id="footer">
+      <section id="footer-message">&copy; pksunkara. All rights reserved. Powered by <a href="http://gohugo.io" target="_blank">Hugo</a>. <a href="https://github.com/kathyqian/crisp-ghost-theme" target="_blank">Crisp</a> theme by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.</section>
+    </footer>
 
-		<script>
-			hljs.initHighlighting();
-		</script>
+    <script>
+      hljs.initHighlighting();
+    </script>
 
-		
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-9209860-4', 'auto');
-ga('send', 'pageview');
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-9209860-4', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
-	</body>
+  </body>
 </html>
 
