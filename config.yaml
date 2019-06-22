@@ -1,5 +1,5 @@
 baseurl: http://pksunkara.com/
-languageCode: en-us
+languageCode: en
 title: pksunkara
 googleAnalytics: UA-9209860-4
 disqusShortname: pksunkara
@@ -14,4 +14,7 @@ social:
 taxonomies:
   tag: tags
   category: categories
+  series: series
 metaDataFormat: yaml
+disableKinds:
+  - section

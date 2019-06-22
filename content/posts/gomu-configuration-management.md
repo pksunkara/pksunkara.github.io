@@ -2,8 +2,10 @@
 date: 2015-01-19T00:00:00
 draft: false
 title: "Gomu: Configuration Management"
-tags: ["gomu", "golang", "web"]
+tags: ["golang", "web"]
 categories: ["programming"]
+series: ["Gomu"]
+series_weight: 2
 authors: ["pksunkara"]
 ---
 

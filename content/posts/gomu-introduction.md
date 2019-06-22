@@ -2,8 +2,10 @@
 date: 2014-02-12T00:00:00
 draft: false
 title: "Gomu: Introduction"
-tags: ["gomu", "golang", "web"]
+tags: ["golang", "web"]
 categories: ["programming"]
+series: ["Gomu"]
+series_weight: 1
 authors: ["pksunkara"]
 ---
 
