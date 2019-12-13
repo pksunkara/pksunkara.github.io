@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>web on pksunkara</title>
-    <link>http://pksunkara.com/tags/web/</link>
-    <description>Recent content in web on pksunkara</description>
+    <title>Revel on pksunkara</title>
+    <link>http://pksunkara.com/series/revel/</link>
+    <description>Recent content in Revel on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://pksunkara.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://pksunkara.com/series/revel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,15 +20,6 @@
       <description>Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.
 Rails does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.
 Two years ago, during this time Heroku published a website detailing a concept called The Twelve-Factor App.</description>
-    </item>
-    
-    <item>
-      <title>Complex Vue.js App Structure</title>
-      <link>http://pksunkara.com/posts/complex-vuejs-app-structure/</link>
-      <pubDate>Wed, 25 Jan 2017 03:23:55 +0530</pubDate>
-      
-      <guid>http://pksunkara.com/posts/complex-vuejs-app-structure/</guid>
-      <description>I have always liked it whenever a framework provides it&amp;rsquo;s own generators and/or boilerplates. It&amp;rsquo;s what I liked about Ruby on Rails the most after the MVC concept. Developers can understand a lot about the framework and the way it&amp;rsquo;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.</description>
     </item>
     
   </channel>

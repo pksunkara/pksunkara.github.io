@@ -6,10 +6,28 @@
     <description>Recent content in Tags on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 25 Jan 2017 03:23:55 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pksunkara.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>rust</title>
+      <link>http://pksunkara.com/tags/rust/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pksunkara.com/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>http://pksunkara.com/tags/web/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pksunkara.com/tags/web/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>frontend</title>
@@ -39,15 +57,6 @@
     </item>
     
     <item>
-      <title>web</title>
-      <link>http://pksunkara.com/tags/web/</link>
-      <pubDate>Wed, 25 Jan 2017 03:23:55 +0530</pubDate>
-      
-      <guid>http://pksunkara.com/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cloudant</title>
       <link>http://pksunkara.com/tags/cloudant/</link>
       <pubDate>Sat, 01 Oct 2016 15:25:32 +0200</pubDate>
@@ -71,15 +80,6 @@
       <pubDate>Sat, 01 Oct 2016 15:25:32 +0200</pubDate>
       
       <guid>http://pksunkara.com/tags/database/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>http://pksunkara.com/tags/golang/</link>
-      <pubDate>Mon, 19 Jan 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://pksunkara.com/tags/golang/</guid>
       <description></description>
     </item>
     

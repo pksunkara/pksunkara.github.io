@@ -4,19 +4,60 @@
   
   <url>
     <loc>http://pksunkara.com/categories/</loc>
-    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/series/revel/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/posts/revel-configuration-management/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/series/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/categories/programming/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/rust/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pksunkara.com/tags/web/</loc>
+    <lastmod>2019-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pksunkara.com/posts/complex-vuejs-app-structure/</loc>
     <lastmod>2017-01-25T03:23:55+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/tags/</loc>
-    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -32,25 +73,7 @@
   </url>
   
   <url>
-    <loc>http://pksunkara.com/</loc>
-    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/categories/programming/</loc>
-    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://pksunkara.com/tags/vue/</loc>
-    <lastmod>2017-01-25T03:23:55+05:30</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/tags/web/</loc>
     <lastmod>2017-01-25T03:23:55+05:30</lastmod>
     <priority>0</priority>
   </url>
@@ -81,34 +104,6 @@
   <url>
     <loc>http://pksunkara.com/about/</loc>
     <lastmod>2016-09-27T17:55:24+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/series/gomu/</loc>
-    <lastmod>2015-01-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/posts/gomu-configuration-management/</loc>
-    <lastmod>2015-01-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/series/</loc>
-    <lastmod>2015-01-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/tags/golang/</loc>
-    <lastmod>2015-01-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pksunkara.com/posts/gomu-introduction/</loc>
-    <lastmod>2014-02-12T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
