@@ -1,10 +1,10 @@
 ---
 date: 2019-12-13T00:00:00
 draft: false
-title: "Revel: Configuration Management"
+title: "Reign: Configuration Management"
 tags: ["rust", "web"]
 categories: ["programming"]
-series: ["Revel"]
+series: ["Reign"]
 series_weight: 1
 authors: ["pksunkara"]
 ---

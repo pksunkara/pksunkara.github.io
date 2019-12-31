@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Revel on pksunkara</title>
-    <link>http://pksunkara.com/series/revel/</link>
-    <description>Recent content in Revel on pksunkara</description>
+    <title>Reign on pksunkara</title>
+    <link>http://pksunkara.com/series/reign/</link>
+    <description>Recent content in Reign on pksunkara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://pksunkara.com/series/revel/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://pksunkara.com/series/reign/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Revel: Configuration Management</title>
-      <link>http://pksunkara.com/posts/revel-configuration-management/</link>
+      <title>Reign: Configuration Management</title>
+      <link>http://pksunkara.com/posts/reign-configuration-management/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://pksunkara.com/posts/revel-configuration-management/</guid>
+      <guid>http://pksunkara.com/posts/reign-configuration-management/</guid>
       <description>Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.
 Rails does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.
 Two years ago, during this time Heroku published a website detailing a concept called The Twelve-Factor App.</description>
