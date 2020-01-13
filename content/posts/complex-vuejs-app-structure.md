@@ -1,11 +1,12 @@
----
-date: 2017-01-25T03:23:55+05:30
-draft: false
-title: "Complex Vue.js App Structure"
-tags: ["vue", "javascript", "web", "frontend"]
-categories: ["programming"]
-authors: ["pksunkara"]
----
++++
+date = 2017-01-25T03:23:55+05:30
+draft = false
+title = "Complex Vue.js App Structure"
+
+[taxonomies]
+tags = ["vue", "javascript", "web", "frontend"]
+categories = ["programming"]
++++
 
 I have always liked it whenever a framework provides it's own generators and/or boilerplates. It's what I liked about [Ruby on Rails](http://rubyonrails.org) the most after the [MVC](https://en.wikipedia.org/wiki/Model–view–controller) concept. Developers can understand a lot about the framework and the way it's intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.
 

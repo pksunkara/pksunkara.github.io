@@ -1,11 +1,12 @@
----
-date: 2016-10-01T15:25:32+02:00
-draft: false
-title: "Cloudant: CouchDB as Backend"
-tags: ["database", "couchdb", "cloudant"]
-categories: ["programming"]
-authors: ["pksunkara"]
----
++++
+date = 2016-10-01T15:25:32+02:00
+draft = false
+title = "Cloudant: CouchDB as Backend"
+
+[taxonomies]
+tags = ["database", "couchdb", "cloudant"]
+categories = ["programming"]
++++
 
 There have been a [lot](http://blog.mattwoodward.com/2012/03/definitive-guide-to-couchdb.html) [of](http://www.staticshin.com/programming/easy-user-accounts-management-with-couchdb/) [guides](https://nolanlawson.com/2013/11/15/couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site/) on how to use [CouchDB](http://couchdb.apache.org) as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use [Cloudant][]'s CouchDB as a backend directly for one of my Single Page Applications [**SPA**]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.
 

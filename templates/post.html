@@ -1,0 +1,12 @@
+{% extends "page.html" %}
+
+{% block page %}
+<div class="post-stamp">
+  {% include "shared/date.html" %}
+  {% include "shared/taglist.html" %}
+</div>
+<h1 class="post-title">{{ page.title }}</h1>
+{{ page.content | safe }}
+{% include "shared/share.html" %}
+{% include "shared/comments.html" %}
+{% endblock page %}

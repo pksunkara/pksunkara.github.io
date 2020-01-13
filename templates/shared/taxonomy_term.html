@@ -1,0 +1,24 @@
+{% extends "shared/base.html" %}
+
+{% block title %}{{ term.name }} &middot; {{ taxonomy.name | capitalize }} &middot; {% endblock title %}
+
+{% block head %}
+<link href="{{ config.base_url | safe }}/{{ taxonomy.name }}/{{ term.name }}/rss.xml" rel="alternate" type="application/rss+xml" title="{{ term.name }} &middot; {{ taxonomy.name | capitalize }} &middot; {{ config.title }}" />
+{% endblock %}
+
+{% block content %}
+<main id="content">
+  <h1 class="post-title">{{ term.name }}</h1>
+  {% for page in paginator.pages %}
+    <section class="{{ page.ancestors | join(sep="-") | safe }}">
+      <h3 class="post-title">
+        <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+        <span class="separator"> &middot; </span>
+        {% include "shared/date.html" %}
+        {% include "shared/taglist.html" %}
+      </h3>
+    </section>
+  {% endfor %}
+  {% include "shared/pagination.html" %}
+</main>
+{% endblock content %}

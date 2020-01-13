@@ -1,0 +1,8 @@
+{% if page.taxonomies.tags %}
+  <span class="taglist">
+    &middot;
+    {% for tag in page.taxonomies.tags %}
+      <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">{{ tag }}</a>
+    {% endfor %}
+  </span>
+{% endif %}

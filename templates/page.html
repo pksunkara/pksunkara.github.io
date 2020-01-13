@@ -1,0 +1,14 @@
+{% extends "shared/base.html" %}
+
+{% block title %}{{ page.title }} &middot; {% endblock title %}
+
+{% block content %}
+<main id="content">
+  <article id="{{ page.slug }}" class="{{ page.ancestors | join(sep="-") | safe }}">
+    {% block page %}
+    <h1 class="post-title">{{ page.title }}</h1>
+    {{ page.content | safe }}
+    {% endblock page %}
+  </article>
+</main>
+{% endblock content %}

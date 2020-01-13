@@ -1,13 +1,13 @@
----
-date: 2019-12-13T00:00:00
-draft: false
-title: "Reign: Configuration Management"
-tags: ["rust", "web"]
-categories: ["programming"]
-series: ["Reign"]
-series_weight: 1
-authors: ["pksunkara"]
----
++++
+date = 2019-12-13T00:00:00+05:30
+draft = false
+title = "Reign: Configuration Management"
+
+[taxonomies]
+tags = ["rust", "web"]
+categories = ["programming"]
+series = ["Reign"]
++++
 
 Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.
 
