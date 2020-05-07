@@ -107,7 +107,7 @@ export default store;
 
 This is the application's main [Vue.js][] component which is basically just a wrapper for [vue-router][].
 
-```vue
+```
 <template>
   <div id="app">
     <router-view></router-view>
@@ -155,7 +155,7 @@ export default {
 
 This file represents a sample [Vue.js][] component which will be used by the [vue-router][]. Please note that **Hello** module's state is being used in here.
 
-```vue
+```
 <template>
   <div class="hello">
     <h1>{{ message }}</h1>

@@ -22,6 +22,8 @@ taxonomies = [
 	{ name = "series", paginate_by = 10, rss = true }, # TODO: Taxonomy weight
 ]
 
+extra_syntaxes = ["vendor/syntax"]
+
 [extra]
 # Put all your custom variables here
 twitter = "pksunkara"

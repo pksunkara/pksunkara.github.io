@@ -1,0 +1,3 @@
+[submodule "vendor/syntax/vue-syntax-highlight"]
+	path = vendor/syntax/vue-syntax-highlight
+	url = git://github.com/vuejs/vue-syntax-highlight
