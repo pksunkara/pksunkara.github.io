@@ -7,7 +7,6 @@ title = "Reign: Configuration Management - II"
 tags = ["rust", "web", "reign"]
 categories = ["programming"]
 series = ["Reign"]
-
 +++
 
 We have looked at the basic requirements for a configuration management system in our [previous post](../reign-configuration-management). If you recall, we described one of the requirement as:
