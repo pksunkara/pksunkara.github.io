@@ -7,3 +7,7 @@ pre {
 blockquote {
   font-size: 1.1em;
 }
+
+em {
+  border-bottom-style: inset;
+}
