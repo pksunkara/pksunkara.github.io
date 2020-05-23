@@ -21,7 +21,7 @@ developers. Let us define the baseline using these frameworks and compare the Ru
 this baseline.
 
 * Rails `v6.0`, Django `v3.0`, Laravel `v7.6`
-* Actix `v3.0.0-alpha.2`, Gotham `v0.5.0#master`, Tide `v0.8.1`, Warp `v0.2.2`
+* Actix `v3.0.0-alpha.2`, Gotham `v0.5.0-rc.1`, Tide `v0.8.1`, Warp `v0.2.2`
 
 ## Restricting Methods
 
@@ -358,6 +358,14 @@ app.service(scope("pages")
     .route("/about", get().to(pages::about))
 );
 
+// optional regex scope
+app.service(scope("search")
+    .route("/advanced", get().to(search::advanced))
+    .service(scope("{id}")
+        .route("/advanced", get().to(search::advanced))
+    )
+);
+
 // glob in middle scope
 app.service(scope("blob/{path:.+}/commits")
     .route("/graph", get().to(repo_blob::graph))
@@ -366,12 +374,8 @@ app.service(scope("blob/{path:.+}/commits")
 
 Cons
 
-* **MAJOR**: For scopes with optional params to work, you will have to duplicate the scopes similar to how
-  it is done in optional params example above. Scope without the optional param in the prefix will need to
-  be defined first since [Actix][] gives priority to routes defined at the top. But as mentioned before,
-  `app.service` stops matching anything else if the beginning of the URL matches the route given to it which
-  means that the scope with optional param in the prefix will never be run. Thus, scopes with optionals are
-  not supported.
+* There is no shorter way to specify scopes with optionals needing to duplicate the routes nested inside them.
+* **MINOR**: Non-empty routes in sccopes with globs at the end do not work.
 
 #### Tide
 
