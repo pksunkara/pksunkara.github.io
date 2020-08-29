@@ -3,7 +3,7 @@
 {% block title %}{{ term.name }} &middot; {{ taxonomy.name | capitalize }} &middot; {% endblock title %}
 
 {% block head %}
-<link href="{{ config.base_url | safe }}/{{ taxonomy.name }}/{{ term.name }}/rss.xml" rel="alternate" type="application/rss+xml" title="{{ term.name }} &middot; {{ taxonomy.name | capitalize }} &middot; {{ config.title }}" />
+<link href="{{ config.base_url | safe }}/{{ taxonomy.name }}/{{ term.name }}/atom.xml" rel="alternate" type="application/atom+xml" title="{{ term.name }} &middot; {{ taxonomy.name | capitalize }} &middot; {{ config.title }}" />
 {% endblock %}
 
 {% block content %}

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
   <head>
     {% include "shared/analytics.html" %}
 
     <meta charset="utf-8" />
-    <meta http-equiv="Content-Language" content="en" />
+    <meta http-equiv="Content-Language" content="{{ lang }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
@@ -14,7 +14,7 @@
 
     <meta name="description" content="{{ config.description }}" />
 
-    <link href="{{ config.base_url | safe }}/rss.xml" rel="alternate" type="application/rss+xml" title="{{ config.title }}" />
+    <link href="{{ config.base_url | safe }}/atom.xml" rel="alternate" type="application/atom+xml" title="{{ config.title }}" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -12,17 +12,15 @@ highlight_theme = "demain"
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
-# Whether to generate a RSS feed automatically
-generate_rss = true
+# Whether to generate a feed automatically
+generate_feed = true
 
-# TODO: RSS for each section
+# TODO: RSS for each section (hide author page from main feed)
 taxonomies = [
-	{ name = "tags", paginate_by = 10, rss = true },
-	{ name = "categories", paginate_by = 10, rss = true },
-	{ name = "series", paginate_by = 10, rss = true }, # TODO: Taxonomy weight
+	{ name = "tags", paginate_by = 10, feed = true },
+	{ name = "categories", paginate_by = 10, feed = true },
+	{ name = "series", paginate_by = 10, feed = true }, # TODO: Taxonomy weight
 ]
-
-extra_syntaxes = ["vendor/syntax"]
 
 [extra]
 # Put all your custom variables here
