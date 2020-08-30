@@ -1,0 +1,16 @@
+name: Deploy
+on:
+  push:
+    branches: [develop]
+jobs:
+  docs:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy
+        uses: shalzz/zola-deploy-action@master
+        env:
+          PAGES_BRANCH: master
+          TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
