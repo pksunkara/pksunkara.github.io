@@ -20,7 +20,7 @@ The other major limitation is that there's no password recovery. You can't just 
 
 I have listed below the steps on how to achieve this [Cloudant][]. I am going to assume that you have an account ready to go with username **name** and password **pass**. Let's use the [NPM][] service as an example.
 
-### Create Users Database
+#### Create Users Database
 
 You need to create an **_users** database which will be used for user authentication and authorization.
 
@@ -56,7 +56,7 @@ curl -X PUT -u name:pass https://name.cloudant.com/_users/_security \
 -d @security.json
 ```
 
-### Create Application Database
+#### Create Application Database
 
 You need to create a database which will be used as backend of your application. Let's create one called **npm**.
 
@@ -74,7 +74,7 @@ curl -X PUT -u name:pass https://name.cloudant.com/npm/_security \
 -d @security.json
 ```
 
-### Secure Application for User
+#### Secure Application for User
 
 You need to add a validation function which runs whenever someone's trying to write to the application database.
 
@@ -96,9 +96,9 @@ curl -X POST -u name:pass https://name.cloudant.com/npm
 -d @validation.json
 ```
 
-This validation function is explained [below](#app-explanation)
+This validation function is explained [below](#application-database)
 
-### Secure User Data
+#### Secure User Data
 
 You need to secure the authentication database data for users.
 
@@ -120,13 +120,12 @@ curl -X POST -u name:pass https://name.cloudant.com/_users
 -d @authentication.json
 ```
 
-This validation function is explained [below](#user-explanation).
+This validation function is explained [below](#users-database).
 
 ## Explanations
 
 This section explains how the validation functions work.
 
-<a name="app-explanation"></a>
 ### Application Database
 
 ```js
@@ -150,7 +149,7 @@ function(newDoc, oldDoc, userCtx) {
 ```
 
 <a name="user-explanation"></a>
-### Users Database
+#### Users Database
 
 ```js
 function(newDoc, oldDoc, userCtx) {

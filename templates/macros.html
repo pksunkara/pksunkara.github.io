@@ -1,0 +1,13 @@
+{% macro size(level) %}
+  {% if level == 2 %}
+    20
+  {% elif level == 3 %}
+    18
+  {% elif level == 4 %}
+    16
+  {% elif level == 5 %}
+    14
+  {% elif level == 6 %}
+    12
+  {% endif %}
+{% endmacro size %}

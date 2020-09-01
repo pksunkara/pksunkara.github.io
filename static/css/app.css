@@ -11,3 +11,7 @@ blockquote {
 em {
   border-bottom-style: inset;
 }
+
+.permalink {
+  text-decoration: none !important;
+}
