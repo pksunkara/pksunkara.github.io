@@ -1,0 +1,15 @@
+pre {
+  margin-bottom: 0.75em;
+}
+
+blockquote {
+  font-size: 1.1em;
+}
+
+em {
+  border-bottom-style: inset;
+}
+
+.permalink {
+  text-decoration: none !important;
+}

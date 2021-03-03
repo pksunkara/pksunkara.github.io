@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>pksunkara - database</title>
+	<subtitle>My personal blog</subtitle>
+	<link href="https://pksunkara.com/tags/database/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://pksunkara.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2016-10-01T15:25:32+02:00</updated>
+	<id>https://pksunkara.com/tags/database/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Cloudant: CouchDB as Backend</title>
+		<published>2016-10-01T15:25:32+02:00</published>
+		<updated>2016-10-01T15:25:32+02:00</updated>
+		<link href="https://pksunkara.com/posts/cloudant-couchdb-as-backend/" type="text/html"/>
+		<id>https://pksunkara.com/posts/cloudant-couchdb-as-backend/</id>
+		<content type="html">&lt;p&gt;There have been a &lt;a href=&quot;http:&#x2F;&#x2F;blog.mattwoodward.com&#x2F;2012&#x2F;03&#x2F;definitive-guide-to-couchdb.html&quot;&gt;lot&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.staticshin.com&#x2F;programming&#x2F;easy-user-accounts-management-with-couchdb&#x2F;&quot;&gt;of&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;nolanlawson.com&#x2F;2013&#x2F;11&#x2F;15&#x2F;couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; on how to use &lt;a href=&quot;http:&#x2F;&#x2F;couchdb.apache.org&quot;&gt;CouchDB&lt;&#x2F;a&gt; as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s CouchDB as a backend directly for one of my Single Page Applications [&lt;strong&gt;SPA&lt;&#x2F;strong&gt;]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;limitations&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#limitations&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Limitations&lt;&#x2F;h2&gt;
+&lt;p&gt;The number one major limitation of CouchDB-as-a-backend is that every user can read all the data. This makes it not suitable for some kind of applications (finance etc..) but really well suited for other kinds of things. One famous example of this would be &lt;a href=&quot;https:&#x2F;&#x2F;npmjs.com&quot;&gt;NPM&lt;&#x2F;a&gt;, Node.js package manager.&lt;&#x2F;p&gt;
+&lt;p&gt;The other major limitation is that there&#x27;s no password recovery. You can&#x27;t just say &amp;quot;&lt;em&gt;give your email, we’ll send you a new one&lt;&#x2F;em&gt;&amp;quot;. Fortunately, you can bypass this by using &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Single_sign-on&quot;&gt;Single sign-on&lt;&#x2F;a&gt;. I have personally decided to use &lt;a href=&quot;https:&#x2F;&#x2F;auth0.com&quot;&gt;Auth0&lt;&#x2F;a&gt; in my &lt;strong&gt;SPA&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#setting-up&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Setting up&lt;&#x2F;h2&gt;
+&lt;p&gt;I have listed below the steps on how to achieve this &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;. I am going to assume that you have an account ready to go with username &lt;strong&gt;name&lt;&#x2F;strong&gt; and password &lt;strong&gt;pass&lt;&#x2F;strong&gt;. Let&#x27;s use the &lt;a href=&quot;https:&#x2F;&#x2F;npmjs.com&quot;&gt;NPM&lt;&#x2F;a&gt; service as an example.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;create-users-database&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#create-users-database&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Create Users Database&lt;&#x2F;h4&gt;
+&lt;p&gt;You need to create an &lt;strong&gt;_users&lt;&#x2F;strong&gt; database which will be used for user authentication and authorization.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -X&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; PUT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; name:pass https:&#x2F;&#x2F;name.cloudant.com&#x2F;_users
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h6 id=&quot;turn-off-cloudant-security&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#turn-off-cloudant-security&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    12
+  
+&quot; height=&quot;
+  
+    12
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Turn off Cloudant Security&lt;&#x2F;h6&gt;
+&lt;p&gt;You need to turn off &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s security for this database so that you can allow anyone to register themselves as user.&lt;&#x2F;p&gt;
+&lt;p&gt;Create the security document which needs to be uploaded as &lt;strong&gt;security.json&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span style=&quot;color:#111111;&quot;&gt;{
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;couchdb_auth_only&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;members&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;names&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: [],
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;roles&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: []
+  },
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;admins&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;names&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: [],
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;roles&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: []
+  }
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Upload it.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -X&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; PUT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; name:pass https:&#x2F;&#x2F;name.cloudant.com&#x2F;_users&#x2F;_security \
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;-H &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;Content-Type: application&#x2F;json&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;-d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; @security.json
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;create-application-database&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#create-application-database&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Create Application Database&lt;&#x2F;h4&gt;
+&lt;p&gt;You need to create a database which will be used as backend of your application. Let&#x27;s create one called &lt;strong&gt;npm&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -X&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; PUT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; name:pass https:&#x2F;&#x2F;name.cloudant.com&#x2F;npm
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h6 id=&quot;make-it-public&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#make-it-public&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    12
+  
+&quot; height=&quot;
+  
+    12
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Make it public&lt;&#x2F;h6&gt;
+&lt;p&gt;You need to turn off &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s security for this database so that you can allow all users to read and write.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -X&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; PUT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; name:pass https:&#x2F;&#x2F;name.cloudant.com&#x2F;npm&#x2F;_security \
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;-H &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;Content-Type: application&#x2F;json&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;-d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; @security.json
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;secure-application-for-user&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#secure-application-for-user&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Secure Application for User&lt;&#x2F;h4&gt;
+&lt;p&gt;You need to add a validation function which runs whenever someone&#x27;s trying to write to the application database.&lt;&#x2F;p&gt;
+&lt;p&gt;Create the validation function as &lt;strong&gt;validation.json&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span style=&quot;color:#111111;&quot;&gt;{
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;_id&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;_design&#x2F;_auth&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;language&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;javascript&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;validate_doc_update&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;function(newDoc, oldDoc, userCtx) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  function require(beTrue, key, message) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    var err = {};&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    err[key] = message;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (!beTrue) throw(err);&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  require(userCtx.name, &amp;#39;unauthorized&amp;#39;, &amp;#39;You need to login&amp;#39;);&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (oldDoc) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    require((userCtx.roles.indexOf(&amp;#39;_admin&amp;#39;) != -1 || userCtx.name == oldDoc.user), &amp;#39;forbidden&amp;#39;, &amp;#39;You are not allowed to update it&amp;#39;);&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Upload it as a design document.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -X&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; POST&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; name:pass https:&#x2F;&#x2F;name.cloudant.com&#x2F;npm
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;-H &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;Content-Type: application&#x2F;json&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;-d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; @validation.json
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This validation function is explained &lt;a href=&quot;https:&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;#application-database&quot;&gt;below&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;secure-user-data&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#secure-user-data&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Secure User Data&lt;&#x2F;h4&gt;
+&lt;p&gt;You need to secure the authentication database data for users.&lt;&#x2F;p&gt;
+&lt;p&gt;Create the validation function as &lt;strong&gt;authentication.json&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span style=&quot;color:#111111;&quot;&gt;{
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;_id&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;_design&#x2F;_auth&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;language&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;javascript&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;validate_doc_update&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;function(newDoc, oldDoc, userCtx) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (newDoc._deleted === true) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (userCtx.roles.indexOf(&amp;#39;_admin&amp;#39;) == -1 &amp;amp;&amp;amp; userCtx.name != oldDoc.name) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      throw({forbidden: &amp;#39;Only admins may delete other user docs.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    return;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if ((oldDoc &amp;amp;&amp;amp; oldDoc.type !== &amp;#39;user&amp;#39;) || newDoc.type !== &amp;#39;user&amp;#39;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden : &amp;#39;doc.type must be user&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (!newDoc.name) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden: &amp;#39;doc.name is required&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (!newDoc.roles) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden: &amp;#39;doc.roles must exist&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (!isArray(newDoc.roles)) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden: &amp;#39;doc.roles must be an array&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  for (var idx = 0; idx &amp;lt; newDoc.roles.length; idx++) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (typeof newDoc.roles[idx] !== &amp;#39;string&amp;#39;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      throw({forbidden: &amp;#39;doc.roles can only contain strings&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (newDoc._id !== (&amp;#39;org.couchdb.user:&amp;#39; + newDoc.name)) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden: &amp;#39;Doc ID must be of the form org.couchdb.user:name&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (oldDoc) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (oldDoc.name !== newDoc.name) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      throw({forbidden: &amp;#39;Usernames can not be changed.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (newDoc.password_sha &amp;amp;&amp;amp; !newDoc.salt) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden: &amp;#39;Users with password_sha must have a salt. See &#x2F;_utils&#x2F;script&#x2F;couch.js for example code.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (newDoc.password_scheme === &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;pbkdf2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (typeof(newDoc.iterations) !== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;number&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;       throw({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;iterations must be a number.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (typeof(newDoc.derived_key) !== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;string&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;       throw({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;derived_key must be a string.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (userCtx.roles.indexOf(&amp;#39;_admin&amp;#39;) == -1) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (oldDoc) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      if (userCtx.name !== newDoc.name) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;        throw({forbidden: &amp;#39;You may only update your own user document.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      var oldRoles = oldDoc.roles.sort();&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      var newRoles = newDoc.roles.sort();&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      if (oldRoles.length !== newRoles.length) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;        throw({forbidden: &amp;#39;Only _admin may edit roles&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      for (var i = 0; i &amp;lt; oldRoles.length; i++) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;        if (oldRoles[i] !== newRoles[i]) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;          throw({forbidden: &amp;#39;Only _admin may edit roles&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;        }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    } else if (newDoc.roles.length &amp;gt; 0) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      throw({forbidden: &amp;#39;Only _admin may set roles&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  for (var i = 0; i &amp;lt; newDoc.roles.length; i++) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (newDoc.roles[i][0] === &amp;#39;_&amp;#39;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      throw({forbidden: &amp;#39;No system roles (starting with underscore) in users db.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  if (newDoc.name[0] === &amp;#39;_&amp;#39;) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    throw({forbidden: &amp;#39;Username may not start with underscore.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  var badUserNameChars = [&amp;#39;:&amp;#39;];&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  for (var i = 0; i &amp;lt; badUserNameChars.length; i++) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    if (newDoc.name.indexOf(badUserNameChars[i]) &amp;gt;= 0) {&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;      throw({forbidden: &amp;#39;Character `&amp;#39; + badUserNameChars[i] + &amp;#39;` is not allowed in usernames.&amp;#39;});&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;  }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;}&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Upload it as a design document.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -X&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; POST&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; name:pass https:&#x2F;&#x2F;name.cloudant.com&#x2F;_users
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;-H &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;Content-Type: application&#x2F;json&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;-d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; @authentication.json
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This validation function is explained &lt;a href=&quot;https:&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;#users-database&quot;&gt;below&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;explanations&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#explanations&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Explanations&lt;&#x2F;h2&gt;
+&lt;p&gt;This section explains how the validation functions work.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;application-database&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#application-database&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    18
+  
+&quot; height=&quot;
+  
+    18
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Application Database&lt;&#x2F;h3&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;beTrue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;key&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;message&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;err &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;{};
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;key&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;message&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;beTrue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;err&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;);
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; You need the user to be logged in
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;unauthorized&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;You need to login&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;);
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; If the user is updating a document, you need to make sure he owns it
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;require&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;((&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.indexOf&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;_admin&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!= -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;|| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;user&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;forbidden&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;You are not allowed to update it&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;);
+  }
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;a name=&quot;user-explanation&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;users-database&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#users-database&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Users Database&lt;&#x2F;h4&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;_deleted &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; Allow deletes by admins and matching users without checking the other fields
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.indexOf&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;_admin&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;== -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;amp;&amp;amp; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Only admins may delete other user docs.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;return&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; We only allow user docs for now
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;((&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;amp;&amp;amp; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.type &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;user&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;|| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.type &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;user&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden : &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;doc.type must be user&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;doc.name is required&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;doc.roles must exist&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;isArray&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;)) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;doc.roles must be an array&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;idx &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;idx &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;idx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;++&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;typeof &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;idx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;string&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;doc.roles can only contain strings&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;_id &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;org.couchdb.user:&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name)) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Doc ID must be of the form org.couchdb.user:name&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; Don&amp;#39;t allow usernames to be changed
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Usernames can not be changed.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; Password logic
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;password_sha &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;amp;&amp;amp; !&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;salt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Users with password_sha must have a salt. See &#x2F;_utils&#x2F;script&#x2F;couch.js for example code.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;password_scheme &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;pbkdf2&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;typeof&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;iterations&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;number&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;iterations must be a number.&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;typeof&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;derived_key&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;string&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;derived_key must be a string.&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; If user is not server admin
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.indexOf&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;_admin&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;== -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; Allow user to update only their documents
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;userCtx&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name) {
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;You may only update your own user document.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+      }
+
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; Validate role updates
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldRoles &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.sort&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;();
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newRoles &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.sort&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;();
+
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldRoles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newRoles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length) {
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Only _admin may edit roles&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+      }
+
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldRoles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;++&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;oldRoles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;!== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newRoles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;]) {
+          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Only _admin may edit roles&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+        }
+      }
+    } &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;else if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Only _admin may set roles&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;&#x2F; Character validations
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;++&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;roles&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;][&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;_&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;No system roles (starting with underscore) in users db.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.name[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;_&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Username may not start with underscore.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+  }
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;badUserNameChars &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;:&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;];
+
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;var &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;badUserNameChars&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;.length; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;++&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;newDoc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.name.indexOf&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;badUserNameChars&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;]) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;) {
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;throw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;({forbidden: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Character `&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;badUserNameChars&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;` is not allowed in usernames.&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;});
+    }
+  }
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;addendum&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#addendum&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Addendum&lt;&#x2F;h2&gt;
+&lt;p&gt;You need to make sure that every data document you create in the application database needs to have an &lt;strong&gt;user&lt;&#x2F;strong&gt; field which need to be filled with the username of the user. Otherwise the validation function will keep throwing up forbidden errors.&lt;&#x2F;p&gt;
+&lt;p&gt;You are now ready to use CouchDB-as-a-backend on &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;. Enjoy!&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

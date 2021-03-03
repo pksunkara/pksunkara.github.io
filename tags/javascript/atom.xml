@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>pksunkara - javascript</title>
+	<subtitle>My personal blog</subtitle>
+	<link href="https://pksunkara.com/tags/javascript/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://pksunkara.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-01-25T03:23:55+05:30</updated>
+	<id>https://pksunkara.com/tags/javascript/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Complex Vue.js App Structure</title>
+		<published>2017-01-25T03:23:55+05:30</published>
+		<updated>2017-01-25T03:23:55+05:30</updated>
+		<link href="https://pksunkara.com/posts/complex-vuejs-app-structure/" type="text/html"/>
+		<id>https://pksunkara.com/posts/complex-vuejs-app-structure/</id>
+		<content type="html">&lt;p&gt;I have always liked it whenever a framework provides it&#x27;s own generators and&#x2F;or boilerplates. It&#x27;s what I liked about &lt;a href=&quot;http:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Ruby on Rails&lt;&#x2F;a&gt; the most after the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC&lt;&#x2F;a&gt; concept. Developers can understand a lot about the framework and the way it&#x27;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;&#x2F;p&gt;
+&lt;p&gt;When I started looking into &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;, I was happy to discover that they have a small generator tool called &lt;strong&gt;vue-cli&lt;&#x2F;strong&gt; which can be used with official boilerplates provided at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vuejs-templates&quot;&gt;vuejs-templates&lt;&#x2F;a&gt;. Unfortunately, the happiness didn&#x27;t last long because the boilerplates are simple applications meant to get you started with &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;. They don&#x27;t deal with all the other necessary packages such as &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;, etc.. which are needed for a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application. &lt;em&gt;(&lt;strong&gt;EDIT&lt;&#x2F;strong&gt;: At the time of writing this post, vue-router wasn&#x27;t present in the boilerplate)&lt;&#x2F;em&gt;. They did allow the tool to use third party boilerplates which resulted in me creating &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;spoiler&quot;&gt;spoiler&lt;&#x2F;a&gt; built upon the official webpack boilerplate.&lt;&#x2F;p&gt;
+&lt;p&gt;I would like to describe below about what I think should be the directory and file structure of a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application and it&#x27;s conventions.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;overview&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#overview&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Overview&lt;&#x2F;h2&gt;
+&lt;p&gt;The following example assumes that you will be using webpack build config from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vuejs-templates&#x2F;webpack&quot;&gt;vuejs-templates&#x2F;webpack&lt;&#x2F;a&gt; boilerplate.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s also assume that you want to have a page named &lt;strong&gt;Hello&lt;&#x2F;strong&gt;, it will need a &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;vue.js&lt;&#x2F;a&gt; component named &lt;strong&gt;Hello&lt;&#x2F;strong&gt; and a &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt; module named &lt;strong&gt;Hello&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;├─&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; src
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  ├─ assets               &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# module assets (processed by webpack)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  │  └─ ...
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  ├─ components
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  │  └─ Hello.vue         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Hello component
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  │  └─ ...
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  ├─ store
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  │  └─ Hello.js          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Hello module
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  │  └─ index.js          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# assemble vuex store
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  │  └─ ...
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  ├─ router
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  │  └─ index.js          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# app route configuration
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  │  └─ ...
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;│&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;  ├─ App.vue              &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# main app component
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  └─ main.js              &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# app entry file
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;├─ public                  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# static assets (directly copied)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;│  └─ ...
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;├─&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; index.html              &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# index.html template
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;└─ package.json            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# build scripts and dependencies
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;index-html&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#index-html&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+index.html&lt;&#x2F;h4&gt;
+&lt;p&gt;This is the main HTML template for your application. You can link your static assets inside the &lt;strong&gt;head&lt;&#x2F;strong&gt; tag while your processed assets will be auto injected in &lt;strong&gt;body&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;lt;!&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;DOCTYPE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;html&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;html&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;head&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;link rel&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9ae5;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;shortcut icon&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;type&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9ae5;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;image&#x2F;png&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;href&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9ae5;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;&#x2F;assets&#x2F;images&#x2F;favicon.png&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&#x2F;&amp;gt;
+  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;head&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+
+  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;body&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;div id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9ae5;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;app&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;body&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;html&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;src-router-index-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-router-index-js&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+src&#x2F;router&#x2F;index.js&lt;&#x2F;h4&gt;
+&lt;p&gt;This is the file which initiates &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt; with the given components.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vue &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;vue&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;VueRouter &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;vue-router&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Hello &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;@&#x2F;components&#x2F;Hello&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.use&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;VueRouter&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;);
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;routes &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;[
+  { path: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;&#x2F;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, name: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Hello&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;, component: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Hello &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;},
+];
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;* eslint-disable no-new *&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;export default &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;new &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;VueRouter({
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;routes&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  mode: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;history&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+});
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;src-store-index-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-store-index-js&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+src&#x2F;store&#x2F;index.js&lt;&#x2F;h4&gt;
+&lt;p&gt;This is the file which initiates &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt; store with the given modules.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vue &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;vue&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vuex &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;vuex&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Hello &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;@&#x2F;store&#x2F;Hello&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;.use&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vuex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;);
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;* eslint-disable no-new *&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;store &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;= new &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;Vuex.Store({
+  modules: {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Hello&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  },
+});
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;export default &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;store&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;src-app-vue&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-app-vue&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+src&#x2F;App.vue&lt;&#x2F;h4&gt;
+&lt;p&gt;This is the application&#x27;s main &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; component which is basically just a wrapper for &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-vue&quot; data-lang=&quot;vue&quot;&gt;&lt;span style=&quot;color:#111111;&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;
+    &amp;lt;router-view&amp;gt;&amp;lt;&#x2F;router-view&amp;gt;
+  &amp;lt;&#x2F;div&amp;gt;
+&amp;lt;&#x2F;template&amp;gt;
+
+&amp;lt;script&amp;gt;
+export default {};
+&amp;lt;&#x2F;script&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;src-main-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-main-js&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+src&#x2F;main.js&lt;&#x2F;h4&gt;
+&lt;p&gt;This is the application entry file where you initiate your &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application with a router, store and the main &lt;strong&gt;App.vue&lt;&#x2F;strong&gt; component.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;Vue &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;vue&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;router &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;@&#x2F;router&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;store &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;@&#x2F;store&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;App &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;@&#x2F;App&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;&#x2F;* eslint-disable no-new *&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;new &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;Vue({
+  el: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;#app&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;router&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;store&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;render&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;h &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;h&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;App&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;),
+});
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;src-store-hello-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-store-hello-js&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+src&#x2F;store&#x2F;Hello.js&lt;&#x2F;h4&gt;
+&lt;p&gt;This file represents a sample &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt; module.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;export default &lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;{
+  namespaced: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  state: {
+    message: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;Hello Vue!&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#111111;&quot;&gt;,
+  },
+};
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;src-components-hello-vue&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-components-hello-vue&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+src&#x2F;components&#x2F;Hello.vue&lt;&#x2F;h4&gt;
+&lt;p&gt;This file represents a sample &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; component which will be used by the &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;. Please note that &lt;strong&gt;Hello&lt;&#x2F;strong&gt; module&#x27;s state is being used in here.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#f9f9f9;&quot;&gt;
+&lt;code class=&quot;language-vue&quot; data-lang=&quot;vue&quot;&gt;&lt;span style=&quot;color:#111111;&quot;&gt;&amp;lt;template&amp;gt;
+  &amp;lt;div class=&amp;quot;hello&amp;quot;&amp;gt;
+    &amp;lt;h1&amp;gt;{{ message }}&amp;lt;&#x2F;h1&amp;gt;
+  &amp;lt;&#x2F;div&amp;gt;
+&amp;lt;&#x2F;template&amp;gt;
+
+&amp;lt;script&amp;gt;
+import { mapState } from &amp;#39;vuex&amp;#39;;
+
+export default {
+  data() {
+    return {};
+  },
+  computed: mapState({
+    message: state =&amp;gt; state.Hello.message,
+  }),
+};
+&amp;lt;&#x2F;script&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;questions&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#questions&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Questions&lt;&#x2F;h2&gt;
+&lt;h4 id=&quot;why-is-router-a-directory-instead-of-a-single-file&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#why-is-router-a-directory-instead-of-a-single-file&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Why is router a directory instead of a single file?&lt;&#x2F;h4&gt;
+&lt;p&gt;When applications grow, the number of routes grow. They might contain &lt;strong&gt;beforeEnter&lt;&#x2F;strong&gt; hooks and so on and sometimes you might want to put all that in a separate file, or files. With a subdirectory you can keep this all in one place without bloating one router.js file.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;why-are-there-no-root-actions-and-mutations-in-vuex&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#why-are-there-no-root-actions-and-mutations-in-vuex&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    16
+  
+&quot; height=&quot;
+  
+    16
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Why are there no root actions and mutations in vuex?&lt;&#x2F;h4&gt;
+&lt;p&gt;In large applications, almost everything should be as independent of each other for better maintainability and readability of the codebase. Having root actions and mutations will hamper that and thus is not recommended.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;final-comments&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#final-comments&quot;&gt;
+  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  
+    20
+  
+&quot; height=&quot;
+  
+    20
+  
+&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Final Comments&lt;&#x2F;h2&gt;
+&lt;p&gt;I wish the official webpack template supports &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt;, etc.. and hopefully guide lot of developers to the correct way of using &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;. I also wish it contains some subcommands which can be used when creating a new component or module so that the official conventions are encouraged.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>
