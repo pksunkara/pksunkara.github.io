@@ -135,9 +135,9 @@ Setting up</h2>
 </a>
 Create Users Database</h4>
 <p>You need to create an <strong>_users</strong> database which will be used for user authentication and authorization.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users
-</span></code></pre><h6 id="turn-off-cloudant-security"><a class="permalink" href="#turn-off-cloudant-security">
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users
+</span></code></pre>
+<h6 id="turn-off-cloudant-security"><a class="permalink" href="#turn-off-cloudant-security">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     12
@@ -153,25 +153,24 @@ Create Users Database</h4>
 Turn off Cloudant Security</h6>
 <p>You need to turn off <a href="https://cloudant.com">Cloudant</a>'s security for this database so that you can allow anyone to register themselves as user.</p>
 <p>Create the security document which needs to be uploaded as <strong>security.json</strong>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-json" data-lang="json"><span style="color:#111111;">{
-  </span><span style="color:#839c00;">&quot;couchdb_auth_only&quot;</span><span style="color:#111111;">: </span><span style="color:#f07219;">true</span><span style="color:#111111;">,
-  </span><span style="color:#839c00;">&quot;members&quot;</span><span style="color:#111111;">: {
-    </span><span style="color:#839c00;">&quot;names&quot;</span><span style="color:#111111;">: [],
-    </span><span style="color:#839c00;">&quot;roles&quot;</span><span style="color:#111111;">: []
-  },
-  </span><span style="color:#839c00;">&quot;admins&quot;</span><span style="color:#111111;">: {
-    </span><span style="color:#839c00;">&quot;names&quot;</span><span style="color:#111111;">: [],
-    </span><span style="color:#839c00;">&quot;roles&quot;</span><span style="color:#111111;">: []
-  }
-}
+<pre data-lang="json" style="background-color:#f9f9f9;color:#111111;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  </span><span style="color:#839c00;">&quot;couchdb_auth_only&quot;</span><span>: </span><span style="color:#f07219;">true</span><span>,
+</span><span>  </span><span style="color:#839c00;">&quot;members&quot;</span><span>: {
+</span><span>    </span><span style="color:#839c00;">&quot;names&quot;</span><span>: [],
+</span><span>    </span><span style="color:#839c00;">&quot;roles&quot;</span><span>: []
+</span><span>  },
+</span><span>  </span><span style="color:#839c00;">&quot;admins&quot;</span><span>: {
+</span><span>    </span><span style="color:#839c00;">&quot;names&quot;</span><span>: [],
+</span><span>    </span><span style="color:#839c00;">&quot;roles&quot;</span><span>: []
+</span><span>  }
+</span><span>}
 </span></code></pre>
 <p>Upload it.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users/_security \
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users/_security \
 </span><span style="color:#f07219;">-H </span><span style="color:#839c00;">&quot;Content-Type: application/json&quot; </span><span style="color:#4271ae;">\
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @security.json
-</span></code></pre><h4 id="create-application-database"><a class="permalink" href="#create-application-database">
+</span></code></pre>
+<h4 id="create-application-database"><a class="permalink" href="#create-application-database">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -186,9 +185,9 @@ Turn off Cloudant Security</h6>
 </a>
 Create Application Database</h4>
 <p>You need to create a database which will be used as backend of your application. Let's create one called <strong>npm</strong>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm
-</span></code></pre><h6 id="make-it-public"><a class="permalink" href="#make-it-public">
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm
+</span></code></pre>
+<h6 id="make-it-public"><a class="permalink" href="#make-it-public">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     12
@@ -203,11 +202,11 @@ Create Application Database</h4>
 </a>
 Make it public</h6>
 <p>You need to turn off <a href="https://cloudant.com">Cloudant</a>'s security for this database so that you can allow all users to read and write.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm/_security \
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm/_security \
 </span><span style="color:#f07219;">-H </span><span style="color:#839c00;">&quot;Content-Type: application/json&quot; </span><span style="color:#4271ae;">\
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @security.json
-</span></code></pre><h4 id="secure-application-for-user"><a class="permalink" href="#secure-application-for-user">
+</span></code></pre>
+<h4 id="secure-application-for-user"><a class="permalink" href="#secure-application-for-user">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -223,16 +222,14 @@ Make it public</h6>
 Secure Application for User</h4>
 <p>You need to add a validation function which runs whenever someone's trying to write to the application database.</p>
 <p>Create the validation function as <strong>validation.json</strong>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-json" data-lang="json"><span style="color:#111111;">{
-  </span><span style="color:#839c00;">&quot;_id&quot;</span><span style="color:#111111;">: </span><span style="color:#839c00;">&quot;_design/_auth&quot;</span><span style="color:#111111;">,
-  </span><span style="color:#839c00;">&quot;language&quot;</span><span style="color:#111111;">: </span><span style="color:#839c00;">&quot;javascript&quot;</span><span style="color:#111111;">,
-  </span><span style="color:#839c00;">&quot;validate_doc_update&quot;</span><span style="color:#111111;">: </span><span style="color:#839c00;">&quot;function(newDoc, oldDoc, userCtx) {</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  function require(beTrue, key, message) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    var err = {};</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    err[key] = message;</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">    if (!beTrue) throw(err);</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  require(userCtx.name, &#39;unauthorized&#39;, &#39;You need to login&#39;);</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (oldDoc) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    require((userCtx.roles.indexOf(&#39;_admin&#39;) != -1 || userCtx.name == oldDoc.user), &#39;forbidden&#39;, &#39;You are not allowed to update it&#39;);</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">}</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">&quot;
-</span><span style="color:#111111;">}
+<pre data-lang="json" style="background-color:#f9f9f9;color:#111111;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  </span><span style="color:#839c00;">&quot;_id&quot;</span><span>: </span><span style="color:#839c00;">&quot;_design/_auth&quot;</span><span>,
+</span><span>  </span><span style="color:#839c00;">&quot;language&quot;</span><span>: </span><span style="color:#839c00;">&quot;javascript&quot;</span><span>,
+</span><span>  </span><span style="color:#839c00;">&quot;validate_doc_update&quot;</span><span>: </span><span style="color:#839c00;">&quot;function(newDoc, oldDoc, userCtx) {</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  function require(beTrue, key, message) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    var err = {};</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    err[key] = message;</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">    if (!beTrue) throw(err);</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  require(userCtx.name, &#39;unauthorized&#39;, &#39;You need to login&#39;);</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (oldDoc) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    require((userCtx.roles.indexOf(&#39;_admin&#39;) != -1 || userCtx.name == oldDoc.user), &#39;forbidden&#39;, &#39;You are not allowed to update it&#39;);</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">}</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">&quot;
+</span><span>}
 </span></code></pre>
 <p>Upload it as a design document.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> POST</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> POST</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm
 </span><span style="color:#c82728;">-H </span><span style="color:#839c00;">&quot;Content-Type: application/json&quot; </span><span style="color:#4271ae;">\
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @validation.json
 </span></code></pre>
@@ -253,16 +250,14 @@ Secure Application for User</h4>
 Secure User Data</h4>
 <p>You need to secure the authentication database data for users.</p>
 <p>Create the validation function as <strong>authentication.json</strong>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-json" data-lang="json"><span style="color:#111111;">{
-  </span><span style="color:#839c00;">&quot;_id&quot;</span><span style="color:#111111;">: </span><span style="color:#839c00;">&quot;_design/_auth&quot;</span><span style="color:#111111;">,
-  </span><span style="color:#839c00;">&quot;language&quot;</span><span style="color:#111111;">: </span><span style="color:#839c00;">&quot;javascript&quot;</span><span style="color:#111111;">,
-  </span><span style="color:#839c00;">&quot;validate_doc_update&quot;</span><span style="color:#111111;">: </span><span style="color:#839c00;">&quot;function(newDoc, oldDoc, userCtx) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  if (newDoc._deleted === true) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1 &amp;&amp; userCtx.name != oldDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Only admins may delete other user docs.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">    return;</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if ((oldDoc &amp;&amp; oldDoc.type !== &#39;user&#39;) || newDoc.type !== &#39;user&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden : &#39;doc.type must be user&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (!newDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;doc.name is required&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (!newDoc.roles) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;doc.roles must exist&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (!isArray(newDoc.roles)) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;doc.roles must be an array&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  for (var idx = 0; idx &lt; newDoc.roles.length; idx++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (typeof newDoc.roles[idx] !== &#39;string&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;doc.roles can only contain strings&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc._id !== (&#39;org.couchdb.user:&#39; + newDoc.name)) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;Doc ID must be of the form org.couchdb.user:name&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (oldDoc) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (oldDoc.name !== newDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Usernames can not be changed.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc.password_sha &amp;&amp; !newDoc.salt) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;Users with password_sha must have a salt. See /_utils/script/couch.js for example code.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc.password_scheme === </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">pbkdf2</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (typeof(newDoc.iterations) !== </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">number</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">       throw({forbidden: </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">iterations must be a number.</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">    if (typeof(newDoc.derived_key) !== </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">string</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">       throw({forbidden: </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">derived_key must be a string.</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (oldDoc) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      if (userCtx.name !== newDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        throw({forbidden: &#39;You may only update your own user document.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">      var oldRoles = oldDoc.roles.sort();</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      var newRoles = newDoc.roles.sort();</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">      if (oldRoles.length !== newRoles.length) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        throw({forbidden: &#39;Only _admin may edit roles&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">      for (var i = 0; i &lt; oldRoles.length; i++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        if (oldRoles[i] !== newRoles[i]) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">          throw({forbidden: &#39;Only _admin may edit roles&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    } else if (newDoc.roles.length &gt; 0) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Only _admin may set roles&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  for (var i = 0; i &lt; newDoc.roles.length; i++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (newDoc.roles[i][0] === &#39;_&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;No system roles (starting with underscore) in users db.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc.name[0] === &#39;_&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;Username may not start with underscore.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  var badUserNameChars = [&#39;:&#39;];</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  for (var i = 0; i &lt; badUserNameChars.length; i++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (newDoc.name.indexOf(badUserNameChars[i]) &gt;= 0) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Character `&#39; + badUserNameChars[i] + &#39;` is not allowed in usernames.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">}&quot;
-</span><span style="color:#111111;">}
+<pre data-lang="json" style="background-color:#f9f9f9;color:#111111;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  </span><span style="color:#839c00;">&quot;_id&quot;</span><span>: </span><span style="color:#839c00;">&quot;_design/_auth&quot;</span><span>,
+</span><span>  </span><span style="color:#839c00;">&quot;language&quot;</span><span>: </span><span style="color:#839c00;">&quot;javascript&quot;</span><span>,
+</span><span>  </span><span style="color:#839c00;">&quot;validate_doc_update&quot;</span><span>: </span><span style="color:#839c00;">&quot;function(newDoc, oldDoc, userCtx) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  if (newDoc._deleted === true) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1 &amp;&amp; userCtx.name != oldDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Only admins may delete other user docs.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">    return;</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if ((oldDoc &amp;&amp; oldDoc.type !== &#39;user&#39;) || newDoc.type !== &#39;user&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden : &#39;doc.type must be user&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (!newDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;doc.name is required&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (!newDoc.roles) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;doc.roles must exist&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (!isArray(newDoc.roles)) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;doc.roles must be an array&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  for (var idx = 0; idx &lt; newDoc.roles.length; idx++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (typeof newDoc.roles[idx] !== &#39;string&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;doc.roles can only contain strings&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc._id !== (&#39;org.couchdb.user:&#39; + newDoc.name)) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;Doc ID must be of the form org.couchdb.user:name&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (oldDoc) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (oldDoc.name !== newDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Usernames can not be changed.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc.password_sha &amp;&amp; !newDoc.salt) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;Users with password_sha must have a salt. See /_utils/script/couch.js for example code.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc.password_scheme === </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">pbkdf2</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (typeof(newDoc.iterations) !== </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">number</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">       throw({forbidden: </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">iterations must be a number.</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">    if (typeof(newDoc.derived_key) !== </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">string</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">       throw({forbidden: </span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">derived_key must be a string.</span><span style="color:#f07219;">\&quot;</span><span style="color:#839c00;">});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (userCtx.roles.indexOf(&#39;_admin&#39;) == -1) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (oldDoc) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      if (userCtx.name !== newDoc.name) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        throw({forbidden: &#39;You may only update your own user document.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">      var oldRoles = oldDoc.roles.sort();</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      var newRoles = newDoc.roles.sort();</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">      if (oldRoles.length !== newRoles.length) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        throw({forbidden: &#39;Only _admin may edit roles&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">      for (var i = 0; i &lt; oldRoles.length; i++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        if (oldRoles[i] !== newRoles[i]) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">          throw({forbidden: &#39;Only _admin may edit roles&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">        }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    } else if (newDoc.roles.length &gt; 0) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Only _admin may set roles&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  for (var i = 0; i &lt; newDoc.roles.length; i++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (newDoc.roles[i][0] === &#39;_&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;No system roles (starting with underscore) in users db.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  if (newDoc.name[0] === &#39;_&#39;) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    throw({forbidden: &#39;Username may not start with underscore.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  var badUserNameChars = [&#39;:&#39;];</span><span style="color:#f07219;">\n\n</span><span style="color:#839c00;">  for (var i = 0; i &lt; badUserNameChars.length; i++) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    if (newDoc.name.indexOf(badUserNameChars[i]) &gt;= 0) {</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">      throw({forbidden: &#39;Character `&#39; + badUserNameChars[i] + &#39;` is not allowed in usernames.&#39;});</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">    }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">  }</span><span style="color:#f07219;">\n</span><span style="color:#839c00;">}&quot;
+</span><span>}
 </span></code></pre>
 <p>Upload it as a design document.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> POST</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> POST</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users
 </span><span style="color:#c82728;">-H </span><span style="color:#839c00;">&quot;Content-Type: application/json&quot; </span><span style="color:#4271ae;">\
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @authentication.json
 </span></code></pre>
@@ -296,24 +291,23 @@ Explanations</h2>
   </svg>
 </a>
 Application Database</h3>
-<pre style="background-color:#f9f9f9;">
-<code class="language-js" data-lang="js"><span style="color:#8959a8;">function</span><span style="color:#111111;">(</span><span style="color:#f07219;">newDoc</span><span style="color:#111111;">, </span><span style="color:#f07219;">oldDoc</span><span style="color:#111111;">, </span><span style="color:#f07219;">userCtx</span><span style="color:#111111;">) {
-
-  </span><span style="color:#8959a8;">function </span><span style="color:#4271ae;">require</span><span style="color:#111111;">(</span><span style="color:#f07219;">beTrue</span><span style="color:#111111;">, </span><span style="color:#f07219;">key</span><span style="color:#111111;">, </span><span style="color:#f07219;">message</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">err </span><span style="color:#3e999f;">= </span><span style="color:#111111;">{};
-    </span><span style="color:#c82728;">err</span><span style="color:#111111;">[</span><span style="color:#c82728;">key</span><span style="color:#111111;">] </span><span style="color:#3e999f;">= </span><span style="color:#c82728;">message</span><span style="color:#111111;">;
-
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">!</span><span style="color:#c82728;">beTrue</span><span style="color:#111111;">) </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">(</span><span style="color:#c82728;">err</span><span style="color:#111111;">);
-  }
-
-  </span><span style="color:#8e908c;">// You need the user to be logged in
-  </span><span style="color:#4271ae;">require</span><span style="color:#111111;">(</span><span style="color:#c82728;">userCtx</span><span style="color:#111111;">.name, </span><span style="color:#839c00;">&#39;unauthorized&#39;</span><span style="color:#111111;">, </span><span style="color:#839c00;">&#39;You need to login&#39;</span><span style="color:#111111;">);
-
-  </span><span style="color:#8e908c;">// If the user is updating a document, you need to make sure he owns it
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">) {
-    </span><span style="color:#4271ae;">require</span><span style="color:#111111;">((</span><span style="color:#c82728;">userCtx</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.indexOf</span><span style="color:#111111;">(</span><span style="color:#839c00;">&#39;_admin&#39;</span><span style="color:#111111;">) </span><span style="color:#3e999f;">!= -</span><span style="color:#f07219;">1 </span><span style="color:#3e999f;">|| </span><span style="color:#c82728;">userCtx</span><span style="color:#111111;">.name </span><span style="color:#3e999f;">== </span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">user</span><span style="color:#111111;">), </span><span style="color:#839c00;">&#39;forbidden&#39;</span><span style="color:#111111;">, </span><span style="color:#839c00;">&#39;You are not allowed to update it&#39;</span><span style="color:#111111;">);
-  }
-}
+<pre data-lang="js" style="background-color:#f9f9f9;color:#111111;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#8959a8;">function</span><span>(</span><span style="color:#f07219;">newDoc</span><span>, </span><span style="color:#f07219;">oldDoc</span><span>, </span><span style="color:#f07219;">userCtx</span><span>) {
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">function </span><span style="color:#4271ae;">require</span><span>(</span><span style="color:#f07219;">beTrue</span><span>, </span><span style="color:#f07219;">key</span><span>, </span><span style="color:#f07219;">message</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">err </span><span style="color:#3e999f;">= </span><span>{};
+</span><span>    </span><span style="color:#c82728;">err</span><span>[</span><span style="color:#c82728;">key</span><span>] </span><span style="color:#3e999f;">= </span><span style="color:#c82728;">message</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">!</span><span style="color:#c82728;">beTrue</span><span>) </span><span style="color:#8959a8;">throw</span><span>(</span><span style="color:#c82728;">err</span><span>);
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// You need the user to be logged in
+</span><span>  </span><span style="color:#4271ae;">require</span><span>(</span><span style="color:#c82728;">userCtx</span><span>.name, </span><span style="color:#839c00;">&#39;unauthorized&#39;</span><span>, </span><span style="color:#839c00;">&#39;You need to login&#39;</span><span>);
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// If the user is updating a document, you need to make sure he owns it
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">oldDoc</span><span>) {
+</span><span>    </span><span style="color:#4271ae;">require</span><span>((</span><span style="color:#c82728;">userCtx</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.indexOf</span><span>(</span><span style="color:#839c00;">&#39;_admin&#39;</span><span>) </span><span style="color:#3e999f;">!= -</span><span style="color:#f07219;">1 </span><span style="color:#3e999f;">|| </span><span style="color:#c82728;">userCtx</span><span>.name </span><span style="color:#3e999f;">== </span><span style="color:#c82728;">oldDoc</span><span>.</span><span style="color:#c82728;">user</span><span>), </span><span style="color:#839c00;">&#39;forbidden&#39;</span><span>, </span><span style="color:#839c00;">&#39;You are not allowed to update it&#39;</span><span>);
+</span><span>  }
+</span><span>}
 </span></code></pre>
 <p><a name="user-explanation"></a></p>
 <h4 id="users-database"><a class="permalink" href="#users-database">
@@ -330,112 +324,112 @@ Application Database</h3>
   </svg>
 </a>
 Users Database</h4>
-<pre style="background-color:#f9f9f9;">
-<code class="language-js" data-lang="js"><span style="color:#8959a8;">function</span><span style="color:#111111;">(</span><span style="color:#f07219;">newDoc</span><span style="color:#111111;">, </span><span style="color:#f07219;">oldDoc</span><span style="color:#111111;">, </span><span style="color:#f07219;">userCtx</span><span style="color:#111111;">) {
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">_deleted </span><span style="color:#3e999f;">=== </span><span style="color:#f07219;">true</span><span style="color:#111111;">) {
-    </span><span style="color:#8e908c;">// Allow deletes by admins and matching users without checking the other fields
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">userCtx</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.indexOf</span><span style="color:#111111;">(</span><span style="color:#839c00;">&#39;_admin&#39;</span><span style="color:#111111;">) </span><span style="color:#3e999f;">== -</span><span style="color:#f07219;">1 </span><span style="color:#3e999f;">&amp;&amp; </span><span style="color:#c82728;">userCtx</span><span style="color:#111111;">.name </span><span style="color:#3e999f;">!= </span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">.name) {
-      </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Only admins may delete other user docs.&#39;</span><span style="color:#111111;">});
-    }
-
-    </span><span style="color:#8959a8;">return</span><span style="color:#111111;">;
-  }
-
-  </span><span style="color:#8e908c;">// We only allow user docs for now
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">((</span><span style="color:#c82728;">oldDoc </span><span style="color:#3e999f;">&amp;&amp; </span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">.type </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&#39;user&#39;</span><span style="color:#111111;">) </span><span style="color:#3e999f;">|| </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.type </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&#39;user&#39;</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden : </span><span style="color:#839c00;">&#39;doc.type must be user&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">!</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.name) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;doc.name is required&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">!</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;doc.roles must exist&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">!</span><span style="color:#4271ae;">isArray</span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">)) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;doc.roles must be an array&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8959a8;">for </span><span style="color:#111111;">(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">idx </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span style="color:#111111;">; </span><span style="color:#c82728;">idx </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">.length; </span><span style="color:#c82728;">idx</span><span style="color:#3e999f;">++</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">typeof </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">[</span><span style="color:#c82728;">idx</span><span style="color:#111111;">] </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&#39;string&#39;</span><span style="color:#111111;">) {
-      </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;doc.roles can only contain strings&#39;</span><span style="color:#111111;">});
-    }
-  }
-
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">_id </span><span style="color:#3e999f;">!== </span><span style="color:#111111;">(</span><span style="color:#839c00;">&#39;org.couchdb.user:&#39; </span><span style="color:#3e999f;">+ </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.name)) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Doc ID must be of the form org.couchdb.user:name&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8e908c;">// Don&#39;t allow usernames to be changed
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">.name </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.name) {
-      </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Usernames can not be changed.&#39;</span><span style="color:#111111;">});
-    }
-  }
-
-  </span><span style="color:#8e908c;">// Password logic
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">password_sha </span><span style="color:#3e999f;">&amp;&amp; !</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">salt</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Users with password_sha must have a salt. See /_utils/script/couch.js for example code.&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">password_scheme </span><span style="color:#3e999f;">=== </span><span style="color:#839c00;">&quot;pbkdf2&quot;</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">typeof</span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">iterations</span><span style="color:#111111;">) </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&quot;number&quot;</span><span style="color:#111111;">) {
-       </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&quot;iterations must be a number.&quot;</span><span style="color:#111111;">});
-    }
-
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#3e999f;">typeof</span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">derived_key</span><span style="color:#111111;">) </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&quot;string&quot;</span><span style="color:#111111;">) {
-       </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&quot;derived_key must be a string.&quot;</span><span style="color:#111111;">});
-    }
-  }
-
-  </span><span style="color:#8e908c;">// If user is not server admin
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">userCtx</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.indexOf</span><span style="color:#111111;">(</span><span style="color:#839c00;">&#39;_admin&#39;</span><span style="color:#111111;">) </span><span style="color:#3e999f;">== -</span><span style="color:#f07219;">1</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">oldDoc</span><span style="color:#111111;">) {
-      </span><span style="color:#8e908c;">// Allow user to update only their documents
-      </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">userCtx</span><span style="color:#111111;">.name </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.name) {
-        </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;You may only update your own user document.&#39;</span><span style="color:#111111;">});
-      }
-
-      </span><span style="color:#8e908c;">// Validate role updates
-      </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">oldRoles </span><span style="color:#3e999f;">= </span><span style="color:#c82728;">oldDoc</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.sort</span><span style="color:#111111;">();
-      </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">newRoles </span><span style="color:#3e999f;">= </span><span style="color:#c82728;">newDoc</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.sort</span><span style="color:#111111;">();
-
-      </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">oldRoles</span><span style="color:#111111;">.length </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newRoles</span><span style="color:#111111;">.length) {
-        </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Only _admin may edit roles&#39;</span><span style="color:#111111;">});
-      }
-
-      </span><span style="color:#8959a8;">for </span><span style="color:#111111;">(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span style="color:#111111;">; </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">oldRoles</span><span style="color:#111111;">.length; </span><span style="color:#c82728;">i</span><span style="color:#3e999f;">++</span><span style="color:#111111;">) {
-        </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">oldRoles</span><span style="color:#111111;">[</span><span style="color:#c82728;">i</span><span style="color:#111111;">] </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newRoles</span><span style="color:#111111;">[</span><span style="color:#c82728;">i</span><span style="color:#111111;">]) {
-          </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Only _admin may edit roles&#39;</span><span style="color:#111111;">});
-        }
-      }
-    } </span><span style="color:#8959a8;">else if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">.length </span><span style="color:#3e999f;">&gt; </span><span style="color:#f07219;">0</span><span style="color:#111111;">) {
-      </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Only _admin may set roles&#39;</span><span style="color:#111111;">});
-    }
-  }
-
-  </span><span style="color:#8e908c;">// Character validations
-  </span><span style="color:#8959a8;">for </span><span style="color:#111111;">(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span style="color:#111111;">; </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">.length; </span><span style="color:#c82728;">i</span><span style="color:#3e999f;">++</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.</span><span style="color:#c82728;">roles</span><span style="color:#111111;">[</span><span style="color:#c82728;">i</span><span style="color:#111111;">][</span><span style="color:#f07219;">0</span><span style="color:#111111;">] </span><span style="color:#3e999f;">=== </span><span style="color:#839c00;">&#39;_&#39;</span><span style="color:#111111;">) {
-      </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;No system roles (starting with underscore) in users db.&#39;</span><span style="color:#111111;">});
-    }
-  }
-
-  </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#111111;">.name[</span><span style="color:#f07219;">0</span><span style="color:#111111;">] </span><span style="color:#3e999f;">=== </span><span style="color:#839c00;">&#39;_&#39;</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Username may not start with underscore.&#39;</span><span style="color:#111111;">});
-  }
-
-  </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">badUserNameChars </span><span style="color:#3e999f;">= </span><span style="color:#111111;">[</span><span style="color:#839c00;">&#39;:&#39;</span><span style="color:#111111;">];
-
-  </span><span style="color:#8959a8;">for </span><span style="color:#111111;">(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span style="color:#111111;">; </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">badUserNameChars</span><span style="color:#111111;">.length; </span><span style="color:#c82728;">i</span><span style="color:#3e999f;">++</span><span style="color:#111111;">) {
-    </span><span style="color:#8959a8;">if </span><span style="color:#111111;">(</span><span style="color:#c82728;">newDoc</span><span style="color:#4271ae;">.name.indexOf</span><span style="color:#111111;">(</span><span style="color:#c82728;">badUserNameChars</span><span style="color:#111111;">[</span><span style="color:#c82728;">i</span><span style="color:#111111;">]) </span><span style="color:#3e999f;">&gt;= </span><span style="color:#f07219;">0</span><span style="color:#111111;">) {
-      </span><span style="color:#8959a8;">throw</span><span style="color:#111111;">({forbidden: </span><span style="color:#839c00;">&#39;Character `&#39; </span><span style="color:#3e999f;">+ </span><span style="color:#c82728;">badUserNameChars</span><span style="color:#111111;">[</span><span style="color:#c82728;">i</span><span style="color:#111111;">] </span><span style="color:#3e999f;">+ </span><span style="color:#839c00;">&#39;` is not allowed in usernames.&#39;</span><span style="color:#111111;">});
-    }
-  }
-}
-</span></code></pre><h2 id="addendum"><a class="permalink" href="#addendum">
+<pre data-lang="js" style="background-color:#f9f9f9;color:#111111;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#8959a8;">function</span><span>(</span><span style="color:#f07219;">newDoc</span><span>, </span><span style="color:#f07219;">oldDoc</span><span>, </span><span style="color:#f07219;">userCtx</span><span>) {
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">_deleted </span><span style="color:#3e999f;">=== </span><span style="color:#f07219;">true</span><span>) {
+</span><span>    </span><span style="color:#8e908c;">// Allow deletes by admins and matching users without checking the other fields
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">userCtx</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.indexOf</span><span>(</span><span style="color:#839c00;">&#39;_admin&#39;</span><span>) </span><span style="color:#3e999f;">== -</span><span style="color:#f07219;">1 </span><span style="color:#3e999f;">&amp;&amp; </span><span style="color:#c82728;">userCtx</span><span>.name </span><span style="color:#3e999f;">!= </span><span style="color:#c82728;">oldDoc</span><span>.name) {
+</span><span>      </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Only admins may delete other user docs.&#39;</span><span>});
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#8959a8;">return</span><span>;
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// We only allow user docs for now
+</span><span>  </span><span style="color:#8959a8;">if </span><span>((</span><span style="color:#c82728;">oldDoc </span><span style="color:#3e999f;">&amp;&amp; </span><span style="color:#c82728;">oldDoc</span><span>.type </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&#39;user&#39;</span><span>) </span><span style="color:#3e999f;">|| </span><span style="color:#c82728;">newDoc</span><span>.type </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&#39;user&#39;</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden : </span><span style="color:#839c00;">&#39;doc.type must be user&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">!</span><span style="color:#c82728;">newDoc</span><span>.name) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;doc.name is required&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">!</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;doc.roles must exist&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">!</span><span style="color:#4271ae;">isArray</span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>)) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;doc.roles must be an array&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">for </span><span>(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">idx </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span>; </span><span style="color:#c82728;">idx </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>.length; </span><span style="color:#c82728;">idx</span><span style="color:#3e999f;">++</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">typeof </span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>[</span><span style="color:#c82728;">idx</span><span>] </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&#39;string&#39;</span><span>) {
+</span><span>      </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;doc.roles can only contain strings&#39;</span><span>});
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">_id </span><span style="color:#3e999f;">!== </span><span>(</span><span style="color:#839c00;">&#39;org.couchdb.user:&#39; </span><span style="color:#3e999f;">+ </span><span style="color:#c82728;">newDoc</span><span>.name)) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Doc ID must be of the form org.couchdb.user:name&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// Don&#39;t allow usernames to be changed
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">oldDoc</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">oldDoc</span><span>.name </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newDoc</span><span>.name) {
+</span><span>      </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Usernames can not be changed.&#39;</span><span>});
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// Password logic
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">password_sha </span><span style="color:#3e999f;">&amp;&amp; !</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">salt</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Users with password_sha must have a salt. See /_utils/script/couch.js for example code.&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">password_scheme </span><span style="color:#3e999f;">=== </span><span style="color:#839c00;">&quot;pbkdf2&quot;</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">typeof</span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">iterations</span><span>) </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&quot;number&quot;</span><span>) {
+</span><span>       </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&quot;iterations must be a number.&quot;</span><span>});
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#3e999f;">typeof</span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">derived_key</span><span>) </span><span style="color:#3e999f;">!== </span><span style="color:#839c00;">&quot;string&quot;</span><span>) {
+</span><span>       </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&quot;derived_key must be a string.&quot;</span><span>});
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// If user is not server admin
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">userCtx</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.indexOf</span><span>(</span><span style="color:#839c00;">&#39;_admin&#39;</span><span>) </span><span style="color:#3e999f;">== -</span><span style="color:#f07219;">1</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">oldDoc</span><span>) {
+</span><span>      </span><span style="color:#8e908c;">// Allow user to update only their documents
+</span><span>      </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">userCtx</span><span>.name </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newDoc</span><span>.name) {
+</span><span>        </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;You may only update your own user document.&#39;</span><span>});
+</span><span>      }
+</span><span>
+</span><span>      </span><span style="color:#8e908c;">// Validate role updates
+</span><span>      </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">oldRoles </span><span style="color:#3e999f;">= </span><span style="color:#c82728;">oldDoc</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.sort</span><span>();
+</span><span>      </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">newRoles </span><span style="color:#3e999f;">= </span><span style="color:#c82728;">newDoc</span><span style="color:#4271ae;">.</span><span style="color:#c82728;">roles</span><span style="color:#4271ae;">.sort</span><span>();
+</span><span>
+</span><span>      </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">oldRoles</span><span>.length </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newRoles</span><span>.length) {
+</span><span>        </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Only _admin may edit roles&#39;</span><span>});
+</span><span>      }
+</span><span>
+</span><span>      </span><span style="color:#8959a8;">for </span><span>(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span>; </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">oldRoles</span><span>.length; </span><span style="color:#c82728;">i</span><span style="color:#3e999f;">++</span><span>) {
+</span><span>        </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">oldRoles</span><span>[</span><span style="color:#c82728;">i</span><span>] </span><span style="color:#3e999f;">!== </span><span style="color:#c82728;">newRoles</span><span>[</span><span style="color:#c82728;">i</span><span>]) {
+</span><span>          </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Only _admin may edit roles&#39;</span><span>});
+</span><span>        }
+</span><span>      }
+</span><span>    } </span><span style="color:#8959a8;">else if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>.length </span><span style="color:#3e999f;">&gt; </span><span style="color:#f07219;">0</span><span>) {
+</span><span>      </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Only _admin may set roles&#39;</span><span>});
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8e908c;">// Character validations
+</span><span>  </span><span style="color:#8959a8;">for </span><span>(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span>; </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>.length; </span><span style="color:#c82728;">i</span><span style="color:#3e999f;">++</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.</span><span style="color:#c82728;">roles</span><span>[</span><span style="color:#c82728;">i</span><span>][</span><span style="color:#f07219;">0</span><span>] </span><span style="color:#3e999f;">=== </span><span style="color:#839c00;">&#39;_&#39;</span><span>) {
+</span><span>      </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;No system roles (starting with underscore) in users db.&#39;</span><span>});
+</span><span>    }
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span>.name[</span><span style="color:#f07219;">0</span><span>] </span><span style="color:#3e999f;">=== </span><span style="color:#839c00;">&#39;_&#39;</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Username may not start with underscore.&#39;</span><span>});
+</span><span>  }
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">var </span><span style="color:#c82728;">badUserNameChars </span><span style="color:#3e999f;">= </span><span>[</span><span style="color:#839c00;">&#39;:&#39;</span><span>];
+</span><span>
+</span><span>  </span><span style="color:#8959a8;">for </span><span>(</span><span style="color:#8959a8;">var </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">= </span><span style="color:#f07219;">0</span><span>; </span><span style="color:#c82728;">i </span><span style="color:#3e999f;">&lt; </span><span style="color:#c82728;">badUserNameChars</span><span>.length; </span><span style="color:#c82728;">i</span><span style="color:#3e999f;">++</span><span>) {
+</span><span>    </span><span style="color:#8959a8;">if </span><span>(</span><span style="color:#c82728;">newDoc</span><span style="color:#4271ae;">.name.indexOf</span><span>(</span><span style="color:#c82728;">badUserNameChars</span><span>[</span><span style="color:#c82728;">i</span><span>]) </span><span style="color:#3e999f;">&gt;= </span><span style="color:#f07219;">0</span><span>) {
+</span><span>      </span><span style="color:#8959a8;">throw</span><span>({forbidden: </span><span style="color:#839c00;">&#39;Character `&#39; </span><span style="color:#3e999f;">+ </span><span style="color:#c82728;">badUserNameChars</span><span>[</span><span style="color:#c82728;">i</span><span>] </span><span style="color:#3e999f;">+ </span><span style="color:#839c00;">&#39;` is not allowed in usernames.&#39;</span><span>});
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span></code></pre>
+<h2 id="addendum"><a class="permalink" href="#addendum">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     20

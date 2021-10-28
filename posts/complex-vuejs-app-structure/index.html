@@ -109,28 +109,28 @@
 Overview</h2>
 <p>The following example assumes that you will be using webpack build config from <a href="https://github.com/vuejs-templates/webpack">vuejs-templates/webpack</a> boilerplate.</p>
 <p>Let's also assume that you want to have a page named <strong>Hello</strong>, it will need a <a href="https://vuejs.org">vue.js</a> component named <strong>Hello</strong> and a <a href="https://vuex.vuejs.org/en/">vuex</a> module named <strong>Hello</strong>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-bash" data-lang="bash"><span style="color:#4271ae;">.
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#4271ae;">.
 </span><span style="color:#c82728;">├─</span><span style="color:#4271ae;"> src
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  ├─ assets               </span><span style="color:#8e908c;"># module assets (processed by webpack)
-</span><span style="color:#4271ae;">│  │  └─ ...
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ ...
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  ├─ components
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ Hello.vue         </span><span style="color:#8e908c;"># Hello component
-</span><span style="color:#4271ae;">│  │  └─ ...
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ ...
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  ├─ store
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ Hello.js          </span><span style="color:#8e908c;"># Hello module
-</span><span style="color:#4271ae;">│  │  └─ index.js          </span><span style="color:#8e908c;"># assemble vuex store
-</span><span style="color:#4271ae;">│  │  └─ ...
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ index.js          </span><span style="color:#8e908c;"># assemble vuex store
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ ...
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  ├─ router
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ index.js          </span><span style="color:#8e908c;"># app route configuration
-</span><span style="color:#4271ae;">│  │  └─ ...
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  │  └─ ...
 </span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  ├─ App.vue              </span><span style="color:#8e908c;"># main app component
-</span><span style="color:#4271ae;">│  └─ main.js              </span><span style="color:#8e908c;"># app entry file
-</span><span style="color:#4271ae;">├─ public                  </span><span style="color:#8e908c;"># static assets (directly copied)
-</span><span style="color:#4271ae;">│  └─ ...
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  └─ main.js              </span><span style="color:#8e908c;"># app entry file
+</span><span style="color:#c82728;">├─</span><span style="color:#4271ae;"> public                  </span><span style="color:#8e908c;"># static assets (directly copied)
+</span><span style="color:#c82728;">│</span><span style="color:#4271ae;">  └─ ...
 </span><span style="color:#c82728;">├─</span><span style="color:#4271ae;"> index.html              </span><span style="color:#8e908c;"># index.html template
-</span><span style="color:#4271ae;">└─ package.json            </span><span style="color:#8e908c;"># build scripts and dependencies
-</span></code></pre><h4 id="index-html"><a class="permalink" href="#index-html">
+</span><span style="color:#c82728;">└─</span><span style="color:#4271ae;"> package.json            </span><span style="color:#8e908c;"># build scripts and dependencies
+</span></code></pre>
+<h4 id="index-html"><a class="permalink" href="#index-html">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -145,18 +145,18 @@ Overview</h2>
 </a>
 index.html</h4>
 <p>This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in <strong>body</strong>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-html" data-lang="html"><span style="color:#5d9be5;">&lt;!</span><span style="color:#8959a8;">DOCTYPE </span><span style="color:#f07219;">html</span><span style="color:#5d9be5;">&gt;
-&lt;</span><span style="color:#c82728;">html</span><span style="color:#5d9be5;">&gt;
-  &lt;</span><span style="color:#c82728;">head</span><span style="color:#5d9be5;">&gt;
-    &lt;</span><span style="color:#c82728;">link rel</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;shortcut icon&quot; </span><span style="color:#c82728;">type</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;image/png&quot; </span><span style="color:#c82728;">href</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;/assets/images/favicon.png&quot;</span><span style="color:#5d9be5;">/&gt;
-  &lt;/</span><span style="color:#c82728;">head</span><span style="color:#5d9be5;">&gt;
-
-  &lt;</span><span style="color:#c82728;">body</span><span style="color:#5d9be5;">&gt;
-    &lt;</span><span style="color:#c82728;">div id</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;app&quot;</span><span style="color:#5d9be5;">&gt;&lt;/</span><span style="color:#c82728;">div</span><span style="color:#5d9be5;">&gt;
-  &lt;/</span><span style="color:#c82728;">body</span><span style="color:#5d9be5;">&gt;
-&lt;/</span><span style="color:#c82728;">html</span><span style="color:#5d9be5;">&gt;
-</span></code></pre><h4 id="src-router-index-js"><a class="permalink" href="#src-router-index-js">
+<pre data-lang="html" style="background-color:#f9f9f9;color:#111111;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#5d9be5;">&lt;!</span><span style="color:#8959a8;">DOCTYPE </span><span style="color:#f07219;">html</span><span style="color:#5d9be5;">&gt;
+</span><span style="color:#5d9be5;">&lt;</span><span style="color:#c82728;">html</span><span style="color:#5d9be5;">&gt;
+</span><span>  </span><span style="color:#5d9be5;">&lt;</span><span style="color:#c82728;">head</span><span style="color:#5d9be5;">&gt;
+</span><span>    </span><span style="color:#5d9be5;">&lt;</span><span style="color:#c82728;">link rel</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;shortcut icon&quot; </span><span style="color:#c82728;">type</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;image/png&quot; </span><span style="color:#c82728;">href</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;/assets/images/favicon.png&quot;</span><span style="color:#5d9be5;">/&gt;
+</span><span>  </span><span style="color:#5d9be5;">&lt;/</span><span style="color:#c82728;">head</span><span style="color:#5d9be5;">&gt;
+</span><span>
+</span><span>  </span><span style="color:#5d9be5;">&lt;</span><span style="color:#c82728;">body</span><span style="color:#5d9be5;">&gt;
+</span><span>    </span><span style="color:#5d9be5;">&lt;</span><span style="color:#c82728;">div id</span><span style="color:#5d9ae5;">=</span><span style="color:#839c00;">&quot;app&quot;</span><span style="color:#5d9be5;">&gt;&lt;/</span><span style="color:#c82728;">div</span><span style="color:#5d9be5;">&gt;
+</span><span>  </span><span style="color:#5d9be5;">&lt;/</span><span style="color:#c82728;">body</span><span style="color:#5d9be5;">&gt;
+</span><span style="color:#5d9be5;">&lt;/</span><span style="color:#c82728;">html</span><span style="color:#5d9be5;">&gt;
+</span></code></pre>
+<h4 id="src-router-index-js"><a class="permalink" href="#src-router-index-js">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -171,23 +171,23 @@ index.html</h4>
 </a>
 src/router/index.js</h4>
 <p>This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-js" data-lang="js"><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vue </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">VueRouter </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue-router&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">Hello </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/components/Hello&#39;</span><span style="color:#111111;">;
-
-</span><span style="color:#c82728;">Vue</span><span style="color:#4271ae;">.use</span><span style="color:#111111;">(</span><span style="color:#c82728;">VueRouter</span><span style="color:#111111;">);
-
-</span><span style="color:#8959a8;">const </span><span style="color:#c82728;">routes </span><span style="color:#3e999f;">= </span><span style="color:#111111;">[
-  { path: </span><span style="color:#839c00;">&#39;/&#39;</span><span style="color:#111111;">, name: </span><span style="color:#839c00;">&#39;Hello&#39;</span><span style="color:#111111;">, component: </span><span style="color:#c82728;">Hello </span><span style="color:#111111;">},
-];
-
+<pre data-lang="js" style="background-color:#f9f9f9;color:#111111;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vue </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">VueRouter </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue-router&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">Hello </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/components/Hello&#39;</span><span>;
+</span><span>
+</span><span style="color:#c82728;">Vue</span><span style="color:#4271ae;">.use</span><span>(</span><span style="color:#c82728;">VueRouter</span><span>);
+</span><span>
+</span><span style="color:#8959a8;">const </span><span style="color:#c82728;">routes </span><span style="color:#3e999f;">= </span><span>[
+</span><span>  { path: </span><span style="color:#839c00;">&#39;/&#39;</span><span>, name: </span><span style="color:#839c00;">&#39;Hello&#39;</span><span>, component: </span><span style="color:#c82728;">Hello </span><span>},
+</span><span>];
+</span><span>
 </span><span style="color:#8e908c;">/* eslint-disable no-new */
-</span><span style="color:#8959a8;">export default </span><span style="color:#3e999f;">new </span><span style="color:#111111;">VueRouter({
-  </span><span style="color:#c82728;">routes</span><span style="color:#111111;">,
-  mode: </span><span style="color:#839c00;">&#39;history&#39;</span><span style="color:#111111;">,
-});
-</span></code></pre><h4 id="src-store-index-js"><a class="permalink" href="#src-store-index-js">
+</span><span style="color:#8959a8;">export default </span><span style="color:#3e999f;">new </span><span>VueRouter({
+</span><span>  </span><span style="color:#c82728;">routes</span><span>,
+</span><span>  mode: </span><span style="color:#839c00;">&#39;history&#39;</span><span>,
+</span><span>});
+</span></code></pre>
+<h4 id="src-store-index-js"><a class="permalink" href="#src-store-index-js">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -202,22 +202,22 @@ src/router/index.js</h4>
 </a>
 src/store/index.js</h4>
 <p>This is the file which initiates <a href="https://vuex.vuejs.org/en/">vuex</a> store with the given modules.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-js" data-lang="js"><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vue </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vuex </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vuex&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">Hello </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/store/Hello&#39;</span><span style="color:#111111;">;
-
-</span><span style="color:#c82728;">Vue</span><span style="color:#4271ae;">.use</span><span style="color:#111111;">(</span><span style="color:#c82728;">Vuex</span><span style="color:#111111;">);
-
+<pre data-lang="js" style="background-color:#f9f9f9;color:#111111;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vue </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vuex </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vuex&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">Hello </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/store/Hello&#39;</span><span>;
+</span><span>
+</span><span style="color:#c82728;">Vue</span><span style="color:#4271ae;">.use</span><span>(</span><span style="color:#c82728;">Vuex</span><span>);
+</span><span>
 </span><span style="color:#8e908c;">/* eslint-disable no-new */
-</span><span style="color:#8959a8;">const </span><span style="color:#c82728;">store </span><span style="color:#3e999f;">= new </span><span style="color:#111111;">Vuex.Store({
-  modules: {
-    </span><span style="color:#c82728;">Hello</span><span style="color:#111111;">,
-  },
-});
-
-</span><span style="color:#8959a8;">export default </span><span style="color:#c82728;">store</span><span style="color:#111111;">;
-</span></code></pre><h4 id="src-app-vue"><a class="permalink" href="#src-app-vue">
+</span><span style="color:#8959a8;">const </span><span style="color:#c82728;">store </span><span style="color:#3e999f;">= new </span><span>Vuex.Store({
+</span><span>  modules: {
+</span><span>    </span><span style="color:#c82728;">Hello</span><span>,
+</span><span>  },
+</span><span>});
+</span><span>
+</span><span style="color:#8959a8;">export default </span><span style="color:#c82728;">store</span><span>;
+</span></code></pre>
+<h4 id="src-app-vue"><a class="permalink" href="#src-app-vue">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -232,17 +232,17 @@ src/store/index.js</h4>
 </a>
 src/App.vue</h4>
 <p>This is the application's main <a href="https://vuejs.org">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-vue" data-lang="vue"><span style="color:#111111;">&lt;template&gt;
-  &lt;div id=&quot;app&quot;&gt;
-    &lt;router-view&gt;&lt;/router-view&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {};
-&lt;/script&gt;
-</span></code></pre><h4 id="src-main-js"><a class="permalink" href="#src-main-js">
+<pre data-lang="vue" style="background-color:#f9f9f9;color:#111111;" class="language-vue "><code class="language-vue" data-lang="vue"><span>&lt;template&gt;
+</span><span>  &lt;div id=&quot;app&quot;&gt;
+</span><span>    &lt;router-view&gt;&lt;/router-view&gt;
+</span><span>  &lt;/div&gt;
+</span><span>&lt;/template&gt;
+</span><span>
+</span><span>&lt;script&gt;
+</span><span>export default {};
+</span><span>&lt;/script&gt;
+</span></code></pre>
+<h4 id="src-main-js"><a class="permalink" href="#src-main-js">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -257,20 +257,20 @@ export default {};
 </a>
 src/main.js</h4>
 <p>This is the application entry file where you initiate your <a href="https://vuejs.org">Vue.js</a> application with a router, store and the main <strong>App.vue</strong> component.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-js" data-lang="js"><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vue </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">router </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/router&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">store </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/store&#39;</span><span style="color:#111111;">;
-</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">App </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/App&#39;</span><span style="color:#111111;">;
-
+<pre data-lang="js" style="background-color:#f9f9f9;color:#111111;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#8959a8;">import </span><span style="color:#c82728;">Vue </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;vue&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">router </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/router&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">store </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/store&#39;</span><span>;
+</span><span style="color:#8959a8;">import </span><span style="color:#c82728;">App </span><span style="color:#8959a8;">from </span><span style="color:#839c00;">&#39;@/App&#39;</span><span>;
+</span><span>
 </span><span style="color:#8e908c;">/* eslint-disable no-new */
-</span><span style="color:#3e999f;">new </span><span style="color:#111111;">Vue({
-  el: </span><span style="color:#839c00;">&#39;#app&#39;</span><span style="color:#111111;">,
-  </span><span style="color:#c82728;">router</span><span style="color:#111111;">,
-  </span><span style="color:#c82728;">store</span><span style="color:#111111;">,
-  </span><span style="color:#4271ae;">render</span><span style="color:#111111;">: </span><span style="color:#f07219;">h </span><span style="color:#8959a8;">=&gt; </span><span style="color:#4271ae;">h</span><span style="color:#111111;">(</span><span style="color:#c82728;">App</span><span style="color:#111111;">),
-});
-</span></code></pre><h4 id="src-store-hello-js"><a class="permalink" href="#src-store-hello-js">
+</span><span style="color:#3e999f;">new </span><span>Vue({
+</span><span>  el: </span><span style="color:#839c00;">&#39;#app&#39;</span><span>,
+</span><span>  </span><span style="color:#c82728;">router</span><span>,
+</span><span>  </span><span style="color:#c82728;">store</span><span>,
+</span><span>  </span><span style="color:#4271ae;">render</span><span>: </span><span style="color:#f07219;">h </span><span style="color:#8959a8;">=&gt; </span><span style="color:#4271ae;">h</span><span>(</span><span style="color:#c82728;">App</span><span>),
+</span><span>});
+</span></code></pre>
+<h4 id="src-store-hello-js"><a class="permalink" href="#src-store-hello-js">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -285,14 +285,14 @@ src/main.js</h4>
 </a>
 src/store/Hello.js</h4>
 <p>This file represents a sample <a href="https://vuex.vuejs.org/en/">vuex</a> module.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-js" data-lang="js"><span style="color:#8959a8;">export default </span><span style="color:#111111;">{
-  namespaced: </span><span style="color:#f07219;">true</span><span style="color:#111111;">,
-  state: {
-    message: </span><span style="color:#839c00;">&#39;Hello Vue!&#39;</span><span style="color:#111111;">,
-  },
-};
-</span></code></pre><h4 id="src-components-hello-vue"><a class="permalink" href="#src-components-hello-vue">
+<pre data-lang="js" style="background-color:#f9f9f9;color:#111111;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#8959a8;">export default </span><span>{
+</span><span>  namespaced: </span><span style="color:#f07219;">true</span><span>,
+</span><span>  state: {
+</span><span>    message: </span><span style="color:#839c00;">&#39;Hello Vue!&#39;</span><span>,
+</span><span>  },
+</span><span>};
+</span></code></pre>
+<h4 id="src-components-hello-vue"><a class="permalink" href="#src-components-hello-vue">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     16
@@ -307,26 +307,26 @@ src/store/Hello.js</h4>
 </a>
 src/components/Hello.vue</h4>
 <p>This file represents a sample <a href="https://vuejs.org">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that <strong>Hello</strong> module's state is being used in here.</p>
-<pre style="background-color:#f9f9f9;">
-<code class="language-vue" data-lang="vue"><span style="color:#111111;">&lt;template&gt;
-  &lt;div class=&quot;hello&quot;&gt;
-    &lt;h1&gt;{{ message }}&lt;/h1&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-import { mapState } from &#39;vuex&#39;;
-
-export default {
-  data() {
-    return {};
-  },
-  computed: mapState({
-    message: state =&gt; state.Hello.message,
-  }),
-};
-&lt;/script&gt;
-</span></code></pre><h2 id="questions"><a class="permalink" href="#questions">
+<pre data-lang="vue" style="background-color:#f9f9f9;color:#111111;" class="language-vue "><code class="language-vue" data-lang="vue"><span>&lt;template&gt;
+</span><span>  &lt;div class=&quot;hello&quot;&gt;
+</span><span>    &lt;h1&gt;{{ message }}&lt;/h1&gt;
+</span><span>  &lt;/div&gt;
+</span><span>&lt;/template&gt;
+</span><span>
+</span><span>&lt;script&gt;
+</span><span>import { mapState } from &#39;vuex&#39;;
+</span><span>
+</span><span>export default {
+</span><span>  data() {
+</span><span>    return {};
+</span><span>  },
+</span><span>  computed: mapState({
+</span><span>    message: state =&gt; state.Hello.message,
+</span><span>  }),
+</span><span>};
+</span><span>&lt;/script&gt;
+</span></code></pre>
+<h2 id="questions"><a class="permalink" href="#questions">
   <svg viewBox="0 0 16 16" version="1.1" width="
   
     20
