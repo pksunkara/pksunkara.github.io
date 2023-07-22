@@ -2,6 +2,11 @@ pre {
   margin-bottom: 0.75em;
 }
 
+code {
+  font-family: Jetbrains Mono, monospace;
+  font-size: 16px;
+}
+
 blockquote {
   font-size: 1.1em;
 }
