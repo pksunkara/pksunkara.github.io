@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>pksunkara - rust</title>
-	<subtitle>My personal blog</subtitle>
-	<link href="https://pksunkara.com/tags/rust/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://pksunkara.com"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2020-05-17T00:00:00+02:00</updated>
-	<id>https://pksunkara.com/tags/rust/atom.xml</id>
-	<entry xml:lang="en">
-		<title>State of routing in Rust</title>
-		<published>2020-05-17T00:00:00+02:00</published>
-		<updated>2020-05-17T00:00:00+02:00</updated>
-		<link href="https://pksunkara.com/posts/state-of-routing-in-rust/" type="text/html"/>
-		<id>https://pksunkara.com/posts/state-of-routing-in-rust/</id>
-		<content type="html">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
+    <title>pksunkara - rust</title>
+    <subtitle>My personal blog</subtitle>
+    <link href="https://pksunkara.com/tags/rust/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://pksunkara.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2020-05-17T00:00:00+02:00</updated>
+    <id>https://pksunkara.com/tags/rust/atom.xml</id>
+    <entry xml:lang="en">
+        <title>State of routing in Rust</title>
+        <published>2020-05-17T00:00:00+02:00</published>
+        <updated>2020-05-17T00:00:00+02:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/state-of-routing-in-rust/" type="text/html"/>
+        <id>https://pksunkara.com/posts/state-of-routing-in-rust/</id>
+        
+        <content type="html">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
 etc. We have seen many blog posts comparing their performances and middleware capabilities.
 But what we haven&#x27;t seen is an article comparing their routing functionality and capabilities. I hoped to
 fill that gap and make this post the most up to date guide for the state of routing in Rust.&lt;&#x2F;p&gt;
@@ -821,14 +825,19 @@ out of them all and I will keep using it and contributing to it.&lt;&#x2F;p&gt;
 open sourced at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;pksunkara.github.io&quot;&gt;github&lt;&#x2F;a&gt; which means I am willing to accept
 pull requests to keep this up to date.&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Reign: Configuration Management - II</title>
-		<published>2020-03-27T00:00:00+01:00</published>
-		<updated>2020-03-27T00:00:00+01:00</updated>
-		<link href="https://pksunkara.com/posts/reign-configuration-management-ii/" type="text/html"/>
-		<id>https://pksunkara.com/posts/reign-configuration-management-ii/</id>
-		<content type="html">&lt;p&gt;We have looked at the basic requirements for a configuration management system in our &lt;a href=&quot;..&#x2F;reign-configuration-management&quot;&gt;previous post&lt;&#x2F;a&gt;. If you recall, we described one of the requirement as:&lt;&#x2F;p&gt;
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Reign: Configuration Management - II</title>
+        <published>2020-03-27T00:00:00+01:00</published>
+        <updated>2020-03-27T00:00:00+01:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/reign-configuration-management-ii/" type="text/html"/>
+        <id>https://pksunkara.com/posts/reign-configuration-management-ii/</id>
+        
+        <content type="html">&lt;p&gt;We have looked at the basic requirements for a configuration management system in our &lt;a href=&quot;..&#x2F;reign-configuration-management&quot;&gt;previous post&lt;&#x2F;a&gt;. If you recall, we described one of the requirement as:&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Retrieving a configuration value from the system should be as simple as writing a variable name&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -849,14 +858,19 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
 &lt;li&gt;Support local config files&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Reign: Configuration Management</title>
-		<published>2019-12-13T00:00:00+05:30</published>
-		<updated>2019-12-13T00:00:00+05:30</updated>
-		<link href="https://pksunkara.com/posts/reign-configuration-management/" type="text/html"/>
-		<id>https://pksunkara.com/posts/reign-configuration-management/</id>
-		<content type="html">&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;&#x2F;p&gt;
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Reign: Configuration Management</title>
+        <published>2019-12-13T00:00:00+05:30</published>
+        <updated>2019-12-13T00:00:00+05:30</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/reign-configuration-management/" type="text/html"/>
+        <id>https://pksunkara.com/posts/reign-configuration-management/</id>
+        
+        <content type="html">&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Rails&lt;&#x2F;a&gt; does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.&lt;&#x2F;p&gt;
 &lt;p&gt;Few years ago, &lt;a href=&quot;https:&#x2F;&#x2F;heroku.com&quot;&gt;Heroku&lt;&#x2F;a&gt; published a website detailing a concept called &lt;a href=&quot;http:&#x2F;&#x2F;12factor.net&quot;&gt;The Twelve-Factor App&lt;&#x2F;a&gt;. We can see that configuration is listed third in the list. I would like to quote some of their sentences.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -885,5 +899,6 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
 &lt;li&gt;Merge different environment files when required&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>

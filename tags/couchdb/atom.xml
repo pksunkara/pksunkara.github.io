@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>pksunkara - couchdb</title>
-	<subtitle>My personal blog</subtitle>
-	<link href="https://pksunkara.com/tags/couchdb/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://pksunkara.com"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2016-10-01T15:25:32+02:00</updated>
-	<id>https://pksunkara.com/tags/couchdb/atom.xml</id>
-	<entry xml:lang="en">
-		<title>Cloudant: CouchDB as Backend</title>
-		<published>2016-10-01T15:25:32+02:00</published>
-		<updated>2016-10-01T15:25:32+02:00</updated>
-		<link href="https://pksunkara.com/posts/cloudant-couchdb-as-backend/" type="text/html"/>
-		<id>https://pksunkara.com/posts/cloudant-couchdb-as-backend/</id>
-		<content type="html">&lt;p&gt;There have been a &lt;a href=&quot;http:&#x2F;&#x2F;blog.mattwoodward.com&#x2F;2012&#x2F;03&#x2F;definitive-guide-to-couchdb.html&quot;&gt;lot&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.staticshin.com&#x2F;programming&#x2F;easy-user-accounts-management-with-couchdb&#x2F;&quot;&gt;of&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;nolanlawson.com&#x2F;2013&#x2F;11&#x2F;15&#x2F;couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; on how to use &lt;a href=&quot;http:&#x2F;&#x2F;couchdb.apache.org&quot;&gt;CouchDB&lt;&#x2F;a&gt; as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s CouchDB as a backend directly for one of my Single Page Applications [&lt;strong&gt;SPA&lt;&#x2F;strong&gt;]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.&lt;&#x2F;p&gt;
+    <title>pksunkara - couchdb</title>
+    <subtitle>My personal blog</subtitle>
+    <link href="https://pksunkara.com/tags/couchdb/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://pksunkara.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2016-10-01T15:25:32+02:00</updated>
+    <id>https://pksunkara.com/tags/couchdb/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Cloudant: CouchDB as Backend</title>
+        <published>2016-10-01T15:25:32+02:00</published>
+        <updated>2016-10-01T15:25:32+02:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/cloudant-couchdb-as-backend/" type="text/html"/>
+        <id>https://pksunkara.com/posts/cloudant-couchdb-as-backend/</id>
+        
+        <content type="html">&lt;p&gt;There have been a &lt;a href=&quot;http:&#x2F;&#x2F;blog.mattwoodward.com&#x2F;2012&#x2F;03&#x2F;definitive-guide-to-couchdb.html&quot;&gt;lot&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.staticshin.com&#x2F;programming&#x2F;easy-user-accounts-management-with-couchdb&#x2F;&quot;&gt;of&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;nolanlawson.com&#x2F;2013&#x2F;11&#x2F;15&#x2F;couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; on how to use &lt;a href=&quot;http:&#x2F;&#x2F;couchdb.apache.org&quot;&gt;CouchDB&lt;&#x2F;a&gt; as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s CouchDB as a backend directly for one of my Single Page Applications [&lt;strong&gt;SPA&lt;&#x2F;strong&gt;]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;limitations&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#limitations&quot;&gt;
   &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
   
@@ -371,5 +375,6 @@ Addendum&lt;&#x2F;h2&gt;
 &lt;p&gt;You need to make sure that every data document you create in the application database needs to have an &lt;strong&gt;user&lt;&#x2F;strong&gt; field which need to be filled with the username of the user. Otherwise the validation function will keep throwing up forbidden errors.&lt;&#x2F;p&gt;
 &lt;p&gt;You are now ready to use CouchDB-as-a-backend on &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;. Enjoy!&lt;&#x2F;p&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>

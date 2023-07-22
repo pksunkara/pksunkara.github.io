@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>pksunkara - web</title>
-	<subtitle>My personal blog</subtitle>
-	<link href="https://pksunkara.com/tags/web/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://pksunkara.com"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2020-05-17T00:00:00+02:00</updated>
-	<id>https://pksunkara.com/tags/web/atom.xml</id>
-	<entry xml:lang="en">
-		<title>State of routing in Rust</title>
-		<published>2020-05-17T00:00:00+02:00</published>
-		<updated>2020-05-17T00:00:00+02:00</updated>
-		<link href="https://pksunkara.com/posts/state-of-routing-in-rust/" type="text/html"/>
-		<id>https://pksunkara.com/posts/state-of-routing-in-rust/</id>
-		<content type="html">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
+    <title>pksunkara - web</title>
+    <subtitle>My personal blog</subtitle>
+    <link href="https://pksunkara.com/tags/web/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://pksunkara.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2020-05-17T00:00:00+02:00</updated>
+    <id>https://pksunkara.com/tags/web/atom.xml</id>
+    <entry xml:lang="en">
+        <title>State of routing in Rust</title>
+        <published>2020-05-17T00:00:00+02:00</published>
+        <updated>2020-05-17T00:00:00+02:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/state-of-routing-in-rust/" type="text/html"/>
+        <id>https://pksunkara.com/posts/state-of-routing-in-rust/</id>
+        
+        <content type="html">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
 etc. We have seen many blog posts comparing their performances and middleware capabilities.
 But what we haven&#x27;t seen is an article comparing their routing functionality and capabilities. I hoped to
 fill that gap and make this post the most up to date guide for the state of routing in Rust.&lt;&#x2F;p&gt;
@@ -821,14 +825,19 @@ out of them all and I will keep using it and contributing to it.&lt;&#x2F;p&gt;
 open sourced at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;pksunkara.github.io&quot;&gt;github&lt;&#x2F;a&gt; which means I am willing to accept
 pull requests to keep this up to date.&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Reign: Configuration Management - II</title>
-		<published>2020-03-27T00:00:00+01:00</published>
-		<updated>2020-03-27T00:00:00+01:00</updated>
-		<link href="https://pksunkara.com/posts/reign-configuration-management-ii/" type="text/html"/>
-		<id>https://pksunkara.com/posts/reign-configuration-management-ii/</id>
-		<content type="html">&lt;p&gt;We have looked at the basic requirements for a configuration management system in our &lt;a href=&quot;..&#x2F;reign-configuration-management&quot;&gt;previous post&lt;&#x2F;a&gt;. If you recall, we described one of the requirement as:&lt;&#x2F;p&gt;
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Reign: Configuration Management - II</title>
+        <published>2020-03-27T00:00:00+01:00</published>
+        <updated>2020-03-27T00:00:00+01:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/reign-configuration-management-ii/" type="text/html"/>
+        <id>https://pksunkara.com/posts/reign-configuration-management-ii/</id>
+        
+        <content type="html">&lt;p&gt;We have looked at the basic requirements for a configuration management system in our &lt;a href=&quot;..&#x2F;reign-configuration-management&quot;&gt;previous post&lt;&#x2F;a&gt;. If you recall, we described one of the requirement as:&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Retrieving a configuration value from the system should be as simple as writing a variable name&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -849,14 +858,19 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
 &lt;li&gt;Support local config files&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Reign: Configuration Management</title>
-		<published>2019-12-13T00:00:00+05:30</published>
-		<updated>2019-12-13T00:00:00+05:30</updated>
-		<link href="https://pksunkara.com/posts/reign-configuration-management/" type="text/html"/>
-		<id>https://pksunkara.com/posts/reign-configuration-management/</id>
-		<content type="html">&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;&#x2F;p&gt;
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Reign: Configuration Management</title>
+        <published>2019-12-13T00:00:00+05:30</published>
+        <updated>2019-12-13T00:00:00+05:30</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/reign-configuration-management/" type="text/html"/>
+        <id>https://pksunkara.com/posts/reign-configuration-management/</id>
+        
+        <content type="html">&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Rails&lt;&#x2F;a&gt; does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.&lt;&#x2F;p&gt;
 &lt;p&gt;Few years ago, &lt;a href=&quot;https:&#x2F;&#x2F;heroku.com&quot;&gt;Heroku&lt;&#x2F;a&gt; published a website detailing a concept called &lt;a href=&quot;http:&#x2F;&#x2F;12factor.net&quot;&gt;The Twelve-Factor App&lt;&#x2F;a&gt;. We can see that configuration is listed third in the list. I would like to quote some of their sentences.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -885,14 +899,19 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
 &lt;li&gt;Merge different environment files when required&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Complex Vue.js App Structure</title>
-		<published>2017-01-25T03:23:55+05:30</published>
-		<updated>2017-01-25T03:23:55+05:30</updated>
-		<link href="https://pksunkara.com/posts/complex-vuejs-app-structure/" type="text/html"/>
-		<id>https://pksunkara.com/posts/complex-vuejs-app-structure/</id>
-		<content type="html">&lt;p&gt;I have always liked it whenever a framework provides it&#x27;s own generators and&#x2F;or boilerplates. It&#x27;s what I liked about &lt;a href=&quot;http:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Ruby on Rails&lt;&#x2F;a&gt; the most after the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC&lt;&#x2F;a&gt; concept. Developers can understand a lot about the framework and the way it&#x27;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;&#x2F;p&gt;
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Complex Vue.js App Structure</title>
+        <published>2017-01-25T03:23:55+05:30</published>
+        <updated>2017-01-25T03:23:55+05:30</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://pksunkara.com/posts/complex-vuejs-app-structure/" type="text/html"/>
+        <id>https://pksunkara.com/posts/complex-vuejs-app-structure/</id>
+        
+        <content type="html">&lt;p&gt;I have always liked it whenever a framework provides it&#x27;s own generators and&#x2F;or boilerplates. It&#x27;s what I liked about &lt;a href=&quot;http:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Ruby on Rails&lt;&#x2F;a&gt; the most after the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC&lt;&#x2F;a&gt; concept. Developers can understand a lot about the framework and the way it&#x27;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;&#x2F;p&gt;
 &lt;p&gt;When I started looking into &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;, I was happy to discover that they have a small generator tool called &lt;strong&gt;vue-cli&lt;&#x2F;strong&gt; which can be used with official boilerplates provided at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vuejs-templates&quot;&gt;vuejs-templates&lt;&#x2F;a&gt;. Unfortunately, the happiness didn&#x27;t last long because the boilerplates are simple applications meant to get you started with &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;. They don&#x27;t deal with all the other necessary packages such as &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;, etc.. which are needed for a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application. &lt;em&gt;(&lt;strong&gt;EDIT&lt;&#x2F;strong&gt;: At the time of writing this post, vue-router wasn&#x27;t present in the boilerplate)&lt;&#x2F;em&gt;. They did allow the tool to use third party boilerplates which resulted in me creating &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;spoiler&quot;&gt;spoiler&lt;&#x2F;a&gt; built upon the official webpack boilerplate.&lt;&#x2F;p&gt;
 &lt;p&gt;I would like to describe below about what I think should be the directory and file structure of a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application and it&#x27;s conventions.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;overview&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#overview&quot;&gt;
@@ -1188,5 +1207,6 @@ Why are there no root actions and mutations in vuex?&lt;&#x2F;h4&gt;
 Final Comments&lt;&#x2F;h2&gt;
 &lt;p&gt;I wish the official webpack template supports &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt;, etc.. and hopefully guide lot of developers to the correct way of using &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;. I also wish it contains some subcommands which can be used when creating a new component or module so that the official conventions are encouraged.&lt;&#x2F;p&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>
