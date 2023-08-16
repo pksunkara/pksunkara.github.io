@@ -5,7 +5,6 @@ title = "State of routing in Rust"
 
 [taxonomies]
 tags = ["rust", "web"]
-categories = ["programming"]
 +++
 
 There are many micro frameworks in Rust. Some famous examples are [Actix][], [Gotham][], [Tide][], [Warp][],
@@ -375,7 +374,7 @@ app.service(scope("blob/{path:.+}/commits")
 Cons
 
 * There is no shorter way to specify scopes with optionals needing to duplicate the routes nested inside them.
-* **MINOR**: Non-empty routes in sccopes with globs at the end do not work.
+* **MINOR**: Non-empty routes in scopes with globs at the end do not work.
 
 #### Tide
 
@@ -535,10 +534,6 @@ I did this comparison because I suspected some scoping issues in [Actix][]. I al
 [Gotham][] since it looks like nobody is maintaning it anymore and I wanted to rule it out of the contention
 for the best web micro framework race. The results actually reaffirmed my opinion that [Gotham][] is the best
 out of them all and I will keep using it and contributing to it.
-
-I will try to keep this blog post up to date if the mentioned issues are fixed in the future. This blog is
-open sourced at [github](https://github.com/pksunkara/pksunkara.github.io) which means I am willing to accept
-pull requests to keep this up to date.
 
 [Actix]: https://actix.rs
 [Gotham]: https://gotham.rs

@@ -5,7 +5,6 @@ title = "Reign: Configuration Management - II"
 
 [taxonomies]
 tags = ["rust", "web", "reign"]
-categories = ["programming"]
 series = ["Reign"]
 +++
 
