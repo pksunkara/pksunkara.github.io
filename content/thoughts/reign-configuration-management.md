@@ -5,7 +5,7 @@ title = "Reign: Configuration Management"
 
 [taxonomies]
 tags = ["rust", "web", "reign"]
-series = ["Reign"]
+series = ["reign-whiteboarding"]
 +++
 
 Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.

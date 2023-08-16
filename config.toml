@@ -9,7 +9,7 @@ generate_feed = true
 # TODO: RSS for each section (hide author page from main feed)
 taxonomies = [
 	{ name = "tags", paginate_by = 10, feed = true },
-	{ name = "series", paginate_by = 10, feed = true }, # TODO: Taxonomy weight
+	{ name = "series", feed = true },
 ]
 
 [markdown]
@@ -23,3 +23,8 @@ twitter = "pksunkara"
 facebook = "pksunkara"
 
 google_analytics = "UA-9209860-4"
+
+[extra.series.reign-whiteboarding]
+title = "Reign: Whiteboarding a web framework"
+status = "ongoing"
+description = "Let's whiteboard on how to build the best web framework. We will talk about all the components needed for it and how they should work to achieve the best performance and developer experience."

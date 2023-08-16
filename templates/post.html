@@ -4,6 +4,13 @@
 <div class="post-stamp">
   {% include "shared/date.html" %}
   {% include "shared/taglist.html" %}
+  {% if page.taxonomies.series %}
+    <span class="series-stamp">
+      <span class="separator">&middot;</span>
+      {% set series = page.taxonomies.series | first %}
+      Part of <a href="{{ get_taxonomy_url(kind="series", name=series) | safe }}">{{ config.extra.series[series].title }}</a>
+    </span>
+  {% endif %}
 </div>
 <h1 class="post-title">{{ page.title }}</h1>
 {{ page.content | safe }}

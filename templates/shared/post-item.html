@@ -1,0 +1,8 @@
+<section class="{{ page.ancestors | join(sep="-") | safe }}">
+  <h3 class="post-title">
+    <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    <span class="separator"> &middot; </span>
+    {% include "shared/date.html" %}
+    {% include "shared/taglist.html" %}
+  </h3>
+</section>

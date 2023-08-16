@@ -1,1 +1,19 @@
-{% extends "shared/taxonomy_term.html" %}
+{% extends "shared/base.html" %}
+
+{% block title %}{{ config.extra.series[term.name].title }} &middot; {{ taxonomy.name | capitalize }} &middot; {% endblock title %}
+
+{% block head %}
+<link href="{{ config.base_url | safe }}/{{ taxonomy.name }}/{{ term.name }}/atom.xml" rel="alternate" type="application/atom+xml" title="{{ term.name }} &middot; {{ taxonomy.name | capitalize }} &middot; {{ config.title }}" />
+{% endblock %}
+
+{% block content %}
+{% set series = config.extra.series[term.name] %}
+<main id="content">
+  <span class="series-status {{ series.status }}">{{ series.status }}</span>
+  <h2 class="post-title">{{ series.title }}</h2>
+  <p class="series-description">{{ series.description }}</p>
+  {% for page in term.pages | reverse %}
+    {% include "shared/post-item.html" %}
+  {% endfor %}
+</main>
+{% endblock content %}

@@ -5,7 +5,7 @@ title = "Reign: Configuration Management - II"
 
 [taxonomies]
 tags = ["rust", "web", "reign"]
-series = ["Reign"]
+series = ["reign-whiteboarding"]
 +++
 
 We have looked at the basic requirements for a configuration management system in our [previous post](../reign-configuration-management). If you recall, we described one of the requirement as:
