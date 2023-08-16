@@ -1,3 +1,8 @@
+<time datetime="{{ page.date }}">
+  {{ page.date | date(format="%b %e, %Y") }}
+</time>
+<span class="separator">&middot;</span>
+{{ page.reading_time }} min
 {% if page.taxonomies.tags %}
   <span class="taglist">
     &middot;
