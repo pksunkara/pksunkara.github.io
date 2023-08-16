@@ -18,3 +18,48 @@ em {
 .permalink {
   text-decoration: none !important;
 }
+
+.serieslist {
+  margin-left: 0;
+  margin-top: 2em;
+}
+
+.serieslist li {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+
+.series-status {
+  background-color: #ccc;
+  color: #fff;
+  display: inline-block;
+  line-height: 1.5em;
+  padding: 0.3em 0.6em 0.3em 0.6em;
+  vertical-align: 20%;
+  font-size: 0.5em;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.25em;
+  -moz-border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+}
+
+.series-status.ongoing {
+  background-color: #888;
+}
+
+.series-status.completed {
+  background-color: #444;
+}
+
+.series-description {
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.series-stamp {
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 1em;
+}

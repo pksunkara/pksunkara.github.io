@@ -14,8 +14,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/posts/state-of-routing-in-rust/" type="text/html"/>
-        <id>https://pksunkara.com/posts/state-of-routing-in-rust/</id>
+        <link rel="alternate" href="https://pksunkara.com/thoughts/state-of-routing-in-rust/" type="text/html"/>
+        <id>https://pksunkara.com/thoughts/state-of-routing-in-rust/</id>
         
         <content type="html">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
 etc. We have seen many blog posts comparing their performances and middleware capabilities.
@@ -31,16 +31,25 @@ this baseline.&lt;&#x2F;p&gt;
 &lt;li&gt;Actix &lt;code&gt;v3.0.0-alpha.2&lt;&#x2F;code&gt;, Gotham &lt;code&gt;v0.5.0-rc.1&lt;&#x2F;code&gt;, Tide &lt;code&gt;v0.8.1&lt;&#x2F;code&gt;, Warp &lt;code&gt;v0.2.2&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;restricting-methods&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#restricting-methods&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Restricting Methods&lt;&#x2F;h2&gt;
@@ -48,16 +57,25 @@ Restricting Methods&lt;&#x2F;h2&gt;
 only a few HTTP methods. There might be a shorthand syntax if only one HTTP method is allowed. The route
 should return &lt;strong&gt;405&lt;&#x2F;strong&gt; HTTP status code if the none of the allowed HTTP methods are used.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;rails&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#rails&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Rails&lt;&#x2F;h4&gt;
@@ -65,16 +83,25 @@ Rails&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;!-- returns 404 instead of 405 --&gt;
 &lt;h4 id=&quot;django&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#django&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Django&lt;&#x2F;h4&gt;
@@ -85,16 +112,25 @@ Django&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;pass
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;laravel&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#laravel&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Laravel&lt;&#x2F;h4&gt;
@@ -102,16 +138,25 @@ Laravel&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c99e00;&quot;&gt;Route&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;([&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;post&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;put&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;], &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;orgs&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;OrgsController@create&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;actix&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#actix&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Actix&lt;&#x2F;h4&gt;
@@ -127,16 +172,25 @@ Actix&lt;&#x2F;h4&gt;
 &lt;li&gt;There is no shorter way to specify multiple allowed methods on the same route for the same handler.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;tide&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#tide&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Tide&lt;&#x2F;h4&gt;
@@ -147,48 +201,75 @@ Tide&lt;&#x2F;h4&gt;
 &lt;li&gt;There is no shorter way to specify multiple allowed methods on the same route for the same handler.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;warp&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#warp&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Warp&lt;&#x2F;h4&gt;
 &lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#f9f9f9;color:#111111;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;path!(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;orgs&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;and&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;post&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;or&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;put&lt;&#x2F;span&gt;&lt;span&gt;()).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;unify&lt;&#x2F;span&gt;&lt;span&gt;()).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;and_then&lt;&#x2F;span&gt;&lt;span&gt;(orgs::create);
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;gotham&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#gotham&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Gotham&lt;&#x2F;h4&gt;
 &lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#f9f9f9;color:#111111;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;route.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;request&lt;&#x2F;span&gt;&lt;span&gt;(vec![POST, PUT], &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;quot;orgs&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;to&lt;&#x2F;span&gt;&lt;span&gt;(orgs::create);
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;path-parameters&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#path-parameters&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Path parameters&lt;&#x2F;h2&gt;
@@ -196,16 +277,25 @@ Path parameters&lt;&#x2F;h2&gt;
 The path params can be specified as either &lt;em&gt;required&lt;&#x2F;em&gt; or &lt;em&gt;optional&lt;&#x2F;em&gt;. They should also be able to be specified
 in the form of &lt;em&gt;regex patterns&lt;&#x2F;em&gt;. There might be a shorter syntax for &lt;em&gt;glob (tail match)&lt;&#x2F;em&gt; path param.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;rails-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#rails-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Rails&lt;&#x2F;h4&gt;
@@ -227,16 +317,25 @@ Rails&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;get &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;tree(&#x2F;*path)&#x2F;commits&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;to: &amp;#39;repo_tree#commits&amp;#39;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;django-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#django-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Django&lt;&#x2F;h4&gt;
@@ -258,16 +357,25 @@ Django&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;re_path&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;^tree(&#x2F;(?P&amp;lt;path&amp;gt;.+))?&#x2F;commits$&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;, views.repo_tree.commits)&lt;&#x2F;span&gt;&lt;span&gt;,
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;laravel-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#laravel-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Laravel&lt;&#x2F;h4&gt;
@@ -290,16 +398,25 @@ Laravel&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c99e00;&quot;&gt;Route&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;get&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;tree&#x2F;{path?}&#x2F;commits&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;RepoTreeController@commits&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;)-&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;where&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;path&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#839c00;&quot;&gt;&amp;#39;.*&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;actix-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#actix-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Actix&lt;&#x2F;h4&gt;
@@ -339,16 +456,25 @@ if the beginning of the URL matches the route given to it. All following routes 
 specified routes here as a prefix (with or without &lt;code&gt;&#x2F;&lt;&#x2F;code&gt; after the prefix) doesn&#x27;t work.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;tide-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#tide-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Tide&lt;&#x2F;h4&gt;
@@ -367,16 +493,25 @@ Tide&lt;&#x2F;h4&gt;
 &lt;li&gt;&lt;strong&gt;MAJOR&lt;&#x2F;strong&gt;: Does not support regex path param.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;warp-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#warp-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Warp&lt;&#x2F;h4&gt;
@@ -420,16 +555,25 @@ to be used directly without the need for regex, it would be nice to have a regex
 implement dummy default filters for each param type. I think &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt; in general needs a few dummy filters.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;gotham-1&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#gotham-1&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Gotham&lt;&#x2F;h4&gt;
@@ -487,16 +631,25 @@ Gotham&lt;&#x2F;h4&gt;
 &lt;li&gt;The usage of path params is a little bit more verbose and is thus not easy to use.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;scopes&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#scopes&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Scopes&lt;&#x2F;h2&gt;
@@ -508,16 +661,25 @@ supported.&lt;&#x2F;p&gt;
 from the param examples above and the scope examples shown here. But I have manually tested all
 the possible scenarios related to this section.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;rails-2&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#rails-2&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Rails&lt;&#x2F;h4&gt;
@@ -537,16 +699,25 @@ Rails&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;end
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;actix-2&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#actix-2&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Actix&lt;&#x2F;h4&gt;
@@ -571,19 +742,28 @@ Actix&lt;&#x2F;h4&gt;
 &lt;p&gt;Cons&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;There is no shorter way to specify scopes with optionals needing to duplicate the routes nested inside them.&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;strong&gt;MINOR&lt;&#x2F;strong&gt;: Non-empty routes in sccopes with globs at the end do not work.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;MINOR&lt;&#x2F;strong&gt;: Non-empty routes in scopes with globs at the end do not work.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;tide-2&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#tide-2&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Tide&lt;&#x2F;h4&gt;
@@ -607,16 +787,25 @@ Tide&lt;&#x2F;h4&gt;
 &lt;li&gt;&lt;strong&gt;MAJOR&lt;&#x2F;strong&gt;: Does not support scopes with regex path param.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;warp-2&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#warp-2&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Warp&lt;&#x2F;h4&gt;
@@ -638,16 +827,25 @@ Warp&lt;&#x2F;h4&gt;
 &lt;li&gt;There is no shorter way to specify scopes with optionals needing to duplicate the routes nested inside them.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h4 id=&quot;gotham-2&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#gotham-2&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Gotham&lt;&#x2F;h4&gt;
@@ -678,16 +876,25 @@ do not accept path extractors which means all the routes inside them need to def
 And if the routes themselves have params, you would need to define more custom extractors.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;nested-scopes&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#nested-scopes&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Nested Scopes&lt;&#x2F;h2&gt;
@@ -696,16 +903,25 @@ have complicated relationships between their data resources and end up using nes
 &lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;: We have already seen most of the relevant code for this in the above section.&lt;&#x2F;p&gt;
 &lt;p&gt;All the frameworks worked as expected except for the problems already described in the above sections.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;sibling-scopes&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#sibling-scopes&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Sibling Scopes&lt;&#x2F;h2&gt;
@@ -715,16 +931,25 @@ ambiguity by giving priority to the routes defined in either ascending or descen
 &lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;: The code example given below might seem nonsensical but I chose it because it conveys the above
 mentioned ambiguity in a simpler perspective.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;rails-3&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#rails-3&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Rails&lt;&#x2F;h4&gt;
@@ -746,31 +971,49 @@ Rails&lt;&#x2F;h4&gt;
 priority. &lt;a href=&quot;https:&#x2F;&#x2F;djangoproject.com&quot;&gt;Django&lt;&#x2F;a&gt; follows the same behaviour while &lt;a href=&quot;https:&#x2F;&#x2F;laravel.com&quot;&gt;Laravel&lt;&#x2F;a&gt; gives priority to the routes defined at
 the bottom.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;rust&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#rust&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Rust&lt;&#x2F;h4&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt; follow the rule by giving priority to the routes defined at the top&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;tide-3&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#tide-3&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Tide&lt;&#x2F;h4&gt;
@@ -799,16 +1042,25 @@ Tide&lt;&#x2F;h4&gt;
 responds with &lt;code&gt;foo::higher&lt;&#x2F;code&gt; for &lt;code&gt;&#x2F;foo&#x2F;higher&lt;&#x2F;code&gt; and &lt;code&gt;foo::lower&lt;&#x2F;code&gt; for &lt;code&gt;&#x2F;foo&#x2F;lower&lt;&#x2F;code&gt; here.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;final-remarks&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#final-remarks&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Final Remarks&lt;&#x2F;h2&gt;
@@ -821,9 +1073,6 @@ sections.&lt;&#x2F;p&gt;
 &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt; since it looks like nobody is maintaning it anymore and I wanted to rule it out of the contention
 for the best web micro framework race. The results actually reaffirmed my opinion that &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt; is the best
 out of them all and I will keep using it and contributing to it.&lt;&#x2F;p&gt;
-&lt;p&gt;I will try to keep this blog post up to date if the mentioned issues are fixed in the future. This blog is
-open sourced at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;pksunkara.github.io&quot;&gt;github&lt;&#x2F;a&gt; which means I am willing to accept
-pull requests to keep this up to date.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -834,8 +1083,8 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/posts/reign-configuration-management-ii/" type="text/html"/>
-        <id>https://pksunkara.com/posts/reign-configuration-management-ii/</id>
+        <link rel="alternate" href="https://pksunkara.com/thoughts/reign-configuration-management-ii/" type="text/html"/>
+        <id>https://pksunkara.com/thoughts/reign-configuration-management-ii/</id>
         
         <content type="html">&lt;p&gt;We have looked at the basic requirements for a configuration management system in our &lt;a href=&quot;..&#x2F;reign-configuration-management&quot;&gt;previous post&lt;&#x2F;a&gt;. If you recall, we described one of the requirement as:&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -867,8 +1116,8 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/posts/reign-configuration-management/" type="text/html"/>
-        <id>https://pksunkara.com/posts/reign-configuration-management/</id>
+        <link rel="alternate" href="https://pksunkara.com/thoughts/reign-configuration-management/" type="text/html"/>
+        <id>https://pksunkara.com/thoughts/reign-configuration-management/</id>
         
         <content type="html">&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Rails&lt;&#x2F;a&gt; does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.&lt;&#x2F;p&gt;
@@ -908,23 +1157,32 @@ pull requests to keep this up to date.&lt;&#x2F;p&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/posts/complex-vuejs-app-structure/" type="text/html"/>
-        <id>https://pksunkara.com/posts/complex-vuejs-app-structure/</id>
+        <link rel="alternate" href="https://pksunkara.com/guides/complex-vuejs-app-structure/" type="text/html"/>
+        <id>https://pksunkara.com/guides/complex-vuejs-app-structure/</id>
         
         <content type="html">&lt;p&gt;I have always liked it whenever a framework provides it&#x27;s own generators and&#x2F;or boilerplates. It&#x27;s what I liked about &lt;a href=&quot;http:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Ruby on Rails&lt;&#x2F;a&gt; the most after the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC&lt;&#x2F;a&gt; concept. Developers can understand a lot about the framework and the way it&#x27;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;&#x2F;p&gt;
 &lt;p&gt;When I started looking into &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;, I was happy to discover that they have a small generator tool called &lt;strong&gt;vue-cli&lt;&#x2F;strong&gt; which can be used with official boilerplates provided at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vuejs-templates&quot;&gt;vuejs-templates&lt;&#x2F;a&gt;. Unfortunately, the happiness didn&#x27;t last long because the boilerplates are simple applications meant to get you started with &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;. They don&#x27;t deal with all the other necessary packages such as &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;, etc.. which are needed for a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application. &lt;em&gt;(&lt;strong&gt;EDIT&lt;&#x2F;strong&gt;: At the time of writing this post, vue-router wasn&#x27;t present in the boilerplate)&lt;&#x2F;em&gt;. They did allow the tool to use third party boilerplates which resulted in me creating &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;spoiler&quot;&gt;spoiler&lt;&#x2F;a&gt; built upon the official webpack boilerplate.&lt;&#x2F;p&gt;
 &lt;p&gt;I would like to describe below about what I think should be the directory and file structure of a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application and it&#x27;s conventions.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;overview&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#overview&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Overview&lt;&#x2F;h2&gt;
@@ -952,16 +1210,25 @@ Overview&lt;&#x2F;h2&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;└─&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; package.json            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# build scripts and dependencies
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;index-html&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#index-html&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 index.html&lt;&#x2F;h4&gt;
@@ -978,16 +1245,25 @@ index.html&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;html&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5d9be5;&quot;&gt;&amp;gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;src-router-index-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-router-index-js&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 src&#x2F;router&#x2F;index.js&lt;&#x2F;h4&gt;
@@ -1009,16 +1285,25 @@ src&#x2F;router&#x2F;index.js&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;});
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;src-store-index-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-store-index-js&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 src&#x2F;store&#x2F;index.js&lt;&#x2F;h4&gt;
@@ -1039,16 +1324,25 @@ src&#x2F;store&#x2F;index.js&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8959a8;&quot;&gt;export default &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;store&lt;&#x2F;span&gt;&lt;span&gt;;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;src-app-vue&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-app-vue&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 src&#x2F;App.vue&lt;&#x2F;h4&gt;
@@ -1064,16 +1358,25 @@ src&#x2F;App.vue&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;script&amp;gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;src-main-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-main-js&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 src&#x2F;main.js&lt;&#x2F;h4&gt;
@@ -1092,16 +1395,25 @@ src&#x2F;main.js&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;});
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;src-store-hello-js&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-store-hello-js&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 src&#x2F;store&#x2F;Hello.js&lt;&#x2F;h4&gt;
@@ -1114,16 +1426,25 @@ src&#x2F;store&#x2F;Hello.js&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;};
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h4 id=&quot;src-components-hello-vue&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#src-components-hello-vue&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 src&#x2F;components&#x2F;Hello.vue&lt;&#x2F;h4&gt;
@@ -1148,60 +1469,96 @@ src&#x2F;components&#x2F;Hello.vue&lt;&#x2F;h4&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&#x2F;script&amp;gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;questions&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#questions&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Questions&lt;&#x2F;h2&gt;
 &lt;h4 id=&quot;why-is-router-a-directory-instead-of-a-single-file&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#why-is-router-a-directory-instead-of-a-single-file&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Why is router a directory instead of a single file?&lt;&#x2F;h4&gt;
 &lt;p&gt;When applications grow, the number of routes grow. They might contain &lt;strong&gt;beforeEnter&lt;&#x2F;strong&gt; hooks and so on and sometimes you might want to put all that in a separate file, or files. With a subdirectory you can keep this all in one place without bloating one router.js file.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;why-are-there-no-root-actions-and-mutations-in-vuex&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#why-are-there-no-root-actions-and-mutations-in-vuex&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     16
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     16
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Why are there no root actions and mutations in vuex?&lt;&#x2F;h4&gt;
 &lt;p&gt;In large applications, almost everything should be as independent of each other for better maintainability and readability of the codebase. Having root actions and mutations will hamper that and thus is not recommended.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;final-comments&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#final-comments&quot;&gt;
-  &lt;svg viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
   
     20
   
-&quot; height=&quot;
+&quot;
+    height=&quot;
   
     20
   
-&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;&#x2F;path&gt;
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Final Comments&lt;&#x2F;h2&gt;

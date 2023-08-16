@@ -31,7 +31,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="canonical" href="https://pksunkara.com/posts/cloudant-couchdb-as-backend/" />
+    <link rel="canonical" href="https://pksunkara.com/guides/cloudant-couchdb-as-backend/" />
 
     <!-- <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/rrssb/1.14.0/css/rrssb.css"> -->
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
@@ -55,25 +55,30 @@
 
       <div id="follow-icons">
   <a href="http://github.com/pksunkara" rel="me"><i class="fa fa-github-square fa-2x"></i></a>
+  <a href="http://linkedin.com/in/pksunkara" rel="me"><i class="fa fa-linkedin-square fa-2x"></i></a>
   <a href="http://twitter.com/pksunkara" rel="me"><i class="fa fa-twitter-square fa-2x"></i></a>
   <a href="http://facebook.com/pksunkara" rel="me"><i class="fa fa-facebook-square fa-2x"></i></a>
   <a href="https://pksunkara.com/atom.xml" rel="me"><i class="fa fa-rss-square fa-2x"></i></a>
 </div>
 
       <h6><a href="/about">About</a></h6>
+<h6><a href="/thoughts">Thoughts</a></h6>
+<h6><a href="/guides">Guides</a></h6>
+<h6><a href="/series">Series</a></h6>
 
     </header>
 
     
 <main id="content">
-  <article id="cloudant-couchdb-as-backend" class="_index.md-posts/_index.md">
+  <article id="cloudant-couchdb-as-backend" class="_index.md-guides/_index.md">
     
 <div class="post-stamp">
   <time datetime="2016-10-01T15:25:32+02:00">
   Oct  1, 2016
 </time>
+<span class="separator">&middot;</span>
+8 min
 
-  
   <span class="taglist">
     &middot;
     
@@ -86,51 +91,79 @@
   </span>
 
 
+  
 </div>
 <h1 class="post-title">Cloudant: CouchDB as Backend</h1>
 <p>There have been a <a href="http://blog.mattwoodward.com/2012/03/definitive-guide-to-couchdb.html">lot</a> <a href="http://www.staticshin.com/programming/easy-user-accounts-management-with-couchdb/">of</a> <a href="https://nolanlawson.com/2013/11/15/couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site/">guides</a> on how to use <a href="http://couchdb.apache.org">CouchDB</a> as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use <a href="https://cloudant.com">Cloudant</a>'s CouchDB as a backend directly for one of my Single Page Applications [<strong>SPA</strong>]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.</p>
 <h2 id="limitations"><a class="permalink" href="#limitations">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     20
   
-" height="
+"
+    height="
   
     20
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Limitations</h2>
 <p>The number one major limitation of CouchDB-as-a-backend is that every user can read all the data. This makes it not suitable for some kind of applications (finance etc..) but really well suited for other kinds of things. One famous example of this would be <a href="https://npmjs.com">NPM</a>, Node.js package manager.</p>
 <p>The other major limitation is that there's no password recovery. You can't just say &quot;<em>give your email, we’ll send you a new one</em>&quot;. Fortunately, you can bypass this by using <a href="https://en.wikipedia.org/wiki/Single_sign-on">Single sign-on</a>. I have personally decided to use <a href="https://auth0.com">Auth0</a> in my <strong>SPA</strong>.</p>
 <h2 id="setting-up"><a class="permalink" href="#setting-up">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     20
   
-" height="
+"
+    height="
   
     20
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Setting up</h2>
 <p>I have listed below the steps on how to achieve this <a href="https://cloudant.com">Cloudant</a>. I am going to assume that you have an account ready to go with username <strong>name</strong> and password <strong>pass</strong>. Let's use the <a href="https://npmjs.com">NPM</a> service as an example.</p>
 <h4 id="create-users-database"><a class="permalink" href="#create-users-database">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     16
   
-" height="
+"
+    height="
   
     16
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Create Users Database</h4>
@@ -138,16 +171,25 @@ Create Users Database</h4>
 <pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/_users
 </span></code></pre>
 <h6 id="turn-off-cloudant-security"><a class="permalink" href="#turn-off-cloudant-security">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     12
   
-" height="
+"
+    height="
   
     12
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Turn off Cloudant Security</h6>
@@ -171,16 +213,25 @@ Turn off Cloudant Security</h6>
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @security.json
 </span></code></pre>
 <h4 id="create-application-database"><a class="permalink" href="#create-application-database">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     16
   
-" height="
+"
+    height="
   
     16
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Create Application Database</h4>
@@ -188,16 +239,25 @@ Create Application Database</h4>
 <pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">curl</span><span style="color:#f07219;"> -X</span><span style="color:#4271ae;"> PUT</span><span style="color:#f07219;"> -u</span><span style="color:#4271ae;"> name:pass https://name.cloudant.com/npm
 </span></code></pre>
 <h6 id="make-it-public"><a class="permalink" href="#make-it-public">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     12
   
-" height="
+"
+    height="
   
     12
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Make it public</h6>
@@ -207,16 +267,25 @@ Make it public</h6>
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @security.json
 </span></code></pre>
 <h4 id="secure-application-for-user"><a class="permalink" href="#secure-application-for-user">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     16
   
-" height="
+"
+    height="
   
     16
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Secure Application for User</h4>
@@ -233,18 +302,27 @@ Secure Application for User</h4>
 </span><span style="color:#c82728;">-H </span><span style="color:#839c00;">&quot;Content-Type: application/json&quot; </span><span style="color:#4271ae;">\
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @validation.json
 </span></code></pre>
-<p>This validation function is explained <a href="https://pksunkara.com/posts/cloudant-couchdb-as-backend/#application-database">below</a></p>
+<p>This validation function is explained <a href="https://pksunkara.com/guides/cloudant-couchdb-as-backend/#application-database">below</a></p>
 <h4 id="secure-user-data"><a class="permalink" href="#secure-user-data">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     16
   
-" height="
+"
+    height="
   
     16
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Secure User Data</h4>
@@ -261,33 +339,51 @@ Secure User Data</h4>
 </span><span style="color:#c82728;">-H </span><span style="color:#839c00;">&quot;Content-Type: application/json&quot; </span><span style="color:#4271ae;">\
 </span><span style="color:#f07219;">-d</span><span style="color:#4271ae;"> @authentication.json
 </span></code></pre>
-<p>This validation function is explained <a href="https://pksunkara.com/posts/cloudant-couchdb-as-backend/#users-database">below</a>.</p>
+<p>This validation function is explained <a href="https://pksunkara.com/guides/cloudant-couchdb-as-backend/#users-database">below</a>.</p>
 <h2 id="explanations"><a class="permalink" href="#explanations">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     20
   
-" height="
+"
+    height="
   
     20
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Explanations</h2>
 <p>This section explains how the validation functions work.</p>
 <h3 id="application-database"><a class="permalink" href="#application-database">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     18
   
-" height="
+"
+    height="
   
     18
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Application Database</h3>
@@ -311,16 +407,25 @@ Application Database</h3>
 </span></code></pre>
 <p><a name="user-explanation"></a></p>
 <h4 id="users-database"><a class="permalink" href="#users-database">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     16
   
-" height="
+"
+    height="
   
     16
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Users Database</h4>
@@ -430,16 +535,25 @@ Users Database</h4>
 </span><span>}
 </span></code></pre>
 <h2 id="addendum"><a class="permalink" href="#addendum">
-  <svg viewBox="0 0 16 16" version="1.1" width="
+  <svg
+    viewBox="0 0 16 16"
+    version="1.1"
+    width="
   
     20
   
-" height="
+"
+    height="
   
     20
   
-" aria-hidden="true">
-    <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"
+    ></path>
   </svg>
 </a>
 Addendum</h2>
@@ -449,7 +563,7 @@ Addendum</h2>
 <div id="social-bar">
   <ul class="rrssb-buttons clearfix">
       <li class="email">
-          <a href="mailto:?subject=Cloudant: CouchDB as Backend&amp;body=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;">
+          <a href="mailto:?subject=Cloudant: CouchDB as Backend&amp;body=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path transform="scale(0.014,-0.014) translate(0,-1670)" d="M1792 826v-794q0 -66 -47 -113t-113 -47h-1472q-66 0 -113 47t-47 113v794q44 -49 101 -87q362 -246 497 -345q57 -42 92.5 -65.5t94.5 -48t110 -24.5h1h1q51 0 110 24.5t94.5 48t92.5 65.5q170 123 498 345q57 39 100 87zM1792 1120q0 -79 -49 -151t-122 -123 q-376 -261 -468 -325q-10 -7 -42.5 -30.5t-54 -38t-52 -32.5t-57.5 -27t-50 -9h-1h-1q-23 0 -50 9t-57.5 27t-52 32.5t-54 38t-42.5 30.5q-91 64 -262 182.5t-205 142.5q-62 42 -117 115.5t-55 136.5q0 78 41.5 130t118.5 52h1472q65 0 112.5 -47t47.5 -113z"/>
@@ -459,7 +573,7 @@ Addendum</h2>
           </a>
       </li>
       <li class="facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;" class="popup">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;" class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path d="M27.825,4.783c0-2.427-2.182-4.608-4.608-4.608H4.783c-2.422,0-4.608,2.182-4.608,4.608v18.434 c0,2.427,2.181,4.608,4.608,4.608H14V17.379h-3.379v-4.608H14v-1.795c0-3.089,2.335-5.885,5.192-5.885h3.718v4.608h-3.726 c-0.408,0-0.884,0.492-0.884,1.236v1.836h4.609v4.608h-4.609v10.446h4.916c2.422,0,4.608-2.188,4.608-4.608V4.783z"/>
@@ -469,7 +583,7 @@ Addendum</h2>
           </a>
       </li>
       <li class="twitter">
-          <a href="http://twitter.com/home?status=Cloudant: CouchDB as Backend%20https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;" class="popup">
+          <a href="http://twitter.com/home?status=Cloudant: CouchDB as Backend%20https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;" class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32 c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155 C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965 C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683 c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851 C26.275,7.229,25.39,8.196,24.253,8.756z"/>
@@ -479,7 +593,7 @@ Addendum</h2>
           </a>
       </li>
       <li class="linkedin">
-          <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;&amp;title=Cloudant: CouchDB as Backend&amp;summary=..." class="popup">
+          <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;&amp;title=Cloudant: CouchDB as Backend&amp;summary=..." class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803 c-0.129,0.315-0.162,0.753-0.162,1.194v8.216h-4.899c0,0,0.066-13.349,0-14.731h4.899v2.088c-0.01,0.016-0.023,0.032-0.033,0.048 h0.033V11.69c0.65-1.002,1.812-2.435,4.414-2.435C23.008,9.254,25.424,11.361,25.424,15.887z M5.348,2.501 c-1.676,0-2.772,1.092-2.772,2.539c0,1.421,1.066,2.538,2.717,2.546h0.032c1.709,0,2.771-1.132,2.771-2.546 C8.054,3.593,7.019,2.501,5.343,2.501H5.348z M2.867,24.334h4.897V9.603H2.867V24.334z"/>
@@ -490,7 +604,7 @@ Addendum</h2>
       </li>
       <li class="tumblr">
           <script>
-            document.write('<a href="http://www.tumblr.com/share?v=3&amp;u=' + encodeURIComponent('https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;') + '&amp;t=Cloudant: CouchDB as Backend" class="popup">');
+            document.write('<a href="http://www.tumblr.com/share?v=3&amp;u=' + encodeURIComponent('https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;') + '&amp;t=Cloudant: CouchDB as Backend" class="popup">');
           </script>
               <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -501,7 +615,7 @@ Addendum</h2>
           <script>document.write('</a>');</script>
       </li>
       <li class="reddit">
-          <a href="http://www.reddit.com/submit?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;">
+          <a href="http://www.reddit.com/submit?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;">
               <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <g>
@@ -518,11 +632,11 @@ Addendum</h2>
       <li class="pinterest">
           <script>
             var imgurl = "https://pksunkara.com/logo.png";
-            var firstimg = document.getElementsByClassName("_index.md-posts/_index.md")[0].getElementsByTagName("img")[0];
+            var firstimg = document.getElementsByClassName("_index.md-guides/_index.md")[0].getElementsByTagName("img")[0];
             if (firstimg !== undefined) {
               imgurl = firstimg.src;
             }
-            document.write('<a href="http://pinterest.com/pin/create/button/?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;&amp;media=' + imgurl + '&amp;description=Cloudant: CouchDB as Backend" class="popup">');
+            document.write('<a href="http://pinterest.com/pin/create/button/?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;&amp;media=' + imgurl + '&amp;description=Cloudant: CouchDB as Backend" class="popup">');
           </script>
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -533,7 +647,7 @@ Addendum</h2>
           <script>document.write('</a>');</script>
       </li>
       <li class="pocket">
-          <a href="https://getpocket.com/save?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;posts&#x2F;cloudant-couchdb-as-backend&#x2F;"  class="popup">
+          <a href="https://getpocket.com/save?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;guides&#x2F;cloudant-couchdb-as-backend&#x2F;"  class="popup">
               <span class="icon">
                   <svg width="32px" height="28px" viewBox="0 0 32 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
                       <path d="M28.7817528,0.00172488695 C30.8117487,0.00431221738 31.9749312,1.12074529 31.9644402,3.10781507 C31.942147,6.67703739 32.1336065,10.2669583 31.8057648,13.8090137 C30.7147076,25.5813672 17.2181194,31.8996281 7.20714461,25.3808491 C2.71833574,22.4571656 0.196577202,18.3122624 0.0549495772,12.9357897 C-0.0342233715,9.5774348 0.00642900214,6.21519891 0.0300336062,2.85555035 C0.0405245414,1.1129833 1.21157517,0.0146615391 3.01995012,0.00819321302 C7.34746087,-0.00603710433 11.6775944,0.00431221738 16.0064164,0.00172488695 C20.2644248,0.00172488695 24.5237444,-0.00215610869 28.7817528,0.00172488695 L28.7817528,0.00172488695 Z M8.64885184,7.85611511 C7.38773662,7.99113854 6.66148108,8.42606978 6.29310958,9.33228474 C5.90114134,10.2969233 6.17774769,11.1421181 6.89875951,11.8276216 C9.35282156,14.161969 11.8108164,16.4924215 14.2976518,18.7943114 C15.3844131,19.7966007 16.5354102,19.7836177 17.6116843,18.7813283 C20.0185529,16.5495467 22.4070683,14.2982907 24.7824746,12.0327533 C25.9845979,10.8850542 26.1012707,9.56468083 25.1469132,8.60653379 C24.1361858,7.59255976 22.8449191,7.6743528 21.5890476,8.85191291 C19.9936451,10.3488554 18.3680912,11.8172352 16.8395462,13.3777945 C16.1342655,14.093159 15.7200114,14.0048744 15.0566806,13.3440386 C13.4599671,11.7484252 11.8081945,10.2060421 10.1262706,8.70001155 C9.65564653,8.27936164 9.00411403,8.05345704 8.64885184,7.85611511 L8.64885184,7.85611511 L8.64885184,7.85611511 Z"></path>

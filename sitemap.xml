@@ -8,48 +8,27 @@
         <lastmod>2016-09-27T17:55:24+02:00</lastmod>
     </url>
     <url>
-        <loc>https://pksunkara.com/categories/</loc>
+        <loc>https://pksunkara.com/guides/</loc>
     </url>
     <url>
-        <loc>https://pksunkara.com/categories/programming/</loc>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/categories/programming/page/1/</loc>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/posts/</loc>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/posts/cloudant-couchdb-as-backend/</loc>
+        <loc>https://pksunkara.com/guides/cloudant-couchdb-as-backend/</loc>
         <lastmod>2016-10-01T15:25:32+02:00</lastmod>
     </url>
     <url>
-        <loc>https://pksunkara.com/posts/complex-vuejs-app-structure/</loc>
+        <loc>https://pksunkara.com/guides/complex-vuejs-app-structure/</loc>
         <lastmod>2017-01-25T03:23:55+05:30</lastmod>
     </url>
     <url>
-        <loc>https://pksunkara.com/posts/page/1/</loc>
+        <loc>https://pksunkara.com/guides/page/1/</loc>
     </url>
     <url>
-        <loc>https://pksunkara.com/posts/reign-configuration-management-ii/</loc>
-        <lastmod>2020-03-27T00:00:00+01:00</lastmod>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/posts/reign-configuration-management/</loc>
-        <lastmod>2019-12-13T00:00:00+05:30</lastmod>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/posts/state-of-routing-in-rust/</loc>
-        <lastmod>2020-05-17T00:00:00+02:00</lastmod>
+        <loc>https://pksunkara.com/page/1/</loc>
     </url>
     <url>
         <loc>https://pksunkara.com/series/</loc>
     </url>
     <url>
-        <loc>https://pksunkara.com/series/reign/</loc>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/series/reign/page/1/</loc>
+        <loc>https://pksunkara.com/series/reign-whiteboarding/</loc>
     </url>
     <url>
         <loc>https://pksunkara.com/tags/</loc>
@@ -107,5 +86,23 @@
     </url>
     <url>
         <loc>https://pksunkara.com/tags/web/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/thoughts/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/thoughts/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/thoughts/reign-configuration-management-ii/</loc>
+        <lastmod>2020-03-27T00:00:00+01:00</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/thoughts/reign-configuration-management/</loc>
+        <lastmod>2019-12-13T00:00:00+05:30</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/thoughts/state-of-routing-in-rust/</loc>
+        <lastmod>2020-05-17T00:00:00+02:00</lastmod>
     </url>
 </urlset>
