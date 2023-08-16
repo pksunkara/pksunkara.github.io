@@ -18,8 +18,9 @@ highlight_code = true
 highlight_theme = "demain"
 
 [extra]
-twitter = "pksunkara"
 github = "pksunkara"
+linkedin = "pksunkara"
+twitter = "pksunkara"
 facebook = "pksunkara"
 
 google_analytics = "UA-9209860-4"
