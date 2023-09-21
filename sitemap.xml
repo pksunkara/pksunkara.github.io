@@ -8,20 +8,6 @@
         <lastmod>2016-09-27T17:55:24+02:00</lastmod>
     </url>
     <url>
-        <loc>https://pksunkara.com/guides/</loc>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/guides/cloudant-couchdb-as-backend/</loc>
-        <lastmod>2016-10-01T15:25:32+02:00</lastmod>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/guides/complex-vuejs-app-structure/</loc>
-        <lastmod>2017-01-25T03:23:55+05:30</lastmod>
-    </url>
-    <url>
-        <loc>https://pksunkara.com/guides/page/1/</loc>
-    </url>
-    <url>
         <loc>https://pksunkara.com/page/1/</loc>
     </url>
     <url>
@@ -86,6 +72,20 @@
     </url>
     <url>
         <loc>https://pksunkara.com/tags/web/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tech-notes/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tech-notes/cloudant-couchdb-as-backend/</loc>
+        <lastmod>2016-10-01T15:25:32+02:00</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tech-notes/complex-vuejs-app-structure/</loc>
+        <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tech-notes/page/1/</loc>
     </url>
     <url>
         <loc>https://pksunkara.com/thoughts/</loc>
