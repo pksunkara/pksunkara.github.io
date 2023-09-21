@@ -3,6 +3,8 @@ date = 2016-10-01T15:25:32+02:00
 draft = false
 title = "Cloudant: CouchDB as Backend"
 
+aliases = ["/posts/cloudant-couchdb-as-backend"]
+
 [taxonomies]
 tags = ["database", "couchdb", "cloudant"]
 +++

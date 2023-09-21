@@ -3,6 +3,8 @@ date = 2020-05-17T00:00:00+02:00
 draft = false
 title = "State of routing in Rust"
 
+aliases = ["/posts/state-of-routing-in-rust"]
+
 [taxonomies]
 tags = ["rust", "web"]
 +++

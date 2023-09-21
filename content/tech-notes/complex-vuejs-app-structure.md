@@ -3,6 +3,8 @@ date = 2017-01-25T03:23:55+05:30
 draft = false
 title = "Complex Vue.js App Structure"
 
+aliases = ["/posts/complex-vuejs-app-structure"]
+
 [taxonomies]
 tags = ["vue", "javascript", "web", "frontend"]
 +++
