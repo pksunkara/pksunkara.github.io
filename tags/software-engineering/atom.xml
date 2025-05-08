@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>pksunkara - software engineering</title>
+    <subtitle>My personal blog</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://pksunkara.com/tags/software-engineering/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://pksunkara.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-05-08T00:00:00+05:30</updated>
+    <id>https://pksunkara.com/tags/software-engineering/atom.xml</id>
+    <entry xml:lang="en">
+        <title>3 types of coding in the AI era</title>
+        <published>2025-05-08T00:00:00+05:30</published>
+        <updated>2025-05-08T00:00:00+05:30</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/"/>
+        <id>https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/</id>
+        
+        <content type="html" xml:base="https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/">&lt;p&gt;LLMs have landed, and &quot;coding&quot; has split. Here’s the lowdown:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;vibe-coding&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#vibe-coding&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    20
+  
+&quot;
+    height=&quot;
+  
+    20
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Vibe Coding&lt;&#x2F;h2&gt;
+&lt;p&gt;You&#x27;ve heard of it. &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;karpathy&#x2F;status&#x2F;1886192184808149383&quot;&gt;Andrej Karpathy named it&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;simonwillison.net&#x2F;2025&#x2F;Mar&#x2F;19&#x2F;vibe-coding&#x2F;&quot;&gt;Simon Willison explained it&lt;&#x2F;a&gt;. Basically, you tell an AI what you want, it writes the code.&lt;&#x2F;p&gt;
+&lt;p&gt;Probably used by:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Beginners &amp;amp; no-coders.&lt;&#x2F;li&gt;
+&lt;li&gt;Anyone on quick or throwaway projects.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If a colleague reviews the code in a GitHub PR, is it still vibe-coded? I&#x27;d say &lt;strong&gt;yes&lt;&#x2F;strong&gt;, it&#x27;s moved beyond just a vibe at that point. What do you think?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;artisanal-coding&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#artisanal-coding&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    20
+  
+&quot;
+    height=&quot;
+  
+    20
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Artisanal Coding&lt;&#x2F;h2&gt;
+&lt;p&gt;The old-school way: writing code by hand. Maybe with help from deterministic tools like &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Language_Server_Protocol&quot;&gt;LSP&lt;&#x2F;a&gt;s, linters or generators. It&#x27;s you meticulously building it.&lt;&#x2F;p&gt;
+&lt;p&gt;Probably used by:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Beginners learning the ropes.&lt;&#x2F;li&gt;
+&lt;li&gt;Coding purists and enthusiasts who love the craft.&lt;&#x2F;li&gt;
+&lt;li&gt;Projects needing high precision or security.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;neo-coding&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#neo-coding&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    20
+  
+&quot;
+    height=&quot;
+  
+    20
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Neo Coding&lt;&#x2F;h2&gt;
+&lt;p&gt;The sweet spot. You code, but LLMs help with autocompletions and generation via chat or local agents.&lt;&#x2F;p&gt;
+&lt;p&gt;You&#x27;re still designing, reviewing, and debugging, but faster. Think a carpenter with a nail gun: still skilled, still in charge, just way more efficient. You&#x27;re using AI as a power tool, not handing over the reins.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Would this be the new &quot;coding&quot;?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -2,22 +2,138 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>pksunkara</title>
     <subtitle>My personal blog</subtitle>
-    <link href="https://pksunkara.com/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://pksunkara.com"/>
+    <link rel="self" type="application/atom+xml" href="https://pksunkara.com/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://pksunkara.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2020-05-17T00:00:00+02:00</updated>
+    <updated>2025-05-08T00:00:00+05:30</updated>
     <id>https://pksunkara.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>3 types of coding in the AI era</title>
+        <published>2025-05-08T00:00:00+05:30</published>
+        <updated>2025-05-08T00:00:00+05:30</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/"/>
+        <id>https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/</id>
+        
+        <content type="html" xml:base="https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/">&lt;p&gt;LLMs have landed, and &quot;coding&quot; has split. Here’s the lowdown:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;vibe-coding&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#vibe-coding&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    20
+  
+&quot;
+    height=&quot;
+  
+    20
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Vibe Coding&lt;&#x2F;h2&gt;
+&lt;p&gt;You&#x27;ve heard of it. &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;karpathy&#x2F;status&#x2F;1886192184808149383&quot;&gt;Andrej Karpathy named it&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;simonwillison.net&#x2F;2025&#x2F;Mar&#x2F;19&#x2F;vibe-coding&#x2F;&quot;&gt;Simon Willison explained it&lt;&#x2F;a&gt;. Basically, you tell an AI what you want, it writes the code.&lt;&#x2F;p&gt;
+&lt;p&gt;Probably used by:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Beginners &amp;amp; no-coders.&lt;&#x2F;li&gt;
+&lt;li&gt;Anyone on quick or throwaway projects.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If a colleague reviews the code in a GitHub PR, is it still vibe-coded? I&#x27;d say &lt;strong&gt;yes&lt;&#x2F;strong&gt;, it&#x27;s moved beyond just a vibe at that point. What do you think?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;artisanal-coding&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#artisanal-coding&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    20
+  
+&quot;
+    height=&quot;
+  
+    20
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Artisanal Coding&lt;&#x2F;h2&gt;
+&lt;p&gt;The old-school way: writing code by hand. Maybe with help from deterministic tools like &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Language_Server_Protocol&quot;&gt;LSP&lt;&#x2F;a&gt;s, linters or generators. It&#x27;s you meticulously building it.&lt;&#x2F;p&gt;
+&lt;p&gt;Probably used by:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Beginners learning the ropes.&lt;&#x2F;li&gt;
+&lt;li&gt;Coding purists and enthusiasts who love the craft.&lt;&#x2F;li&gt;
+&lt;li&gt;Projects needing high precision or security.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;neo-coding&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#neo-coding&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    20
+  
+&quot;
+    height=&quot;
+  
+    20
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Neo Coding&lt;&#x2F;h2&gt;
+&lt;p&gt;The sweet spot. You code, but LLMs help with autocompletions and generation via chat or local agents.&lt;&#x2F;p&gt;
+&lt;p&gt;You&#x27;re still designing, reviewing, and debugging, but faster. Think a carpenter with a nail gun: still skilled, still in charge, just way more efficient. You&#x27;re using AI as a power tool, not handing over the reins.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Would this be the new &quot;coding&quot;?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>State of routing in Rust</title>
         <published>2020-05-17T00:00:00+02:00</published>
         <updated>2020-05-17T00:00:00+02:00</updated>
+        
         <author>
-          <name>Unknown</name>
+          <name>
+            
+              Unknown
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/thoughts/state-of-routing-in-rust/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/thoughts/state-of-routing-in-rust/"/>
         <id>https://pksunkara.com/thoughts/state-of-routing-in-rust/</id>
         
-        <content type="html">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
+        <content type="html" xml:base="https://pksunkara.com/thoughts/state-of-routing-in-rust/">&lt;p&gt;There are many micro frameworks in Rust. Some famous examples are &lt;a href=&quot;https:&#x2F;&#x2F;actix.rs&quot;&gt;Actix&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;gotham.rs&quot;&gt;Gotham&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;tide&quot;&gt;Tide&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;warp&quot;&gt;Warp&lt;&#x2F;a&gt;,
 etc. We have seen many blog posts comparing their performances and middleware capabilities.
 But what we haven&#x27;t seen is an article comparing their routing functionality and capabilities. I hoped to
 fill that gap and make this post the most up to date guide for the state of routing in Rust.&lt;&#x2F;p&gt;
@@ -1077,90 +1193,22 @@ out of them all and I will keep using it and contributing to it.&lt;&#x2F;p&gt;
         
     </entry>
     <entry xml:lang="en">
-        <title>Reign: Configuration Management - II</title>
-        <published>2020-03-27T00:00:00+01:00</published>
-        <updated>2020-03-27T00:00:00+01:00</updated>
-        <author>
-          <name>Unknown</name>
-        </author>
-        <link rel="alternate" href="https://pksunkara.com/thoughts/reign-configuration-management-ii/" type="text/html"/>
-        <id>https://pksunkara.com/thoughts/reign-configuration-management-ii/</id>
-        
-        <content type="html">&lt;p&gt;We have looked at the basic requirements for a configuration management system in our &lt;a href=&quot;..&#x2F;reign-configuration-management&quot;&gt;previous post&lt;&#x2F;a&gt;. If you recall, we described one of the requirement as:&lt;&#x2F;p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Retrieving a configuration value from the system should be as simple as writing a variable name&lt;&#x2F;p&gt;
-&lt;&#x2F;blockquote&gt;
-&lt;p&gt;Reading an environment variable is especially tricky because they do not have types. A variable whose value is &lt;code&gt;&amp;quot;true&amp;quot;&lt;&#x2F;code&gt; can be describing either a &lt;code&gt;String&lt;&#x2F;code&gt; or a &lt;code&gt;bool&lt;&#x2F;code&gt;. Similarly, a variable with value &lt;code&gt;&amp;quot;1&amp;quot;&lt;&#x2F;code&gt; can be describing any of &lt;code&gt;String&lt;&#x2F;code&gt;, &lt;code&gt;int32&lt;&#x2F;code&gt; or &lt;code&gt;bool&lt;&#x2F;code&gt;. If we implement a naive retrieval system, then the user would need to validate the value before using it.&lt;&#x2F;p&gt;
-&lt;p&gt;We also describe another requirement as:&lt;&#x2F;p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Merge env vars with config in files&lt;&#x2F;p&gt;
-&lt;&#x2F;blockquote&gt;
-&lt;p&gt;One of the issues with this approach is leaking of non application related environment variables into the application code. While doing this in a backend application might not be a big security issue, it would still be better if the configuration management system can allow the users to whitelist all the config values they need.&lt;&#x2F;p&gt;
-&lt;p&gt;We haven&#x27;t really talked about using secrets in configuration variables during development of the application. You can not write them into the config files because they are secret and need to be kept that way. A developer can always create local environment variables before starting development but this becomes cumbersome and repetitive. One way of fixing this would be to store those environment variables in the developer&#x27;s local shell profile. But, what if two different applications use the same environment vairable name?&lt;&#x2F;p&gt;
-&lt;p&gt;We can solve this by using &lt;strong&gt;local config files&lt;&#x2F;strong&gt;. These files are similar to the environment config files but are not stored in the code and exist only locally. Our configuration management system needs to account for these files while processing the config files.&lt;&#x2F;p&gt;
-&lt;p&gt;Let us think of a medium sized team of five developers working on an application. They would need to share the secrets with each other for local development. They could pass around these &lt;strong&gt;local config files&lt;&#x2F;strong&gt;, but this is not scalable. They could give people access to the secrets so that the developers can retrieve the secrets directly, but this is also not scalable and more importantly not secure from an organisation perspective.&lt;&#x2F;p&gt;
-&lt;p&gt;We can fix this by having an external secret manager (ex: &lt;a href=&quot;https:&#x2F;&#x2F;www.vaultproject.io&#x2F;&quot;&gt;Vault&lt;&#x2F;a&gt;) and a small script which can retrieve the secrets after retrieving code from upstream. Applications with secrets for local development is a rare use case and our system can either support this or not. It can also be argued that this is out of scope for the configuration management system.&lt;&#x2F;p&gt;
-&lt;p&gt;Thus, a good configuration manager should also:&lt;&#x2F;p&gt;
-&lt;ul&gt;
-&lt;li&gt;Validate the config value during retrieval&lt;&#x2F;li&gt;
-&lt;li&gt;Allow whitelisting of needed environment variables&lt;&#x2F;li&gt;
-&lt;li&gt;Support local config files&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-</content>
-        
-    </entry>
-    <entry xml:lang="en">
-        <title>Reign: Configuration Management</title>
-        <published>2019-12-13T00:00:00+05:30</published>
-        <updated>2019-12-13T00:00:00+05:30</updated>
-        <author>
-          <name>Unknown</name>
-        </author>
-        <link rel="alternate" href="https://pksunkara.com/thoughts/reign-configuration-management/" type="text/html"/>
-        <id>https://pksunkara.com/thoughts/reign-configuration-management/</id>
-        
-        <content type="html">&lt;p&gt;Every web application requires configuration management. Providing a configuration manager is one of important tasks of any web framework.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Rails&lt;&#x2F;a&gt; does it by asking the user to edit yaml files and a few ruby files. Some node.js frameworks achieve this by using JSON files. In this post, I will present an idea on how the configuration management system should ideally work.&lt;&#x2F;p&gt;
-&lt;p&gt;Few years ago, &lt;a href=&quot;https:&#x2F;&#x2F;heroku.com&quot;&gt;Heroku&lt;&#x2F;a&gt; published a website detailing a concept called &lt;a href=&quot;http:&#x2F;&#x2F;12factor.net&quot;&gt;The Twelve-Factor App&lt;&#x2F;a&gt;. We can see that configuration is listed third in the list. I would like to quote some of their sentences.&lt;&#x2F;p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;An application’s config is everything that is likely to vary between deploys (staging, production, developer environments, etc)&lt;&#x2F;p&gt;
-&lt;&#x2F;blockquote&gt;
-&lt;p&gt;Being run in different environments is something that a web application cannot avoid. A normal web application would need at least 3 different environments. One for &lt;strong&gt;production&lt;&#x2F;strong&gt;, one for &lt;strong&gt;development&lt;&#x2F;strong&gt; and the last for &lt;strong&gt;test&lt;&#x2F;strong&gt;. A good configuration system should support multiple environments.&lt;&#x2F;p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Apps sometimes store config as constants in the code. This is a violation of twelve-factor, which requires strict separation of config from code.&lt;&#x2F;p&gt;
-&lt;&#x2F;blockquote&gt;
-&lt;p&gt;This is the driving force behind using a configuration management system. Some might say that this would complicate the overall code by adding yet another module. It would also take more time to develop this system. But, with the rise of module&#x2F;package managers, it is just a matter of plugging in the system. In order to reduce further complexity, Retrieving a configuration value from the system should be as simple as writing a variable name.&lt;&#x2F;p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The twelve-factor app stores config in environment variables&lt;&#x2F;p&gt;
-&lt;&#x2F;blockquote&gt;
-&lt;p&gt;Most of the current configuration managers use files to store the config. This method still doesn’t solve the problem of needing to add the config files to the code. As mentioned above, the ideal method of storing config is using environment variables (also known as &lt;strong&gt;env vars&lt;&#x2F;strong&gt; or &lt;strong&gt;env&lt;&#x2F;strong&gt;). On average, a web application needs at least 10 config variables. It will be difficult and annoying for the developer to use and maintain such high number of env vars which is why most of them opt to add the config files to their code.&lt;&#x2F;p&gt;
-&lt;p&gt;Therefore, an ideal configuration system should support both env vars and config files. It would be even better if the system could merge the env vars with the config files. Maybe it can support command line arguments too.&lt;&#x2F;p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars. They are never grouped together as “environments”, but instead are independently managed for each deploy.&lt;&#x2F;p&gt;
-&lt;&#x2F;blockquote&gt;
-&lt;p&gt;Most people don’t realize that there is a hidden problem in this. For example, if a developer wants to use database information config from &lt;strong&gt;staging&lt;&#x2F;strong&gt; environment for their personal &lt;strong&gt;joes-staging&lt;&#x2F;strong&gt; environment, they need to keep monitoring the &lt;strong&gt;staging&lt;&#x2F;strong&gt; environment for any changes and have to update their personal environment config file. One way to mitigate this issue is by providing a way for environment config files to merge with each other while allowing to batch config in named groups.&lt;&#x2F;p&gt;
-&lt;p&gt;Then, in the above example, all Joe has to do is create a &lt;strong&gt;joes.staging&lt;&#x2F;strong&gt; environment config file with the required config and leave the database config empty. When the configuration manager needs to retrieve database config for his environment, it should fallback to &lt;strong&gt;staging&lt;&#x2F;strong&gt; environment config.&lt;&#x2F;p&gt;
-&lt;p&gt;Let us recap. A good configuration manager should:&lt;&#x2F;p&gt;
-&lt;ul&gt;
-&lt;li&gt;Support multiple environments in files&lt;&#x2F;li&gt;
-&lt;li&gt;Be easy to retrieve a config value&lt;&#x2F;li&gt;
-&lt;li&gt;Merge env vars, command line args with config in files&lt;&#x2F;li&gt;
-&lt;li&gt;Merge different environment files when required&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-</content>
-        
-    </entry>
-    <entry xml:lang="en">
         <title>Complex Vue.js App Structure</title>
         <published>2017-01-25T03:23:55+05:30</published>
         <updated>2017-01-25T03:23:55+05:30</updated>
+        
         <author>
-          <name>Unknown</name>
+          <name>
+            
+              Unknown
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/tech-notes/complex-vuejs-app-structure/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/tech-notes/complex-vuejs-app-structure/"/>
         <id>https://pksunkara.com/tech-notes/complex-vuejs-app-structure/</id>
         
-        <content type="html">&lt;p&gt;I have always liked it whenever a framework provides it&#x27;s own generators and&#x2F;or boilerplates. It&#x27;s what I liked about &lt;a href=&quot;http:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Ruby on Rails&lt;&#x2F;a&gt; the most after the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC&lt;&#x2F;a&gt; concept. Developers can understand a lot about the framework and the way it&#x27;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://pksunkara.com/tech-notes/complex-vuejs-app-structure/">&lt;p&gt;I have always liked it whenever a framework provides it&#x27;s own generators and&#x2F;or boilerplates. It&#x27;s what I liked about &lt;a href=&quot;http:&#x2F;&#x2F;rubyonrails.org&quot;&gt;Ruby on Rails&lt;&#x2F;a&gt; the most after the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC&lt;&#x2F;a&gt; concept. Developers can understand a lot about the framework and the way it&#x27;s intended to be used from the official boilerplates. I am sad that the recent javascript frameworks has left this important job of generating code to the community and tools like yeoman instead of having something official.&lt;&#x2F;p&gt;
 &lt;p&gt;When I started looking into &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;, I was happy to discover that they have a small generator tool called &lt;strong&gt;vue-cli&lt;&#x2F;strong&gt; which can be used with official boilerplates provided at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vuejs-templates&quot;&gt;vuejs-templates&lt;&#x2F;a&gt;. Unfortunately, the happiness didn&#x27;t last long because the boilerplates are simple applications meant to get you started with &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt;. They don&#x27;t deal with all the other necessary packages such as &lt;a href=&quot;https:&#x2F;&#x2F;vuex.vuejs.org&#x2F;en&#x2F;&quot;&gt;vuex&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;router.vuejs.org&#x2F;en&#x2F;&quot;&gt;vue-router&lt;&#x2F;a&gt;, etc.. which are needed for a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application. &lt;em&gt;(&lt;strong&gt;EDIT&lt;&#x2F;strong&gt;: At the time of writing this post, vue-router wasn&#x27;t present in the boilerplate)&lt;&#x2F;em&gt;. They did allow the tool to use third party boilerplates which resulted in me creating &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pksunkara&#x2F;spoiler&quot;&gt;spoiler&lt;&#x2F;a&gt; built upon the official webpack boilerplate.&lt;&#x2F;p&gt;
 &lt;p&gt;I would like to describe below about what I think should be the directory and file structure of a complex &lt;a href=&quot;https:&#x2F;&#x2F;vuejs.org&quot;&gt;Vue.js&lt;&#x2F;a&gt; application and it&#x27;s conventions.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;overview&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#overview&quot;&gt;
@@ -1570,13 +1618,19 @@ Final Comments&lt;&#x2F;h2&gt;
         <title>Cloudant: CouchDB as Backend</title>
         <published>2016-10-01T15:25:32+02:00</published>
         <updated>2016-10-01T15:25:32+02:00</updated>
+        
         <author>
-          <name>Unknown</name>
+          <name>
+            
+              Unknown
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/tech-notes/cloudant-couchdb-as-backend/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/tech-notes/cloudant-couchdb-as-backend/"/>
         <id>https://pksunkara.com/tech-notes/cloudant-couchdb-as-backend/</id>
         
-        <content type="html">&lt;p&gt;There have been a &lt;a href=&quot;http:&#x2F;&#x2F;blog.mattwoodward.com&#x2F;2012&#x2F;03&#x2F;definitive-guide-to-couchdb.html&quot;&gt;lot&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.staticshin.com&#x2F;programming&#x2F;easy-user-accounts-management-with-couchdb&#x2F;&quot;&gt;of&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;nolanlawson.com&#x2F;2013&#x2F;11&#x2F;15&#x2F;couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; on how to use &lt;a href=&quot;http:&#x2F;&#x2F;couchdb.apache.org&quot;&gt;CouchDB&lt;&#x2F;a&gt; as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s CouchDB as a backend directly for one of my Single Page Applications [&lt;strong&gt;SPA&lt;&#x2F;strong&gt;]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://pksunkara.com/tech-notes/cloudant-couchdb-as-backend/">&lt;p&gt;There have been a &lt;a href=&quot;http:&#x2F;&#x2F;blog.mattwoodward.com&#x2F;2012&#x2F;03&#x2F;definitive-guide-to-couchdb.html&quot;&gt;lot&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.staticshin.com&#x2F;programming&#x2F;easy-user-accounts-management-with-couchdb&#x2F;&quot;&gt;of&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;nolanlawson.com&#x2F;2013&#x2F;11&#x2F;15&#x2F;couchdb-doesnt-want-to-be-your-database-it-wants-to-be-your-web-site&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; on how to use &lt;a href=&quot;http:&#x2F;&#x2F;couchdb.apache.org&quot;&gt;CouchDB&lt;&#x2F;a&gt; as a database for the web while restricting users to write only the data they own. I have been recently experimenting with how to use &lt;a href=&quot;https:&#x2F;&#x2F;cloudant.com&quot;&gt;Cloudant&lt;&#x2F;a&gt;&#x27;s CouchDB as a backend directly for one of my Single Page Applications [&lt;strong&gt;SPA&lt;&#x2F;strong&gt;]. This blog post gives a little perspective on the limitations of the idea and how to achieve it.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;limitations&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#limitations&quot;&gt;
   &lt;svg
     viewBox=&quot;0 0 16 16&quot;
@@ -1601,7 +1655,7 @@ Final Comments&lt;&#x2F;h2&gt;
 &lt;&#x2F;a&gt;
 Limitations&lt;&#x2F;h2&gt;
 &lt;p&gt;The number one major limitation of CouchDB-as-a-backend is that every user can read all the data. This makes it not suitable for some kind of applications (finance etc..) but really well suited for other kinds of things. One famous example of this would be &lt;a href=&quot;https:&#x2F;&#x2F;npmjs.com&quot;&gt;NPM&lt;&#x2F;a&gt;, Node.js package manager.&lt;&#x2F;p&gt;
-&lt;p&gt;The other major limitation is that there&#x27;s no password recovery. You can&#x27;t just say &amp;quot;&lt;em&gt;give your email, we’ll send you a new one&lt;&#x2F;em&gt;&amp;quot;. Fortunately, you can bypass this by using &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Single_sign-on&quot;&gt;Single sign-on&lt;&#x2F;a&gt;. I have personally decided to use &lt;a href=&quot;https:&#x2F;&#x2F;auth0.com&quot;&gt;Auth0&lt;&#x2F;a&gt; in my &lt;strong&gt;SPA&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The other major limitation is that there&#x27;s no password recovery. You can&#x27;t just say &quot;&lt;em&gt;give your email, we’ll send you a new one&lt;&#x2F;em&gt;&quot;. Fortunately, you can bypass this by using &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Single_sign-on&quot;&gt;Single sign-on&lt;&#x2F;a&gt;. I have personally decided to use &lt;a href=&quot;https:&#x2F;&#x2F;auth0.com&quot;&gt;Auth0&lt;&#x2F;a&gt; in my &lt;strong&gt;SPA&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;setting-up&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#setting-up&quot;&gt;
   &lt;svg
     viewBox=&quot;0 0 16 16&quot;
@@ -2048,13 +2102,19 @@ Addendum&lt;&#x2F;h2&gt;
         <title>About</title>
         <published>2016-09-27T17:55:24+02:00</published>
         <updated>2016-09-27T17:55:24+02:00</updated>
+        
         <author>
-          <name>Unknown</name>
+          <name>
+            
+              Unknown
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://pksunkara.com/about/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/about/"/>
         <id>https://pksunkara.com/about/</id>
         
-        <content type="html">&lt;p&gt;I am &lt;strong&gt;Pavan Kumar Sunkara&lt;&#x2F;strong&gt;, a Product Engineer at &lt;a href=&quot;https:&#x2F;&#x2F;qatalog.com&quot;&gt;Qatalog&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://pksunkara.com/about/">&lt;p&gt;I am &lt;strong&gt;Pavan Kumar Sunkara&lt;&#x2F;strong&gt;, a Product Engineer at &lt;a href=&quot;https:&#x2F;&#x2F;qatalog.com&quot;&gt;Qatalog&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
