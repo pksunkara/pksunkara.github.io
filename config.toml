@@ -4,7 +4,7 @@ base_url = "https://pksunkara.com"
 title = "pksunkara"
 description = "My personal blog"
 
-generate_feed = true
+generate_feeds = true
 
 # TODO: RSS for each section (hide author page from main feed)
 taxonomies = [
