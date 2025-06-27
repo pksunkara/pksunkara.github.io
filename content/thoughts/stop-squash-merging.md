@@ -4,7 +4,7 @@ draft = true
 title = "Stop squash merging"
 
 [taxonomies]
-tags = ["git", "github"]
+tags = ["github"]
 +++
 
 [comment]: https://old.reddit.com/r/git/comments/1bpbtsd/i_hate_squash_merges/kww42mn
