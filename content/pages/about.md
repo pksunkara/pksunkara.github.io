@@ -5,4 +5,4 @@ title = "About"
 path = "about"
 +++
 
-I am **Pavan Kumar Sunkara**, a Product Engineer at [Qatalog](https://qatalog.com).
+I am **Pavan Sunkara**, Founder & CEO at [Automa](https://automa.app).
