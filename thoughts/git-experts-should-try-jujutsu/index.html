@@ -142,9 +142,7 @@ Editing an old commit</h3>
 <p>This is a classic scenario. You've spotted a typo or a small bug in a commit from five changes ago.</p>
 <p><strong>In Git:</strong>
 You start an interactive rebase, find the commit, mark it for editing, make your changes, amend the commit, and finally, continue the rebase.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Find the commit in the log
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> log</span><span style="color:#f07219;"> --oneline
-</span><span style="color:#8e908c;"># Start the interactive rebase
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Start the interactive rebase
 </span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> rebase</span><span style="color:#f07219;"> -i</span><span style="color:#4271ae;"> HEAD</span><span style="color:#c82728;">~</span><span style="color:#4271ae;">5 </span><span style="color:#8e908c;"># And mark the commit you want to edit
 </span><span style="color:#8e908c;"># Make your code changes
 </span><span style="color:#c82728;">vim</span><span style="color:#4271ae;"> lib/edit.ts
@@ -156,9 +154,7 @@ You start an interactive rebase, find the commit, mark it for editing, make your
 </span></code></pre>
 <p><strong>In Jujutsu:</strong>
 You simply tell it which change you want to edit. It checks it out, you make your changes, and you're done. Jujutsu handles the rebase automatically in the background.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Find the change id
-</span><span style="color:#c82728;">jj</span><span style="color:#4271ae;"> log
-</span><span style="color:#8e908c;"># Edit the change directly
+<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Edit the change directly
 </span><span style="color:#c82728;">jj</span><span style="color:#4271ae;"> edit </span><span style="color:#3e999f;">&lt;</span><span style="color:#4271ae;">change-id</span><span style="color:#3e999f;">&gt;
 </span><span style="color:#8e908c;"># Make your code changes...
 </span><span style="color:#c82728;">vim</span><span style="color:#4271ae;"> lib/edit.ts

@@ -77,9 +77,7 @@ Editing an old commit&lt;&#x2F;h3&gt;
 &lt;p&gt;This is a classic scenario. You&#x27;ve spotted a typo or a small bug in a commit from five changes ago.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;strong&gt;In Git:&lt;&#x2F;strong&gt;
 You start an interactive rebase, find the commit, mark it for editing, make your changes, amend the commit, and finally, continue the rebase.&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#f9f9f9;color:#111111;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Find the commit in the log
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; log&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; --oneline
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Start the interactive rebase
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#f9f9f9;color:#111111;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Start the interactive rebase
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; rebase&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f07219;&quot;&gt; -i&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; HEAD&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;5 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# And mark the commit you want to edit
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Make your code changes
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;vim&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; lib&#x2F;edit.ts
@@ -91,9 +89,7 @@ You start an interactive rebase, find the commit, mark it for editing, make your
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;&lt;strong&gt;In Jujutsu:&lt;&#x2F;strong&gt;
 You simply tell it which change you want to edit. It checks it out, you make your changes, and you&#x27;re done. Jujutsu handles the rebase automatically in the background.&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#f9f9f9;color:#111111;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Find the change id
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; log
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Edit the change directly
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#f9f9f9;color:#111111;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Edit the change directly
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; edit &lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt;change-id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#3e999f;&quot;&gt;&amp;gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8e908c;&quot;&gt;# Make your code changes...
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c82728;&quot;&gt;vim&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4271ae;&quot;&gt; lib&#x2F;edit.ts
