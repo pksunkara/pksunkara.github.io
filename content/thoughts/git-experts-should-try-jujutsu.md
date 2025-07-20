@@ -27,8 +27,6 @@ This is a classic scenario. You've spotted a typo or a small bug in a commit fro
 You start an interactive rebase, find the commit, mark it for editing, make your changes, amend the commit, and finally, continue the rebase.
 
 ```bash
-# Find the commit in the log
-git log --oneline
 # Start the interactive rebase
 git rebase -i HEAD~5 # And mark the commit you want to edit
 # Make your code changes
@@ -44,8 +42,6 @@ git rebase --continue
 You simply tell it which change you want to edit. It checks it out, you make your changes, and you're done. Jujutsu handles the rebase automatically in the background.
 
 ```bash
-# Find the change id
-jj log
 # Edit the change directly
 jj edit <change-id>
 # Make your code changes...
