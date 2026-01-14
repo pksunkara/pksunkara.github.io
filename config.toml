@@ -3,10 +3,11 @@ base_url = "https://pksunkara.com"
 
 title = "pksunkara"
 description = "My personal blog"
+author = "Pavan Sunkara"
 
 generate_feeds = true
 
-# TODO: RSS for each section (hide author page from main feed)
+# TODO: hide author page from main feed
 taxonomies = [
 	{ name = "tags", paginate_by = 10, feed = true },
 	{ name = "series", feed = true },
