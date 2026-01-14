@@ -12,9 +12,9 @@ taxonomies = [
 	{ name = "series", feed = true },
 ]
 
-[markdown]
-highlight_code = true
-highlight_theme = "demain"
+[markdown.highlighting]
+error_on_missing_language = true
+theme = "one-light"
 
 [extra]
 github = "pksunkara"
