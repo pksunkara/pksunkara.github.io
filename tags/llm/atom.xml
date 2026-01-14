@@ -47,7 +47,7 @@
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Vibe Coding&lt;&#x2F;h2&gt;
-&lt;p&gt;You&#x27;ve heard of it. &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;karpathy&#x2F;status&#x2F;1886192184808149383&quot;&gt;Andrej Karpathy named it&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;simonwillison.net&#x2F;2025&#x2F;Mar&#x2F;19&#x2F;vibe-coding&#x2F;&quot;&gt;Simon Willison explained it&lt;&#x2F;a&gt;. Basically, you tell an AI what you want, it writes the code.&lt;&#x2F;p&gt;
+&lt;p&gt;You&#x27;ve heard of it. &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;karpathy&#x2F;status&#x2F;1886192184808149383&quot;&gt;Andrej Karpathy named it&lt;&#x2F;a&gt;, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;simonwillison.net&#x2F;2025&#x2F;Mar&#x2F;19&#x2F;vibe-coding&#x2F;&quot;&gt;Simon Willison explained it&lt;&#x2F;a&gt;. Basically, you tell an AI what you want, it writes the code.&lt;&#x2F;p&gt;
 &lt;p&gt;Probably used by:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Beginners &amp;amp; no-coders.&lt;&#x2F;li&gt;
@@ -79,7 +79,7 @@ Vibe Coding&lt;&#x2F;h2&gt;
   &lt;&#x2F;svg&gt;
 &lt;&#x2F;a&gt;
 Artisanal Coding&lt;&#x2F;h2&gt;
-&lt;p&gt;The old-school way: writing code by hand. Maybe with help from deterministic tools like &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Language_Server_Protocol&quot;&gt;LSP&lt;&#x2F;a&gt;s, linters or generators. It&#x27;s you meticulously building it.&lt;&#x2F;p&gt;
+&lt;p&gt;The old-school way: writing code by hand. Maybe with help from deterministic tools like &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Language_Server_Protocol&quot;&gt;LSP&lt;&#x2F;a&gt;s, linters or generators. It&#x27;s you meticulously building it.&lt;&#x2F;p&gt;
 &lt;p&gt;Probably used by:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Beginners learning the ropes.&lt;&#x2F;li&gt;

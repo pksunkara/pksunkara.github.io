@@ -88,9 +88,9 @@
   
 </div>
 <h1 class="post-title">Git experts should try Jujutsu</h1>
-<p>I've been a <strong>Git</strong> command-line power user for a long time. For me, Git isn't just a tool for pulling and pushing code. It's a finely-tuned instrument for crafting history. I'm the person who will meticulously clean up my commit history before submitting a pull request. My toolkit is full of commands like <code>git rebase -i</code>, <code>git add -i</code>, <code>git commit --fixup</code>, and <code>git reset --hard</code>. I can reorder, squash, and reword commits in my sleep. If something goes wrong, I know how to use the <code>reflog</code> to get myself out of any mess. I don't just use Git, I speak it fluently. I even have <em>many many</em> custom <a href="https://gist.github.com/pksunkara/988716">git aliases</a> to make my workflow faster.</p>
+<p>I've been a <strong>Git</strong> command-line power user for a long time. For me, Git isn't just a tool for pulling and pushing code. It's a finely-tuned instrument for crafting history. I'm the person who will meticulously clean up my commit history before submitting a pull request. My toolkit is full of commands like <code>git rebase -i</code>, <code>git add -i</code>, <code>git commit --fixup</code>, and <code>git reset --hard</code>. I can reorder, squash, and reword commits in my sleep. If something goes wrong, I know how to use the <code>reflog</code> to get myself out of any mess. I don't just use Git, I speak it fluently. I even have <em>many many</em> custom <a rel="external" href="https://gist.github.com/pksunkara/988716">git aliases</a> to make my workflow faster.</p>
 <p>So when I first heard about <strong>Jujutsu</strong>, I was skeptical. The main selling point I saw was that it was much simpler than Git. It felt like a tool designed to shield beginners from Git's sharp edges, not something for a seasoned expert like me.</p>
-<p>I gave the <a href="https://steveklabnik.github.io/jujutsu-tutorial">tutorial</a> a quick look, but it didn't showcase any real benefits for my workflow. It confirmed my bias: this was for people who were afraid of Git's power, not for those who had already mastered it.</p>
+<p>I gave the <a rel="external" href="https://steveklabnik.github.io/jujutsu-tutorial">tutorial</a> a quick look, but it didn't showcase any real benefits for my workflow. It confirmed my bias: this was for people who were afraid of Git's power, not for those who had already mastered it.</p>
 <p>But the idea lingered. On a whim, I decided to install it on my work machine and used it on a complex project. That's when everything changed. I discovered that Jujutsu wasn't about <em>avoiding</em> history manipulation. It was about making it faster, easier, and more intuitive than I ever thought possible. It took the concepts I had mastered in Git and gave them a superior interface.</p>
 <h2 id="comparison"><a class="permalink" href="#comparison">
   <svg
@@ -142,23 +142,21 @@ Editing an old commit</h3>
 <p>This is a classic scenario. You've spotted a typo or a small bug in a commit from five changes ago.</p>
 <p><strong>In Git:</strong>
 You start an interactive rebase, find the commit, mark it for editing, make your changes, amend the commit, and finally, continue the rebase.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Start the interactive rebase
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> rebase</span><span style="color:#f07219;"> -i</span><span style="color:#4271ae;"> HEAD</span><span style="color:#c82728;">~</span><span style="color:#4271ae;">5 </span><span style="color:#8e908c;"># And mark the commit you want to edit
-</span><span style="color:#8e908c;"># Make your code changes
-</span><span style="color:#c82728;">vim</span><span style="color:#4271ae;"> lib/edit.ts
-</span><span style="color:#8e908c;"># Amend the commit
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> add .
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> commit</span><span style="color:#f07219;"> --amend
-</span><span style="color:#8e908c;"># Finish the rebase
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> rebase</span><span style="color:#f07219;"> --continue
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Start the interactive rebase</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> -i</span><span style="color: #50A14F;"> HEAD~5</span><span style="color: #A0A1A7;font-style: italic;"> # And mark the commit you want to edit</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your code changes</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Amend the commit</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add .</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> --amend</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Finish the rebase</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> --continue</span></span></code></pre>
 <p><strong>In Jujutsu:</strong>
 You simply tell it which change you want to edit. It checks it out, you make your changes, and you're done. Jujutsu handles the rebase automatically in the background.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Edit the change directly
-</span><span style="color:#c82728;">jj</span><span style="color:#4271ae;"> edit </span><span style="color:#3e999f;">&lt;</span><span style="color:#4271ae;">change-id</span><span style="color:#3e999f;">&gt;
-</span><span style="color:#8e908c;"># Make your code changes...
-</span><span style="color:#c82728;">vim</span><span style="color:#4271ae;"> lib/edit.ts
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Edit the change directly</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> edit</span><span> &lt;</span><span style="color: #50A14F;">change-i</span><span>d&gt;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your code changes...</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span></code></pre>
 <p>There's no interactive editor, no <code>--continue</code> step. It's direct and to the point.</p>
 <h3 id="splitting-a-commit"><a class="permalink" href="#splitting-a-commit">
   <svg
@@ -186,24 +184,22 @@ Splitting a commit</h3>
 <p>You've just realized you bundled two unrelated changes into a single commit.</p>
 <p><strong>In Git:</strong>
 This requires another interactive rebase, mark it for editing, reset it to unstage the changes, and then carefully using <code>git add -p</code> to rebuild the commits piece by piece.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Start the interactive rebase
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> rebase</span><span style="color:#f07219;"> -i </span><span style="color:#3e999f;">&lt;</span><span style="color:#4271ae;">commit</span><span style="color:#3e999f;">&gt;</span><span style="color:#4271ae;">^ </span><span style="color:#8e908c;"># And mark the commit you want to edit
-</span><span style="color:#8e908c;"># Reset the commit but keep the changes in the working directory
-</span><span style="color:#4271ae;">git reset HEAD^
-</span><span style="color:#8e908c;"># Interactively add the first set of changes
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> add</span><span style="color:#f07219;"> -p
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> commit</span><span style="color:#f07219;"> -m </span><span style="color:#839c00;">&quot;First part&quot;
-</span><span style="color:#8e908c;"># Add the remaining changes
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> add .
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> commit</span><span style="color:#f07219;"> -m </span><span style="color:#839c00;">&quot;Second part&quot;
-</span><span style="color:#8e908c;"># Finish the rebase
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> rebase</span><span style="color:#f07219;"> --continue
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Start the interactive rebase</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> -i</span><span> &lt;</span><span style="color: #50A14F;">commi</span><span>t&gt;</span><span style="color: #50A14F;">^</span><span style="color: #A0A1A7;font-style: italic;"> # And mark the commit you want to edit</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Reset the commit but keep the changes in the working directory</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> reset HEAD^</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Interactively add the first set of changes</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add</span><span style="color: #986801;"> -p</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;First part&quot;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Add the remaining changes</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add .</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;Second part&quot;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Finish the rebase</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> --continue</span></span></code></pre>
 <p><strong>In Jujutsu:</strong>
 A single command initiates an interactive diff editor, allowing you to decide what to keep in the original commit and what to move to a new one.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#c82728;">jj</span><span style="color:#4271ae;"> split </span><span style="color:#3e999f;">&lt;</span><span style="color:#4271ae;">change-id</span><span style="color:#3e999f;">&gt;
-</span><span style="color:#8e908c;"># This creates two new commits. You can then use `jj describe` to edit the commit messages.
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> split</span><span> &lt;</span><span style="color: #50A14F;">change-i</span><span>d&gt;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># This creates two new commits. You can then use `jj describe` to edit the commit messages.</span></span></code></pre>
 <p>This is far more intuitive and significantly faster.</p>
 <h3 id="creating-a-quick-pr"><a class="permalink" href="#creating-a-quick-pr">
   <svg
@@ -230,30 +226,27 @@ A single command initiates an interactive diff editor, allowing you to decide wh
 Creating a quick PR</h3>
 <p><strong>In Git:</strong>
 The standard procedure is to create a branch, commit your changes, push that branch, and then open a pull request on your hosting platform.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Create a new branch
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> checkout</span><span style="color:#f07219;"> -b</span><span style="color:#4271ae;"> my-feature-branch
-</span><span style="color:#8e908c;"># Make your changes
-</span><span style="color:#c82728;">vim</span><span style="color:#4271ae;"> lib/edit.ts
-</span><span style="color:#8e908c;"># Stage and commit your changes
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> add .
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> commit</span><span style="color:#f07219;"> -m </span><span style="color:#839c00;">&quot;My feature&quot;
-</span><span style="color:#8e908c;"># Push the branch to the remote
-</span><span style="color:#c82728;">git</span><span style="color:#4271ae;"> push origin my-feature-branch
-</span><span style="color:#8e908c;"># Create a pull request
-</span><span style="color:#c82728;">gh</span><span style="color:#4271ae;"> pr create
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Create a new branch</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> checkout</span><span style="color: #986801;"> -b</span><span style="color: #50A14F;"> my-feature-branch</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your changes</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Stage and commit your changes</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add .</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;My feature&quot;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Push the branch to the remote</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> push origin my-feature-branch</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Create a pull request</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">gh</span><span style="color: #50A14F;"> pr create</span></span></code></pre>
 <p><strong>In Jujutsu:</strong>
 You can push your current change directly to the remote, which Jujutsu will place on a new branch for you. No need to manage local branches.</p>
-<pre data-lang="bash" style="background-color:#f9f9f9;color:#111111;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#8e908c;"># Start a new change
-</span><span style="color:#c82728;">jj</span><span style="color:#4271ae;"> new</span><span style="color:#f07219;"> -m </span><span style="color:#839c00;">&quot;My feature&quot;
-</span><span style="color:#8e908c;"># Make your changes
-</span><span style="color:#c82728;">vim</span><span style="color:#4271ae;"> lib/edit.ts
-</span><span style="color:#8e908c;"># Push the change to the remote
-</span><span style="color:#c82728;">jj</span><span style="color:#4271ae;"> git push</span><span style="color:#f07219;"> --change</span><span style="color:#4271ae;"> @
-</span><span style="color:#8e908c;"># Create a pull request
-</span><span style="color:#c82728;">gh</span><span style="color:#4271ae;"> pr create</span><span style="color:#f07219;"> --head </span><span style="color:#3e999f;">&lt;</span><span style="color:#4271ae;">created-bookmark-name</span><span style="color:#3e999f;">&gt;
-</span></code></pre>
-<h2 id="conclusion"><a class="permalink" href="#conclusion">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Start a new change</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> new</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;My feature&quot;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your changes</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Push the change to the remote</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> git push</span><span style="color: #986801;"> --change</span><span style="color: #50A14F;"> @</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Create a pull request</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">gh</span><span style="color: #50A14F;"> pr create</span><span style="color: #986801;"> --head</span><span> &lt;</span><span style="color: #50A14F;">created-bookmark-nam</span><span>e&gt;</span></span></code></pre><h2 id="conclusion"><a class="permalink" href="#conclusion">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -278,7 +271,7 @@ You can push your current change directly to the remote, which Jujutsu will plac
 Conclusion</h2>
 <p>After years of honing my Git skills, I thought I had reached peak efficiency. Jujutsu proved me wrong. It's not a replacement for understanding how version control works. It's a force multiplier for those who already do. Jujutsu automates the tedious mechanics of history editing, letting you focus on the <em>what</em> instead of the <em>how</em>.</p>
 <p>If you're a Git expert who prides yourself on your ability to manipulate history, I urge you to give Jujutsu a serious try on a real project. You might just find that your favorite power tools have been upgraded.</p>
-<p>And yes, I've already started a new list of <a href="https://gist.github.com/pksunkara/622bc04242d402c4e43c7328234fd01c">jj aliases</a> to make my workflow even faster.</p>
+<p>And yes, I've already started a new list of <a rel="external" href="https://gist.github.com/pksunkara/622bc04242d402c4e43c7328234fd01c">jj aliases</a> to make my workflow even faster.</p>
 
 <div id="social-bar">
   <ul class="rrssb-buttons clearfix">

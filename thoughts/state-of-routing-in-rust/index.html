@@ -88,12 +88,12 @@
   
 </div>
 <h1 class="post-title">State of routing in Rust</h1>
-<p>There are many micro frameworks in Rust. Some famous examples are <a href="https://actix.rs">Actix</a>, <a href="https://gotham.rs">Gotham</a>, <a href="https://docs.rs/tide">Tide</a>, <a href="https://docs.rs/warp">Warp</a>,
+<p>There are many micro frameworks in Rust. Some famous examples are <a rel="external" href="https://actix.rs">Actix</a>, <a rel="external" href="https://gotham.rs">Gotham</a>, <a rel="external" href="https://docs.rs/tide">Tide</a>, <a rel="external" href="https://docs.rs/warp">Warp</a>,
 etc. We have seen many blog posts comparing their performances and middleware capabilities.
 But what we haven't seen is an article comparing their routing functionality and capabilities. I hoped to
 fill that gap and make this post the most up to date guide for the state of routing in Rust.</p>
-<p><strong>NOTE</strong>: I will not be comparing <a href="https://rocket.rs">Rocket</a> because it does not run on <em>Stable</em> yet.</p>
-<p>We have a lot of mature web frameworks like <a href="https://rubyonrails.org">Rails</a>, <a href="https://djangoproject.com">Django</a>, <a href="https://laravel.com">Laravel</a>, etc..
+<p><strong>NOTE</strong>: I will not be comparing <a rel="external" href="https://rocket.rs">Rocket</a> because it does not run on <em>Stable</em> yet.</p>
+<p>We have a lot of mature web frameworks like <a rel="external" href="https://rubyonrails.org">Rails</a>, <a rel="external" href="https://djangoproject.com">Django</a>, <a rel="external" href="https://laravel.com">Laravel</a>, etc..
 that have been working on solving the routing problem and dealing with the typical use cases from web
 developers. Let us define the baseline using these frameworks and compare the Rust web micro frameworks to
 this baseline.</p>
@@ -150,9 +150,7 @@ should return <strong>405</strong> HTTP status code if the none of the allowed H
   </svg>
 </a>
 Rails</h4>
-<pre data-lang="ruby" style="background-color:#f9f9f9;color:#111111;" class="language-ruby "><code class="language-ruby" data-lang="ruby"><span style="color:#4271ae;">match </span><span style="color:#839c00;">&#39;orgs&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;orgs#create&#39;</span><span>, </span><span style="color:#839c00;">via: </span><span>[</span><span style="color:#839c00;">:post</span><span>, </span><span style="color:#839c00;">:put</span><span>]
-</span></code></pre>
-<!-- returns 404 instead of 405 -->
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="ruby"><span class="giallo-l"><span>match </span><span style="color: #50A14F;">&#39;orgs&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;orgs#create&#39;</span><span>,</span><span style="color: #986801;"> via:</span><span> [</span><span style="color: #986801;">:post</span><span>,</span><span style="color: #986801;"> :put</span><span>]</span></span></code></pre><!-- returns 404 instead of 405 -->
 <h4 id="django"><a class="permalink" href="#django">
   <svg
     viewBox="0 0 16 16"
@@ -176,13 +174,9 @@ Rails</h4>
   </svg>
 </a>
 Django</h4>
-<pre data-lang="python" style="background-color:#f9f9f9;color:#111111;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c82728;">path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;orgs&#39;</span><span style="color:#4271ae;">, views.orgs.create)</span><span>,
-</span></code></pre>
-<pre data-lang="python" style="background-color:#f9f9f9;color:#111111;" class="language-python "><code class="language-python" data-lang="python"><span>@</span><span style="color:#c82728;">require_http_methods</span><span>([</span><span style="color:#839c00;">&quot;POST&quot;</span><span>, </span><span style="color:#839c00;">&quot;PUT&quot;</span><span>])
-</span><span style="color:#8959a8;">def </span><span style="color:#4271ae;">create</span><span>(</span><span style="color:#f07219;">request</span><span>):
-</span><span>    </span><span style="color:#8959a8;">pass
-</span></code></pre>
-<h4 id="laravel"><a class="permalink" href="#laravel">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="python"><span class="giallo-l"><span>path(</span><span style="color: #50A14F;">&#39;orgs&#39;</span><span>, views.orgs.create),</span></span></code></pre><pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="python"><span class="giallo-l"><span style="color: #4078F2;">@require_http_methods</span><span>([</span><span style="color: #50A14F;">&quot;POST&quot;</span><span>,</span><span style="color: #50A14F;"> &quot;PUT&quot;</span><span>])</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">def</span><span style="color: #4078F2;"> create</span><span>(</span><span style="color: #986801;">request</span><span>):</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    pass</span></span></code></pre><h4 id="laravel"><a class="permalink" href="#laravel">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -205,10 +199,8 @@ Django</h4>
   </svg>
 </a>
 Laravel</h4>
-<pre data-lang="php" style="background-color:#f9f9f9;color:#111111;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#f07219;">&lt;?php
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">match</span><span style="color:#4271ae;">([</span><span style="color:#839c00;">&#39;post&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;put&#39;</span><span style="color:#4271ae;">], </span><span style="color:#839c00;">&#39;orgs&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;OrgsController@create&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span></code></pre>
-<h4 id="actix"><a class="permalink" href="#actix">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="php"><span class="giallo-l"><span>&lt;?</span><span style="color: #986801;">php</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">match</span><span>([</span><span style="color: #50A14F;">&#39;post&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;put&#39;</span><span>],</span><span style="color: #50A14F;"> &#39;orgs&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;OrgsController@create&#39;</span><span>);</span></span></code></pre><h4 id="actix"><a class="permalink" href="#actix">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -231,12 +223,11 @@ Laravel</h4>
   </svg>
 </a>
 Actix</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span>app.</span><span style="color:#4271ae;">service</span><span>(
-</span><span>    </span><span style="color:#4271ae;">resource</span><span>(</span><span style="color:#839c00;">&quot;orgs&quot;</span><span>)
-</span><span>        .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#4271ae;">post</span><span>().</span><span style="color:#4271ae;">to</span><span>(orgs::create))
-</span><span>        .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#4271ae;">put</span><span>().</span><span style="color:#4271ae;">to</span><span>(orgs::create))
-</span><span>);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">service</span><span>(</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">    resource</span><span>(</span><span style="color: #50A14F;">&quot;orgs&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>        .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #4078F2;">post</span><span>().</span><span style="color: #4078F2;">to</span><span>(orgs::</span><span style="color: #E45649;">create</span><span>))</span></span>
+<span class="giallo-l"><span>        .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #4078F2;">put</span><span>().</span><span style="color: #4078F2;">to</span><span>(orgs::</span><span style="color: #E45649;">create</span><span>))</span></span>
+<span class="giallo-l"><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li>This does not return <strong>405</strong> but instead returns <strong>404</strong>.</li>
@@ -265,8 +256,7 @@ Actix</h4>
   </svg>
 </a>
 Tide</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;orgs&quot;</span><span>).</span><span style="color:#4271ae;">post</span><span>(orgs::create).</span><span style="color:#4271ae;">put</span><span>(orgs::create);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;orgs&quot;</span><span>).</span><span style="color: #4078F2;">post</span><span>(orgs::</span><span style="color: #E45649;">create</span><span>).</span><span style="color: #4078F2;">put</span><span>(orgs::</span><span style="color: #E45649;">create</span><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li>There is no shorter way to specify multiple allowed methods on the same route for the same handler.</li>
@@ -294,9 +284,7 @@ Tide</h4>
   </svg>
 </a>
 Warp</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span>path!(</span><span style="color:#839c00;">&quot;orgs&quot;</span><span>).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">post</span><span>().</span><span style="color:#4271ae;">or</span><span>(</span><span style="color:#4271ae;">put</span><span>()).</span><span style="color:#4271ae;">unify</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(orgs::create);
-</span></code></pre>
-<h4 id="gotham"><a class="permalink" href="#gotham">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;orgs&quot;</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">post</span><span>().</span><span style="color: #4078F2;">or</span><span>(</span><span style="color: #4078F2;">put</span><span>()).</span><span style="color: #4078F2;">unify</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(orgs::</span><span style="color: #E45649;">create</span><span>);</span></span></code></pre><h4 id="gotham"><a class="permalink" href="#gotham">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -319,9 +307,7 @@ Warp</h4>
   </svg>
 </a>
 Gotham</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span>route.</span><span style="color:#4271ae;">request</span><span>(vec![POST, PUT], </span><span style="color:#839c00;">&quot;orgs&quot;</span><span>).</span><span style="color:#4271ae;">to</span><span>(orgs::create);
-</span></code></pre>
-<h2 id="path-parameters"><a class="permalink" href="#path-parameters">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">request</span><span>(</span><span style="color: #4078F2;">vec!</span><span>[</span><span style="color: #986801;">POST</span><span>,</span><span style="color: #986801;"> PUT</span><span>],</span><span style="color: #50A14F;"> &quot;orgs&quot;</span><span>).</span><span style="color: #4078F2;">to</span><span>(orgs::</span><span style="color: #E45649;">create</span><span>);</span></span></code></pre><h2 id="path-parameters"><a class="permalink" href="#path-parameters">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -370,24 +356,22 @@ in the form of <em>regex patterns</em>. There might be a shorter syntax for <em>
   </svg>
 </a>
 Rails</h4>
-<pre data-lang="ruby" style="background-color:#f9f9f9;color:#111111;" class="language-ruby "><code class="language-ruby" data-lang="ruby"><span style="color:#8e908c;"># required
-</span><span>get </span><span style="color:#839c00;">&#39;orgs/:id&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;orgs#show&#39;
-</span><span style="color:#8e908c;"># optional
-</span><span>get </span><span style="color:#839c00;">&#39;repos(/:id)&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;repos#show&#39;
-</span><span style="color:#8e908c;"># regex
-</span><span>get </span><span style="color:#839c00;">&#39;users/:id&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;users#show&#39;</span><span>, </span><span style="color:#839c00;">id: </span><span style="color:#c82728;">/[a-z]+/
-</span><span style="color:#8e908c;"># optional regex
-</span><span>get </span><span style="color:#839c00;">&#39;search(/:id)&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;search#show&#39;</span><span>, </span><span style="color:#839c00;">id: </span><span style="color:#c82728;">/[a-z]+/
-</span><span style="color:#8e908c;"># glob
-</span><span>get </span><span style="color:#839c00;">&#39;blob/*path&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;repo_blob#show&#39;
-</span><span style="color:#8e908c;"># optional glob
-</span><span>get </span><span style="color:#839c00;">&#39;tree(/*path)&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;repo_tree#show&#39;
-</span><span style="color:#8e908c;"># glob in middle
-</span><span>get </span><span style="color:#839c00;">&#39;blob/*path/commits&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;repo_blob#commits&#39;
-</span><span style="color:#8e908c;"># optional glob in middle
-</span><span>get </span><span style="color:#839c00;">&#39;tree(/*path)/commits&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;repo_tree#commits&#39;
-</span></code></pre>
-<h4 id="django-1"><a class="permalink" href="#django-1">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="ruby"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># required</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;orgs/:id&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;orgs#show&#39;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;repos(/:id)&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;repos#show&#39;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># regex</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;users/:id&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;users#show&#39;</span><span>,</span><span style="color: #986801;"> id:</span><span style="color: #0184BC;"> /[a-z]+/</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional regex</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;search(/:id)&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;search#show&#39;</span><span>,</span><span style="color: #986801;"> id:</span><span style="color: #0184BC;"> /[a-z]+/</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;blob/*path&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;repo_blob#show&#39;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional glob</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;tree(/*path)&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;repo_tree#show&#39;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob in middle</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;blob/*path/commits&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;repo_blob#commits&#39;</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional glob in middle</span></span>
+<span class="giallo-l"><span>get </span><span style="color: #50A14F;">&#39;tree(/*path)/commits&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;repo_tree#commits&#39;</span></span></code></pre><h4 id="django-1"><a class="permalink" href="#django-1">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -410,24 +394,22 @@ Rails</h4>
   </svg>
 </a>
 Django</h4>
-<pre data-lang="python" style="background-color:#f9f9f9;color:#111111;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#8e908c;"># required
-</span><span style="color:#c82728;">path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;orgs/&lt;id&gt;&#39;</span><span style="color:#4271ae;">, views.orgs.show)</span><span>,
-</span><span style="color:#8e908c;"># optional
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^repos(/(?P&lt;id&gt;[^/]+))?$&#39;</span><span style="color:#4271ae;">, views.repos.show)</span><span>,
-</span><span style="color:#8e908c;"># regex
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^users/(?P&lt;id&gt;[a-z]+)$&#39;</span><span style="color:#4271ae;">, views.users.show)</span><span>,
-</span><span style="color:#8e908c;"># optional regex
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^search(/(?P&lt;id&gt;[a-z]+))?$&#39;</span><span style="color:#4271ae;">, views.search.show)</span><span>,
-</span><span style="color:#8e908c;"># glob
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^blob/(?P&lt;path&gt;.+)$&#39;</span><span style="color:#4271ae;">, views.repo_blob.show)</span><span>,
-</span><span style="color:#8e908c;"># optional glob
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^tree(/(?P&lt;path&gt;.+))?$&#39;</span><span style="color:#4271ae;">, views.repo_tree.show)</span><span>,
-</span><span style="color:#8e908c;"># glob in middle
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^blob/(?P&lt;path&gt;.+)/commits$&#39;</span><span style="color:#4271ae;">, views.repo_blob.commits)</span><span>,
-</span><span style="color:#8e908c;"># optional glob in middle
-</span><span style="color:#c82728;">re_path</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;^tree(/(?P&lt;path&gt;.+))?/commits$&#39;</span><span style="color:#4271ae;">, views.repo_tree.commits)</span><span>,
-</span></code></pre>
-<h4 id="laravel-1"><a class="permalink" href="#laravel-1">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="python"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># required</span></span>
+<span class="giallo-l"><span>path(</span><span style="color: #50A14F;">&#39;orgs/&lt;id&gt;&#39;</span><span>, views.orgs.show),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^repos(/(?P&lt;id&gt;[^/]+))?$&#39;</span><span>, views.repos.show),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># regex</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^users/(?P&lt;id&gt;[a-z]+)$&#39;</span><span>, views.users.show),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional regex</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^search(/(?P&lt;id&gt;[a-z]+))?$&#39;</span><span>, views.search.show),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^blob/(?P&lt;path&gt;.+)$&#39;</span><span>, views.repo_blob.show),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional glob</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^tree(/(?P&lt;path&gt;.+))?$&#39;</span><span>, views.repo_tree.show),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob in middle</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^blob/(?P&lt;path&gt;.+)/commits$&#39;</span><span>, views.repo_blob.commits),</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional glob in middle</span></span>
+<span class="giallo-l"><span>re_path(</span><span style="color: #50A14F;">&#39;^tree(/(?P&lt;path&gt;.+))?/commits$&#39;</span><span>, views.repo_tree.commits),</span></span></code></pre><h4 id="laravel-1"><a class="permalink" href="#laravel-1">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -450,25 +432,23 @@ Django</h4>
   </svg>
 </a>
 Laravel</h4>
-<pre data-lang="php" style="background-color:#f9f9f9;color:#111111;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#f07219;">&lt;?php
-</span><span style="color:#8e908c;"># required
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;orgs/{id}&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;OrgsController@show&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># optional
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;repos/{id?}&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;ReposController@show&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># regex
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;users/{id}&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;UsersController@show&#39;</span><span style="color:#4271ae;">)-&gt;</span><span style="color:#c82728;">where</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;id&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;[a-z]+&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># optional regex
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;search/{id?}&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;SearchController@show&#39;</span><span style="color:#4271ae;">)-&gt;</span><span style="color:#c82728;">where</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;id&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;[a-z]+&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># glob
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;blob/{path}&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;RepoBlobController@show&#39;</span><span style="color:#4271ae;">)-&gt;</span><span style="color:#c82728;">where</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;path&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;.*&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># optional glob
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;tree/{path?}&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;RepoTreeController@show&#39;</span><span style="color:#4271ae;">)-&gt;</span><span style="color:#c82728;">where</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;path&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;.*&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># glob in middle
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;blob/{path}/commits&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;RepoBlobController@commits&#39;</span><span style="color:#4271ae;">)-&gt;</span><span style="color:#c82728;">where</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;path&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;.*&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span><span style="color:#8e908c;"># optional glob in middle
-</span><span style="color:#c99e00;">Route</span><span style="color:#4271ae;">::</span><span style="color:#c82728;">get</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;tree/{path?}/commits&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;RepoTreeController@commits&#39;</span><span style="color:#4271ae;">)-&gt;</span><span style="color:#c82728;">where</span><span style="color:#4271ae;">(</span><span style="color:#839c00;">&#39;path&#39;</span><span style="color:#4271ae;">, </span><span style="color:#839c00;">&#39;.*&#39;</span><span style="color:#4271ae;">)</span><span>;
-</span></code></pre>
-<h4 id="actix-1"><a class="permalink" href="#actix-1">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="php"><span class="giallo-l"><span>&lt;?</span><span style="color: #986801;">php</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># required</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;orgs/{id}&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;OrgsController@show&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;repos/{id?}&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;ReposController@show&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># regex</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;users/{id}&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;UsersController@show&#39;</span><span>)-&gt;</span><span style="color: #4078F2;">where</span><span>(</span><span style="color: #50A14F;">&#39;id&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;[a-z]+&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional regex</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;search/{id?}&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;SearchController@show&#39;</span><span>)-&gt;</span><span style="color: #4078F2;">where</span><span>(</span><span style="color: #50A14F;">&#39;id&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;[a-z]+&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;blob/{path}&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;RepoBlobController@show&#39;</span><span>)-&gt;</span><span style="color: #4078F2;">where</span><span>(</span><span style="color: #50A14F;">&#39;path&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;.*&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional glob</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;tree/{path?}&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;RepoTreeController@show&#39;</span><span>)-&gt;</span><span style="color: #4078F2;">where</span><span>(</span><span style="color: #50A14F;">&#39;path&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;.*&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob in middle</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;blob/{path}/commits&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;RepoBlobController@commits&#39;</span><span>)-&gt;</span><span style="color: #4078F2;">where</span><span>(</span><span style="color: #50A14F;">&#39;path&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;.*&#39;</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional glob in middle</span></span>
+<span class="giallo-l"><span style="color: #C18401;">Route</span><span>::</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&#39;tree/{path?}/commits&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;RepoTreeController@commits&#39;</span><span>)-&gt;</span><span style="color: #4078F2;">where</span><span>(</span><span style="color: #50A14F;">&#39;path&#39;</span><span>,</span><span style="color: #50A14F;"> &#39;.*&#39;</span><span>);</span></span></code></pre><h4 id="actix-1"><a class="permalink" href="#actix-1">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -491,38 +471,37 @@ Laravel</h4>
   </svg>
 </a>
 Actix</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// required
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;orgs/{id}&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(orgs::show));
-</span><span>
-</span><span style="color:#8e908c;">// optional
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;repos&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repos::show))
-</span><span>   .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;repos/{id}&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repos::show));
-</span><span>
-</span><span style="color:#8e908c;">// regex
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;users/{id:[a-z]+}&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(users::show));
-</span><span>
-</span><span style="color:#8e908c;">// optional regex
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;search&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(search::show))
-</span><span>   .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;search/{id:[a-z]+}&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(search::show));
-</span><span>
-</span><span style="color:#8e908c;">// glob
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;blob/{path:.+}&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_blob::show));
-</span><span>
-</span><span style="color:#8e908c;">// optional glob
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;tree&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_tree::show))
-</span><span>   .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;tree/{path:.+}&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_tree::show));
-</span><span>
-</span><span style="color:#8e908c;">// glob in middle
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;blob/{path:.+}/commits&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_blob::commits));
-</span><span>
-</span><span style="color:#8e908c;">// optional glob in middle
-</span><span>app.</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;tree/commits&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_tree::commits))
-</span><span>   .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;tree/{path:.+}/commits&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_tree::commits));
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// required</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;orgs/{id}&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(orgs::</span><span style="color: #E45649;">show</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;repos&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repos::</span><span style="color: #E45649;">show</span><span>))</span></span>
+<span class="giallo-l"><span>   .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;repos/{id}&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repos::</span><span style="color: #E45649;">show</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// regex</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;users/{id:[a-z]+}&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(users::</span><span style="color: #E45649;">show</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional regex</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(search::</span><span style="color: #E45649;">show</span><span>))</span></span>
+<span class="giallo-l"><span>   .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;search/{id:[a-z]+}&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(search::</span><span style="color: #E45649;">show</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;blob/{path:.+}&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_blob::</span><span style="color: #E45649;">show</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional glob</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;tree&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">show</span><span>))</span></span>
+<span class="giallo-l"><span>   .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;tree/{path:.+}&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">show</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob in middle</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;blob/{path:.+}/commits&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_blob::</span><span style="color: #E45649;">commits</span><span>));</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional glob in middle</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;tree/commits&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">commits</span><span>))</span></span>
+<span class="giallo-l"><span>   .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;tree/{path:.+}/commits&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">commits</span><span>));</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li>There is no shorter way to specify optionals. We could have used <code>app.service(resource(..))</code> as mentioned
-in <a href="https://github.com/actix/actix-web/issues/1054">#1054</a> but <code>app.service</code> stops matching anything else
+in <a rel="external" href="https://github.com/actix/actix-web/issues/1054">#1054</a> but <code>app.service</code> stops matching anything else
 if the beginning of the URL matches the route given to it. All following routes which uses one of the
 specified routes here as a prefix (with or without <code>/</code> after the prefix) doesn't work.</li>
 </ul>
@@ -549,15 +528,14 @@ specified routes here as a prefix (with or without <code>/</code> after the pref
   </svg>
 </a>
 Tide</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// required
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;orgs/:id&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(orgs::show);
-</span><span>
-</span><span style="color:#8e908c;">// glob
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;blob/*path&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(repo_blob::show);
-</span><span>
-</span><span style="color:#8e908c;">// glob in middle
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;blob/*path/commits&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(repo_blob::commits);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// required</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;orgs/:id&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(orgs::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;blob/*path&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(repo_blob::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob in middle</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;blob/*path/commits&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(repo_blob::</span><span style="color: #E45649;">commits</span><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li><strong>MAJOR</strong>: Does not support optionals.</li>
@@ -586,36 +564,35 @@ Tide</h4>
   </svg>
 </a>
 Warp</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// required
-</span><span>path!(</span><span style="color:#839c00;">&quot;orgs&quot; </span><span style="color:#3e999f;">/ </span><span style="color:#c99e00;">String</span><span>).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(orgs::show);
-</span><span>
-</span><span style="color:#8e908c;">// optional
-</span><span>path!(</span><span style="color:#839c00;">&quot;repos&quot;</span><span>).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(|| repos::show(</span><span style="color:#c99e00;">Default</span><span>::default()));
-</span><span>path!(</span><span style="color:#839c00;">&quot;repos&quot; </span><span style="color:#3e999f;">/ </span><span style="color:#c99e00;">String</span><span>).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(repos::show);
-</span><span>
-</span><span style="color:#8e908c;">// regex
-</span><span>#[</span><span style="color:#c82728;">derive</span><span>(Default)]
-</span><span style="color:#8959a8;">struct </span><span>Id(String);
-</span><span>
-</span><span style="color:#8959a8;">impl </span><span>FromStr </span><span style="color:#8959a8;">for </span><span>Id {
-</span><span>    </span><span style="color:#8959a8;">type </span><span>Err </span><span style="color:#3e999f;">= </span><span>();
-</span><span>    </span><span style="color:#8959a8;">fn </span><span style="color:#4271ae;">from_str</span><span>(</span><span style="color:#f07219;">s</span><span>: </span><span style="color:#3e999f;">&amp;</span><span style="color:#8959a8;">str</span><span>) -&gt; </span><span style="color:#c99e00;">Result</span><span>&lt;Id, ()&gt; {
-</span><span>        </span><span style="color:#8959a8;">match </span><span>Regex::new(</span><span style="color:#839c00;">&quot;^[a-z]+$&quot;</span><span>).</span><span style="color:#4271ae;">unwrap</span><span>().</span><span style="color:#4271ae;">is_match</span><span>(s) {
-</span><span>            </span><span style="color:#f07219;">true </span><span style="color:#3e999f;">=&gt; </span><span style="color:#c99e00;">Ok</span><span>(Id(s.</span><span style="color:#4271ae;">to_string</span><span>())),
-</span><span>            </span><span style="color:#3e999f;">_ =&gt; </span><span style="color:#c99e00;">Err</span><span>(())
-</span><span>        }
-</span><span>    }
-</span><span>}
-</span><span>
-</span><span>path!(</span><span style="color:#839c00;">&quot;users&quot; </span><span style="color:#3e999f;">/</span><span> Id).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(users::show);
-</span><span>
-</span><span style="color:#8e908c;">// optional regex
-</span><span>path!(</span><span style="color:#839c00;">&quot;search&quot;</span><span>).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(|| search::show(Id::default()));
-</span><span>path!(</span><span style="color:#839c00;">&quot;search&quot; </span><span style="color:#3e999f;">/</span><span> Id).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(search::show);
-</span><span>
-</span><span style="color:#8e908c;">// optional glob
-</span><span style="color:#4271ae;">path</span><span>(</span><span style="color:#839c00;">&quot;tree&quot;</span><span>).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">tail</span><span>()).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">end</span><span>()).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(repo_tree::show);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// required</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;orgs&quot;</span><span> /</span><span style="color: #0184BC;"> String</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(orgs::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;repos&quot;</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(|| repos::</span><span style="color: #4078F2;">show</span><span>(Default::</span><span style="color: #4078F2;">default</span><span>()));</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;repos&quot;</span><span> /</span><span style="color: #0184BC;"> String</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(repos::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// regex</span></span>
+<span class="giallo-l"><span style="color: #986801;">#[derive(</span><span style="color: #0184BC;">Default</span><span style="color: #986801;">)]</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">struct</span><span style="color: #C18401;"> Id</span><span>(</span><span style="color: #0184BC;">String</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A626A4;">impl</span><span style="color: #0184BC;"> FromStr</span><span style="color: #A626A4;"> for</span><span style="color: #0184BC;"> Id</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    type</span><span style="color: #C18401;"> Err</span><span> = ();</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    fn</span><span style="color: #4078F2;"> from_str</span><span>(</span><span style="color: #E45649;">s</span><span>: &amp;</span><span style="color: #C18401;">str</span><span>) -&gt;</span><span style="color: #0184BC;"> Result</span><span>&lt;</span><span style="color: #0184BC;">Id</span><span>, ()&gt; {</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">        match</span><span style="color: #0184BC;"> Regex</span><span>::</span><span style="color: #4078F2;">new</span><span>(</span><span style="color: #50A14F;">&quot;^[a-z]+$&quot;</span><span>).</span><span style="color: #4078F2;">unwrap</span><span>().</span><span style="color: #4078F2;">is_match</span><span>(</span><span style="color: #E45649;">s</span><span>) {</span></span>
+<span class="giallo-l"><span style="color: #986801;">            true</span><span> =&gt;</span><span style="color: #C18401;"> Ok</span><span>(</span><span style="color: #4078F2;">Id</span><span>(</span><span style="color: #E45649;">s</span><span>.</span><span style="color: #4078F2;">to_string</span><span>())),</span></span>
+<span class="giallo-l"><span style="color: #E45649;">            _</span><span> =&gt;</span><span style="color: #C18401;"> Err</span><span>(())</span></span>
+<span class="giallo-l"><span>        }</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;users&quot;</span><span> /</span><span style="color: #0184BC;"> Id</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(users::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional regex</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(|| search::</span><span style="color: #4078F2;">show</span><span>(Id::</span><span style="color: #4078F2;">default</span><span>()));</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span> /</span><span style="color: #0184BC;"> Id</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(search::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional glob</span></span>
+<span class="giallo-l"><span style="color: #4078F2;">path</span><span>(</span><span style="color: #50A14F;">&quot;tree&quot;</span><span>).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">tail</span><span>()).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">end</span><span>()).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(repo_tree::</span><span style="color: #E45649;">show</span><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li><strong>MINOR</strong>: Does not support required glob path param.</li>
@@ -623,7 +600,7 @@ Warp</h4>
 <li>There is no shorter way to specify regex path params. Even though types that implement <code>FromStr</code> are able
 to be used directly without the need for regex, it would be nice to have a regex filter.</li>
 <li>There is not shorter way to specify optionals. They can be made a little bit shorter if not full if we
-implement dummy default filters for each param type. I think <a href="https://docs.rs/warp">Warp</a> in general needs a few dummy filters.</li>
+implement dummy default filters for each param type. I think <a rel="external" href="https://docs.rs/warp">Warp</a> in general needs a few dummy filters.</li>
 </ul>
 <h4 id="gotham-1"><a class="permalink" href="#gotham-1">
   <svg
@@ -648,54 +625,53 @@ implement dummy default filters for each param type. I think <a href="https://do
   </svg>
 </a>
 Gotham</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// required
-</span><span>#[</span><span style="color:#c82728;">derive</span><span>(Deserialize, StateData, StaticResponseExtender)]
-</span><span style="color:#8959a8;">struct </span><span>IdExtractor {
-</span><span>    </span><span style="color:#c82728;">id</span><span>: String,
-</span><span>}
-</span><span>
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;orgs/:id&quot;</span><span>).with_path_extractor::&lt;IdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(orgs::show);
-</span><span>
-</span><span style="color:#8e908c;">// optional
-</span><span>#[</span><span style="color:#c82728;">derive</span><span>(Deserialize, StateData, StaticResponseExtender)]
-</span><span style="color:#8959a8;">struct </span><span>OptIdExtractor {
-</span><span>    </span><span style="color:#c82728;">id</span><span>: Opt&lt;</span><span style="color:#c99e00;">String</span><span>&gt;,
-</span><span>}
-</span><span>
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;repos&quot;</span><span>).with_path_extractor::&lt;OptIdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repos::show);
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;repos/:id&quot;</span><span>).with_path_extractor::&lt;OptIdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repos::show);
-</span><span>
-</span><span style="color:#8e908c;">// regex
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;users/:id:[a-z]+&quot;</span><span>).with_path_extractor::&lt;IdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(users::show);
-</span><span>
-</span><span style="color:#8e908c;">// optional regex
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;search&quot;</span><span>).with_path_extractor::&lt;OptIdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(users::show);
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;search/:id:[a-z]+&quot;</span><span>).with_path_extractor::&lt;OptIdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(users::show);
-</span><span>
-</span><span style="color:#8e908c;">// glob
-</span><span>#[</span><span style="color:#c82728;">derive</span><span>(Deserialize, StateData, StaticResponseExtender)]
-</span><span style="color:#8959a8;">struct </span><span>PathExtractor {
-</span><span>    </span><span style="color:#c82728;">path</span><span>: </span><span style="color:#c99e00;">Vec</span><span>&lt;</span><span style="color:#c99e00;">String</span><span>&gt;,
-</span><span>}
-</span><span>
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;blob/*&quot;</span><span>).with_path_extractor::&lt;PathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_blob::show);
-</span><span>
-</span><span style="color:#8e908c;">// optional glob
-</span><span>#[</span><span style="color:#c82728;">derive</span><span>(Deserialize, StateData, StaticResponseExtender)]
-</span><span style="color:#8959a8;">struct </span><span>OptPathExtractor {
-</span><span>    </span><span style="color:#c82728;">path</span><span>: </span><span style="color:#c99e00;">Option</span><span>&lt;</span><span style="color:#c99e00;">Vec</span><span>&lt;</span><span style="color:#c99e00;">String</span><span>&gt;&gt;,
-</span><span>}
-</span><span>
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;tree&quot;</span><span>).with_path_extractor::&lt;OptPathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_tree::show);
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;tree/*&quot;</span><span>).with_path_extractor::&lt;OptPathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_tree::show);
-</span><span>
-</span><span style="color:#8e908c;">// glob in middle
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;blob/*/commits&quot;</span><span>).with_path_extractor::&lt;PathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_blob::commits);
-</span><span>
-</span><span style="color:#8e908c;">// optional glob in middle
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;tree/commits&quot;</span><span>).with_path_extractor::&lt;OptPathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_tree::commits);
-</span><span>route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;tree/*/commits&quot;</span><span>).with_path_extractor::&lt;OptPathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_tree::commits);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// required</span></span>
+<span class="giallo-l"><span style="color: #986801;">#[derive(</span><span style="color: #0184BC;">Deserialize</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StateData</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StaticResponseExtender</span><span style="color: #986801;">)]</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">struct</span><span style="color: #C18401;"> IdExtractor</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    id</span><span>:</span><span style="color: #0184BC;"> String</span><span>,</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;orgs/:id&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">IdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(orgs::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional</span></span>
+<span class="giallo-l"><span style="color: #986801;">#[derive(</span><span style="color: #0184BC;">Deserialize</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StateData</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StaticResponseExtender</span><span style="color: #986801;">)]</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">struct</span><span style="color: #C18401;"> OptIdExtractor</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    id</span><span>:</span><span style="color: #0184BC;"> Opt</span><span>&lt;</span><span style="color: #0184BC;">String</span><span>&gt;,</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;repos&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptIdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repos::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;repos/:id&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptIdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repos::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// regex</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;users/:id:[a-z]+&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">IdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(users::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional regex</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptIdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(users::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;search/:id:[a-z]+&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptIdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(users::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob</span></span>
+<span class="giallo-l"><span style="color: #986801;">#[derive(</span><span style="color: #0184BC;">Deserialize</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StateData</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StaticResponseExtender</span><span style="color: #986801;">)]</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">struct</span><span style="color: #C18401;"> PathExtractor</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    path</span><span>:</span><span style="color: #0184BC;"> Vec</span><span>&lt;</span><span style="color: #0184BC;">String</span><span>&gt;,</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;blob/*&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">PathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_blob::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional glob</span></span>
+<span class="giallo-l"><span style="color: #986801;">#[derive(</span><span style="color: #0184BC;">Deserialize</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StateData</span><span style="color: #986801;">,</span><span style="color: #0184BC;"> StaticResponseExtender</span><span style="color: #986801;">)]</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">struct</span><span style="color: #C18401;"> OptPathExtractor</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    path</span><span>:</span><span style="color: #0184BC;"> Option</span><span>&lt;</span><span style="color: #0184BC;">Vec</span><span>&lt;</span><span style="color: #0184BC;">String</span><span>&gt;&gt;,</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;tree&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptPathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;tree/*&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptPathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">show</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob in middle</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;blob/*/commits&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">PathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_blob::</span><span style="color: #E45649;">commits</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional glob in middle</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;tree/commits&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptPathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">commits</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;tree/*/commits&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptPathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_tree::</span><span style="color: #E45649;">commits</span><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li>There is no shorter way to specify optionals.</li>
@@ -754,22 +730,20 @@ the possible scenarios related to this section.</p>
   </svg>
 </a>
 Rails</h4>
-<pre data-lang="ruby" style="background-color:#f9f9f9;color:#111111;" class="language-ruby "><code class="language-ruby" data-lang="ruby"><span style="color:#8e908c;"># static scope
-</span><span>scope </span><span style="color:#839c00;">&#39;pages&#39; </span><span style="color:#8959a8;">do
-</span><span>  get </span><span style="color:#839c00;">&#39;about&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;pages#about&#39;
-</span><span style="color:#8959a8;">end
-</span><span>
-</span><span style="color:#8e908c;"># optional regex scope
-</span><span>scope </span><span style="color:#839c00;">&#39;search(/:id)&#39;</span><span>, </span><span style="color:#839c00;">id: </span><span style="color:#c82728;">/[a-z]+/ </span><span style="color:#8959a8;">do
-</span><span>  get </span><span style="color:#839c00;">&#39;advanced&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;search#advanced&#39;
-</span><span style="color:#8959a8;">end
-</span><span>
-</span><span style="color:#8e908c;"># glob in middle scope
-</span><span>scope </span><span style="color:#839c00;">&#39;blob/*path/commits&#39; </span><span style="color:#8959a8;">do
-</span><span>  get </span><span style="color:#839c00;">&#39;graph&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;repo_blob#graph&#39;
-</span><span style="color:#8959a8;">end
-</span></code></pre>
-<h4 id="actix-2"><a class="permalink" href="#actix-2">
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="ruby"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># static scope</span></span>
+<span class="giallo-l"><span>scope </span><span style="color: #50A14F;">&#39;pages&#39;</span><span style="color: #A626A4;"> do</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;about&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;pages#about&#39;</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># optional regex scope</span></span>
+<span class="giallo-l"><span>scope </span><span style="color: #50A14F;">&#39;search(/:id)&#39;</span><span>,</span><span style="color: #986801;"> id:</span><span style="color: #0184BC;"> /[a-z]+/</span><span style="color: #A626A4;"> do</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;advanced&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;search#advanced&#39;</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># glob in middle scope</span></span>
+<span class="giallo-l"><span>scope </span><span style="color: #50A14F;">&#39;blob/*path/commits&#39;</span><span style="color: #A626A4;"> do</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;graph&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;repo_blob#graph&#39;</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">end</span></span></code></pre><h4 id="actix-2"><a class="permalink" href="#actix-2">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -792,24 +766,23 @@ Rails</h4>
   </svg>
 </a>
 Actix</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// static scope
-</span><span>app.</span><span style="color:#4271ae;">service</span><span>(</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;pages&quot;</span><span>)
-</span><span>    .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;/about&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(pages::about))
-</span><span>);
-</span><span>
-</span><span style="color:#8e908c;">// optional regex scope
-</span><span>app.</span><span style="color:#4271ae;">service</span><span>(</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;search&quot;</span><span>)
-</span><span>    .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;/advanced&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(search::advanced))
-</span><span>    .</span><span style="color:#4271ae;">service</span><span>(</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;{id}&quot;</span><span>)
-</span><span>        .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;/advanced&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(search::advanced))
-</span><span>    )
-</span><span>);
-</span><span>
-</span><span style="color:#8e908c;">// glob in middle scope
-</span><span>app.</span><span style="color:#4271ae;">service</span><span>(</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;blob/{path:.+}/commits&quot;</span><span>)
-</span><span>    .</span><span style="color:#4271ae;">route</span><span>(</span><span style="color:#839c00;">&quot;/graph&quot;</span><span>, </span><span style="color:#4271ae;">get</span><span>().</span><span style="color:#4271ae;">to</span><span>(repo_blob::graph))
-</span><span>);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// static scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">service</span><span>(</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;pages&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>    .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;/about&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(pages::</span><span style="color: #E45649;">about</span><span>))</span></span>
+<span class="giallo-l"><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional regex scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">service</span><span>(</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>    .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;/advanced&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(search::</span><span style="color: #E45649;">advanced</span><span>))</span></span>
+<span class="giallo-l"><span>    .</span><span style="color: #4078F2;">service</span><span>(</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;{id}&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>        .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;/advanced&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(search::</span><span style="color: #E45649;">advanced</span><span>))</span></span>
+<span class="giallo-l"><span>    )</span></span>
+<span class="giallo-l"><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob in middle scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">service</span><span>(</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;blob/{path:.+}/commits&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>    .</span><span style="color: #4078F2;">route</span><span>(</span><span style="color: #50A14F;">&quot;/graph&quot;</span><span>,</span><span style="color: #4078F2;"> get</span><span>().</span><span style="color: #4078F2;">to</span><span>(repo_blob::</span><span style="color: #E45649;">graph</span><span>))</span></span>
+<span class="giallo-l"><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li>There is no shorter way to specify scopes with optionals needing to duplicate the routes nested inside them.</li>
@@ -838,20 +811,19 @@ Actix</h4>
   </svg>
 </a>
 Tide</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// static scope
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;pages&quot;</span><span>).</span><span style="color:#4271ae;">nest</span><span>({
-</span><span>    </span><span style="color:#8959a8;">let mut</span><span> app </span><span style="color:#3e999f;">= </span><span>tide::new();
-</span><span>    app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;about&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(pages::about);
-</span><span>    app
-</span><span>});
-</span><span>
-</span><span style="color:#8e908c;">// glob in middle scope
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;blob/*path/commits&quot;</span><span>).</span><span style="color:#4271ae;">nest</span><span>({
-</span><span>    </span><span style="color:#8959a8;">let mut</span><span> app </span><span style="color:#3e999f;">= </span><span>tide::new();
-</span><span>    app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;graph&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(repo_blob::graph);
-</span><span>    app
-</span><span>});
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// static scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;pages&quot;</span><span>).</span><span style="color: #4078F2;">nest</span><span>({</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    let mut</span><span style="color: #E45649;"> app</span><span> = tide::</span><span style="color: #4078F2;">new</span><span>();</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;about&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(pages::</span><span style="color: #E45649;">about</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span></span>
+<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob in middle scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;blob/*path/commits&quot;</span><span>).</span><span style="color: #4078F2;">nest</span><span>({</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    let mut</span><span style="color: #E45649;"> app</span><span> = tide::</span><span style="color: #4078F2;">new</span><span>();</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;graph&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(repo_blob::</span><span style="color: #E45649;">graph</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span></span>
+<span class="giallo-l"><span>});</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li><strong>MAJOR</strong>: Does not support scopes with optionals.</li>
@@ -880,17 +852,16 @@ Tide</h4>
   </svg>
 </a>
 Warp</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// static scope
-</span><span style="color:#8959a8;">let</span><span> scope </span><span style="color:#3e999f;">= </span><span style="color:#4271ae;">path</span><span>(</span><span style="color:#839c00;">&quot;pages&quot;</span><span>);
-</span><span>
-</span><span>scope.</span><span style="color:#4271ae;">and</span><span>(path!(</span><span style="color:#839c00;">&quot;about&quot;</span><span>)).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(pages::about);
-</span><span>
-</span><span style="color:#8e908c;">// optional regex scope
-</span><span style="color:#8959a8;">let</span><span> scope </span><span style="color:#3e999f;">= </span><span style="color:#4271ae;">path</span><span>(</span><span style="color:#839c00;">&quot;search&quot;</span><span>);
-</span><span>
-</span><span>scope.</span><span style="color:#4271ae;">and</span><span>(path!(</span><span style="color:#839c00;">&quot;advanced&quot;</span><span>)).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(|| pages::about(Id::default()));
-</span><span>scope.</span><span style="color:#4271ae;">and</span><span>(path!(Id </span><span style="color:#3e999f;">/ </span><span style="color:#839c00;">&quot;advanced&quot;</span><span>)).</span><span style="color:#4271ae;">and</span><span>(</span><span style="color:#4271ae;">get</span><span>()).</span><span style="color:#4271ae;">and_then</span><span>(pages::about);
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// static scope</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">let</span><span style="color: #E45649;"> scope</span><span> =</span><span style="color: #4078F2;"> path</span><span>(</span><span style="color: #50A14F;">&quot;pages&quot;</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">scope</span><span>.</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;about&quot;</span><span>)).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(pages::</span><span style="color: #E45649;">about</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional regex scope</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">let</span><span style="color: #E45649;"> scope</span><span> =</span><span style="color: #4078F2;"> path</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span>);</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">scope</span><span>.</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #50A14F;">&quot;advanced&quot;</span><span>)).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(|| pages::</span><span style="color: #4078F2;">about</span><span>(Id::</span><span style="color: #4078F2;">default</span><span>()));</span></span>
+<span class="giallo-l"><span style="color: #E45649;">scope</span><span>.</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">path!</span><span>(</span><span style="color: #0184BC;">Id</span><span> /</span><span style="color: #50A14F;"> &quot;advanced&quot;</span><span>)).</span><span style="color: #4078F2;">and</span><span>(</span><span style="color: #4078F2;">get</span><span>()).</span><span style="color: #4078F2;">and_then</span><span>(pages::</span><span style="color: #E45649;">about</span><span>);</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li><strong>MINOR</strong>: Does not support scopes with required glob path param.</li>
@@ -920,25 +891,24 @@ Warp</h4>
   </svg>
 </a>
 Gotham</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#8e908c;">// static scope
-</span><span>route.</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;pages&quot;</span><span>, |</span><span style="color:#f07219;">route</span><span>| {
-</span><span>    route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;about&quot;</span><span>).</span><span style="color:#4271ae;">to</span><span>(pages::about);
-</span><span>});
-</span><span>
-</span><span style="color:#8e908c;">// optional regex scope
-</span><span>route.</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;search&quot;</span><span>, |</span><span style="color:#f07219;">route</span><span>| {
-</span><span>    route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;advanced&quot;</span><span>).with_path_extractor::&lt;OptIdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(search::advanced);
-</span><span>});
-</span><span>
-</span><span>route.</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;search/:id:[0-9]+&quot;</span><span>, |</span><span style="color:#f07219;">route</span><span>| {
-</span><span>    route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;advanced&quot;</span><span>).with_path_extractor::&lt;OptIdExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(search::advanced);
-</span><span>});
-</span><span>
-</span><span style="color:#8e908c;">// glob in middle scope
-</span><span>route.</span><span style="color:#4271ae;">scope</span><span>(</span><span style="color:#839c00;">&quot;blob/*/commits&quot;</span><span>, |</span><span style="color:#f07219;">route</span><span>| {
-</span><span>    route.</span><span style="color:#4271ae;">get</span><span>(</span><span style="color:#839c00;">&quot;graph&quot;</span><span>).with_path_extractor::&lt;PathExtractor&gt;().</span><span style="color:#4271ae;">to</span><span>(repo_blob::graph);
-</span><span>});
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// static scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;pages&quot;</span><span>, |</span><span style="color: #E45649;">route</span><span>| {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;about&quot;</span><span>).</span><span style="color: #4078F2;">to</span><span>(pages::</span><span style="color: #E45649;">about</span><span>);</span></span>
+<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// optional regex scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;search&quot;</span><span>, |</span><span style="color: #E45649;">route</span><span>| {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;advanced&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptIdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(search::</span><span style="color: #E45649;">advanced</span><span>);</span></span>
+<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;search/:id:[0-9]+&quot;</span><span>, |</span><span style="color: #E45649;">route</span><span>| {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;advanced&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">OptIdExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(search::</span><span style="color: #E45649;">advanced</span><span>);</span></span>
+<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">// glob in middle scope</span></span>
+<span class="giallo-l"><span style="color: #E45649;">route</span><span>.</span><span style="color: #4078F2;">scope</span><span>(</span><span style="color: #50A14F;">&quot;blob/*/commits&quot;</span><span>, |</span><span style="color: #E45649;">route</span><span>| {</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    route</span><span>.</span><span style="color: #4078F2;">get</span><span>(</span><span style="color: #50A14F;">&quot;graph&quot;</span><span>).</span><span style="color: #4078F2;">with_path_extractor</span><span>::&lt;</span><span style="color: #0184BC;">PathExtractor</span><span>&gt;().</span><span style="color: #4078F2;">to</span><span>(repo_blob::</span><span style="color: #E45649;">graph</span><span>);</span></span>
+<span class="giallo-l"><span>});</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li>There is no shorter way to specify scopes with optionals needing to duplicate the routes nested inside them.</li>
@@ -1024,22 +994,21 @@ mentioned ambiguity in a simpler perspective.</p>
   </svg>
 </a>
 Rails</h4>
-<pre data-lang="ruby" style="background-color:#f9f9f9;color:#111111;" class="language-ruby "><code class="language-ruby" data-lang="ruby"><span>scope </span><span style="color:#839c00;">&#39;foo/higher&#39; </span><span style="color:#8959a8;">do
-</span><span>  get </span><span style="color:#839c00;">&#39;&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;photos#foo_higher&#39;
-</span><span style="color:#8959a8;">end
-</span><span>
-</span><span>scope </span><span style="color:#839c00;">&#39;foo&#39; </span><span style="color:#8959a8;">do
-</span><span>  get </span><span style="color:#839c00;">&#39;higher&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;photos#foo_common_higher&#39;
-</span><span>  get </span><span style="color:#839c00;">&#39;lower&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;photos#foo_common_lower&#39;
-</span><span style="color:#8959a8;">end
-</span><span>
-</span><span>scope </span><span style="color:#839c00;">&#39;foo/lower&#39; </span><span style="color:#8959a8;">do
-</span><span>  get </span><span style="color:#839c00;">&#39;&#39;</span><span>, </span><span style="color:#839c00;">to: &#39;photos#foo_lower&#39;
-</span><span style="color:#8959a8;">end
-</span></code></pre>
-<p>When <code>/foo/higher</code> and <code>/foo/lower</code> is called in the below scenario, <a href="https://rubyonrails.org">Rails</a> responds with the action
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="ruby"><span class="giallo-l"><span>scope </span><span style="color: #50A14F;">&#39;foo/higher&#39;</span><span style="color: #A626A4;"> do</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;photos#foo_higher&#39;</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>scope </span><span style="color: #50A14F;">&#39;foo&#39;</span><span style="color: #A626A4;"> do</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;higher&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;photos#foo_common_higher&#39;</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;lower&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;photos#foo_common_lower&#39;</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>scope </span><span style="color: #50A14F;">&#39;foo/lower&#39;</span><span style="color: #A626A4;"> do</span></span>
+<span class="giallo-l"><span>  get </span><span style="color: #50A14F;">&#39;&#39;</span><span>,</span><span style="color: #986801;"> to:</span><span style="color: #50A14F;"> &#39;photos#foo_lower&#39;</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">end</span></span></code></pre>
+<p>When <code>/foo/higher</code> and <code>/foo/lower</code> is called in the below scenario, <a rel="external" href="https://rubyonrails.org">Rails</a> responds with the action
 <code>foo_higher</code> and <code>foo_common_lower</code> respectively. As you can see, the routes defined at the top have higher
-priority. <a href="https://djangoproject.com">Django</a> follows the same behaviour while <a href="https://laravel.com">Laravel</a> gives priority to the routes defined at
+priority. <a rel="external" href="https://djangoproject.com">Django</a> follows the same behaviour while <a rel="external" href="https://laravel.com">Laravel</a> gives priority to the routes defined at
 the bottom.</p>
 <h4 id="rust"><a class="permalink" href="#rust">
   <svg
@@ -1064,7 +1033,7 @@ the bottom.</p>
   </svg>
 </a>
 Rust</h4>
-<p><a href="https://actix.rs">Actix</a>, <a href="https://docs.rs/warp">Warp</a> and <a href="https://gotham.rs">Gotham</a> follow the rule by giving priority to the routes defined at the top</p>
+<p><a rel="external" href="https://actix.rs">Actix</a>, <a rel="external" href="https://docs.rs/warp">Warp</a> and <a rel="external" href="https://gotham.rs">Gotham</a> follow the rule by giving priority to the routes defined at the top</p>
 <h4 id="tide-3"><a class="permalink" href="#tide-3">
   <svg
     viewBox="0 0 16 16"
@@ -1088,25 +1057,24 @@ Rust</h4>
   </svg>
 </a>
 Tide</h4>
-<pre data-lang="rust" style="background-color:#f9f9f9;color:#111111;" class="language-rust "><code class="language-rust" data-lang="rust"><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;foo/higher&quot;</span><span>).</span><span style="color:#4271ae;">nest</span><span>({
-</span><span>    </span><span style="color:#8959a8;">let mut</span><span> app </span><span style="color:#3e999f;">= </span><span>tide::new();
-</span><span>    app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(foo::higher);
-</span><span>    app
-</span><span>});
-</span><span>
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;foo&quot;</span><span>).</span><span style="color:#4271ae;">nest</span><span>({
-</span><span>    </span><span style="color:#8959a8;">let mut</span><span> app </span><span style="color:#3e999f;">= </span><span>tide::new();
-</span><span>    app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;higher&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(foo::common_higher);
-</span><span>    app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;lower&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(foo::common_lower);
-</span><span>    app
-</span><span>});
-</span><span>
-</span><span>app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;foo/lower&quot;</span><span>).</span><span style="color:#4271ae;">nest</span><span>({
-</span><span>    </span><span style="color:#8959a8;">let mut</span><span> app </span><span style="color:#3e999f;">= </span><span>tide::new();
-</span><span>    app.</span><span style="color:#4271ae;">at</span><span>(</span><span style="color:#839c00;">&quot;&quot;</span><span>).</span><span style="color:#4271ae;">get</span><span>(foo::lower);
-</span><span>    app
-</span><span>});
-</span></code></pre>
+<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="rust"><span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;foo/higher&quot;</span><span>).</span><span style="color: #4078F2;">nest</span><span>({</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    let mut</span><span style="color: #E45649;"> app</span><span> = tide::</span><span style="color: #4078F2;">new</span><span>();</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(foo::</span><span style="color: #E45649;">higher</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span></span>
+<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;foo&quot;</span><span>).</span><span style="color: #4078F2;">nest</span><span>({</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    let mut</span><span style="color: #E45649;"> app</span><span> = tide::</span><span style="color: #4078F2;">new</span><span>();</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;higher&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(foo::</span><span style="color: #E45649;">common_higher</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;lower&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(foo::</span><span style="color: #E45649;">common_lower</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span></span>
+<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #E45649;">app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;foo/lower&quot;</span><span>).</span><span style="color: #4078F2;">nest</span><span>({</span></span>
+<span class="giallo-l"><span style="color: #A626A4;">    let mut</span><span style="color: #E45649;"> app</span><span> = tide::</span><span style="color: #4078F2;">new</span><span>();</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span><span>.</span><span style="color: #4078F2;">at</span><span>(</span><span style="color: #50A14F;">&quot;&quot;</span><span>).</span><span style="color: #4078F2;">get</span><span>(foo::</span><span style="color: #E45649;">lower</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #E45649;">    app</span></span>
+<span class="giallo-l"><span>});</span></span></code></pre>
 <p>Cons</p>
 <ul>
 <li><strong>MINOR</strong>: It seems to always go into the scope which matches the highest number of path segments. It
@@ -1135,14 +1103,14 @@ responds with <code>foo::higher</code> for <code>/foo/higher</code> and <code>fo
   </svg>
 </a>
 Final Remarks</h2>
-<p>Based on the comparison results above, we can rank <a href="https://gotham.rs">Gotham</a> as the most mature web micro framework in Rust
-based on the routing capabilities. Next, we have a tie between <a href="https://actix.rs">Actix</a> and <a href="https://docs.rs/warp">Warp</a> while <a href="https://docs.rs/tide">Tide</a> occupies
-the last spot by having the most deficiencies. I initially wanted to rank <a href="https://docs.rs/warp">Warp</a> above <a href="https://actix.rs">Actix</a> but
+<p>Based on the comparison results above, we can rank <a rel="external" href="https://gotham.rs">Gotham</a> as the most mature web micro framework in Rust
+based on the routing capabilities. Next, we have a tie between <a rel="external" href="https://actix.rs">Actix</a> and <a rel="external" href="https://docs.rs/warp">Warp</a> while <a rel="external" href="https://docs.rs/tide">Tide</a> occupies
+the last spot by having the most deficiencies. I initially wanted to rank <a rel="external" href="https://docs.rs/warp">Warp</a> above <a rel="external" href="https://actix.rs">Actix</a> but
 decided not to. I have tested more complicated use cases but they all fall into one of the above compared
 sections.</p>
-<p>I did this comparison because I suspected some scoping issues in <a href="https://actix.rs">Actix</a>. I also got disillusioned with
-<a href="https://gotham.rs">Gotham</a> since it looks like nobody is maintaning it anymore and I wanted to rule it out of the contention
-for the best web micro framework race. The results actually reaffirmed my opinion that <a href="https://gotham.rs">Gotham</a> is the best
+<p>I did this comparison because I suspected some scoping issues in <a rel="external" href="https://actix.rs">Actix</a>. I also got disillusioned with
+<a rel="external" href="https://gotham.rs">Gotham</a> since it looks like nobody is maintaning it anymore and I wanted to rule it out of the contention
+for the best web micro framework race. The results actually reaffirmed my opinion that <a rel="external" href="https://gotham.rs">Gotham</a> is the best
 out of them all and I will keep using it and contributing to it.</p>
 
 <div id="social-bar">
