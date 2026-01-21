@@ -63,3 +63,27 @@ em {
   color: #888;
   margin-top: 1em;
 }
+
+.footnote-definition {
+  font-size: 0.9em;
+  margin-top: 1.5em;
+}
+
+.footnote-definition-label {
+  margin-right: 0.5em;
+  color: #5cc265;
+  vertical-align: baseline;
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.footnote-definition p {
+  display: inline;
+  margin: 0;
+}
+
+.footnote-reference {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: #5cc265;
+}
