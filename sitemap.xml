@@ -17,6 +17,12 @@
         <loc>https://pksunkara.com/tags/</loc>
     </url>
     <url>
+        <loc>https://pksunkara.com/tags/career/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tags/career/page/1/</loc>
+    </url>
+    <url>
         <loc>https://pksunkara.com/tags/cloudant/</loc>
     </url>
     <url>
@@ -45,6 +51,12 @@
     </url>
     <url>
         <loc>https://pksunkara.com/tags/git/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tags/hiring/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tags/hiring/page/1/</loc>
     </url>
     <url>
         <loc>https://pksunkara.com/tags/javascript/</loc>
@@ -120,6 +132,10 @@
     <url>
         <loc>https://pksunkara.com/thoughts/3-types-of-coding-in-the-ai-era/</loc>
         <lastmod>2025-05-08T00:00:00+05:30</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/thoughts/ai-recruiters-faster-cheaper-and-still-clueless/</loc>
+        <lastmod>2026-01-22T00:00:00+05:30</lastmod>
     </url>
     <url>
         <loc>https://pksunkara.com/thoughts/git-experts-should-try-jujutsu/</loc>
