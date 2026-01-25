@@ -1,10 +1,52 @@
+:root {
+  color-scheme: light dark;
+
+  --color-accent: #5cc265;
+
+  --color-text: #444;
+  --color-text-muted: #888;
+
+  --color-bg: #fff;
+  --color-border: #eee;
+
+  --color-badge-bg: #ccc;
+  --color-badge-text: #fff;
+
+  --color-series-text: #fff;
+  --color-series-ongoing: #888;
+  --color-series-completed: #444;
+
+  --font-body: Inter, sans-serif;
+  --font-title: Bree Serif, serif;
+  --font-mono: Jetbrains Mono, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-accent: #4fe08a;
+
+    --color-text: #eee;
+    --color-text-muted: #aaa;
+
+    --color-bg: #111;
+    --color-border: #333;
+
+    --color-badge-bg: #333;
+    --color-badge-text: #999;
+
+    --color-series-text: #222;
+    --color-series-ongoing: #999;
+    --color-series-completed: #eee;
+  }
+}
+
 pre {
   margin-bottom: 0.75em;
 }
 
 code {
-  font-family: Jetbrains Mono, monospace;
-  font-size: 16px;
+  font-family: var(--font-mono);
+  font-size: 1em;
 }
 
 blockquote {
@@ -30,8 +72,8 @@ em {
 }
 
 .series-status {
-  background-color: #ccc;
-  color: #fff;
+  background-color: var(--color-badge-bg);
+  color: var(--color-series-text);
   display: inline-block;
   line-height: 1.5em;
   padding: 0.3em 0.6em 0.3em 0.6em;
@@ -46,11 +88,11 @@ em {
 }
 
 .series-status.ongoing {
-  background-color: #888;
+  background-color: var(--color-series-ongoing);
 }
 
 .series-status.completed {
-  background-color: #444;
+  background-color: var(--color-series-completed);
 }
 
 .series-description {
@@ -60,7 +102,7 @@ em {
 
 .series-stamp {
   font-size: 0.8em;
-  color: #888;
+  color: var(--color-text-muted);
   margin-top: 1em;
 }
 
@@ -71,7 +113,7 @@ em {
 
 .footnote-definition-label {
   margin-right: 0.5em;
-  color: #5cc265;
+  color: var(--color-accent);
   vertical-align: baseline;
   font-size: inherit;
   font-weight: 600;
@@ -85,5 +127,5 @@ em {
 .footnote-reference {
   font-size: 0.75em;
   vertical-align: super;
-  color: #5cc265;
+  color: var(--color-accent);
 }

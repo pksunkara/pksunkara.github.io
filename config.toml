@@ -15,7 +15,8 @@ taxonomies = [
 
 [markdown.highlighting]
 error_on_missing_language = true
-theme = "one-light"
+light_theme = "one-light"
+dark_theme = "one-dark-pro"
 
 [extra]
 github = "pksunkara"
