@@ -30,3 +30,8 @@ google_analytics = "UA-9209860-4"
 title = "Reign: Whiteboarding a web framework"
 status = "ongoing"
 description = "Let's whiteboard on how to build the best web framework. We will talk about all the components needed for it and how they should work to achieve the best performance and developer experience."
+
+[extra.series.jujutsu-tips-and-tricks]
+title = "Jujutsu: Tips & Tricks"
+status = "ongoing"
+description = "A collection of tips and tricks to get the most out of Jujutsu. In this series, we will explore various features and workflows to either help you become more productive with Jujutsu or try to replicate some obscure Git workflows."

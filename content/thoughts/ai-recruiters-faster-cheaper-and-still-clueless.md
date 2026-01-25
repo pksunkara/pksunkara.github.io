@@ -1,7 +1,7 @@
 +++
 date = 2026-01-22T00:00:00+05:30
 draft = false
-title = "AI recruiters: faster, cheaper, and still clueless"
+title = "AI recruiters: Faster, cheaper, and still clueless"
 
 [taxonomies]
 tags = ["hiring", "llm", "career"]
