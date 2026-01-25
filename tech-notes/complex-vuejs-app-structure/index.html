@@ -120,26 +120,26 @@
 Overview</h2>
 <p>The following example assumes that you will be using webpack build config from <a rel="external" href="https://github.com/vuejs-templates/webpack">vuejs-templates/webpack</a> boilerplate.</p>
 <p>Let's also assume that you want to have a page named <strong>Hello</strong>, it will need a <a rel="external" href="https://vuejs.org">vue.js</a> component named <strong>Hello</strong> and a <a rel="external" href="https://vuex.vuejs.org/en/">vuex</a> module named <strong>Hello</strong>.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #0184BC;">.</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">├─</span><span style="color: #50A14F;"> src</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  ├─ assets</span><span style="color: #A0A1A7;font-style: italic;">               # module assets (processed by webpack)</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ ...</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  ├─ components</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ Hello.vue</span><span style="color: #A0A1A7;font-style: italic;">         # Hello component</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ ...</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  ├─ store</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ Hello.js</span><span style="color: #A0A1A7;font-style: italic;">          # Hello module</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ index.js</span><span style="color: #A0A1A7;font-style: italic;">          # assemble vuex store</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ ...</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  ├─ router</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ index.js</span><span style="color: #A0A1A7;font-style: italic;">          # app route configuration</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  │  └─ ...</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  ├─ App.vue</span><span style="color: #A0A1A7;font-style: italic;">              # main app component</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  └─ main.js</span><span style="color: #A0A1A7;font-style: italic;">              # app entry file</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">├─</span><span style="color: #50A14F;"> public</span><span style="color: #A0A1A7;font-style: italic;">                  # static assets (directly copied)</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">│</span><span style="color: #50A14F;">  └─ ...</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">├─</span><span style="color: #50A14F;"> index.html</span><span style="color: #A0A1A7;font-style: italic;">              # index.html template</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">└─</span><span style="color: #50A14F;"> package.json</span><span style="color: #A0A1A7;font-style: italic;">            # build scripts and dependencies</span></span></code></pre><h4 id="index-html"><a class="permalink" href="#index-html">
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#0184BC, #56B6C2);">.</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">├─</span><span style="color: light-dark(#50A14F, #98C379);"> src</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  ├─</span><span style="color: light-dark(#50A14F, #98C379);"> assets</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">               #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> module assets (processed by webpack)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> ...</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  ├─</span><span style="color: light-dark(#50A14F, #98C379);"> components</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> Hello.vue</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">         #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Hello component</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> ...</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  ├─</span><span style="color: light-dark(#50A14F, #98C379);"> store</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> Hello.js</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">          #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Hello module</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> index.js</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">          #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> assemble vuex store</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> ...</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  ├─</span><span style="color: light-dark(#50A14F, #98C379);"> router</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> index.js</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">          #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> app route configuration</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  │</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> ...</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  ├─</span><span style="color: light-dark(#50A14F, #98C379);"> App.vue</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">              #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> main app component</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> main.js</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">              #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> app entry file</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">├─</span><span style="color: light-dark(#50A14F, #98C379);"> public</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">                  #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> static assets (directly copied)</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">│</span><span style="color: light-dark(#50A14F, #98C379);">  └─</span><span style="color: light-dark(#50A14F, #98C379);"> ...</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">├─</span><span style="color: light-dark(#50A14F, #98C379);"> index.html</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">              #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> index.html template</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">└─</span><span style="color: light-dark(#50A14F, #98C379);"> package.json</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">            #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> build scripts and dependencies</span></span></code></pre><h4 id="index-html"><a class="permalink" href="#index-html">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -163,16 +163,16 @@ Overview</h2>
 </a>
 index.html</h4>
 <p>This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in <strong>body</strong>.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="html"><span class="giallo-l"><span>&lt;!</span><span style="color: #E45649;">DOCTYPE</span><span style="color: #986801;"> html</span><span>&gt;</span></span>
-<span class="giallo-l"><span>&lt;</span><span style="color: #E45649;">html</span><span>&gt;</span></span>
-<span class="giallo-l"><span>  &lt;</span><span style="color: #E45649;">head</span><span>&gt;</span></span>
-<span class="giallo-l"><span>    &lt;</span><span style="color: #E45649;">link</span><span style="color: #986801;"> rel</span><span>=</span><span style="color: #50A14F;">&quot;shortcut icon&quot;</span><span style="color: #986801;"> type</span><span>=</span><span style="color: #50A14F;">&quot;image/png&quot;</span><span style="color: #986801;"> href</span><span>=</span><span style="color: #50A14F;">&quot;/assets/images/favicon.png&quot;</span><span>/&gt;</span></span>
-<span class="giallo-l"><span>  &lt;/</span><span style="color: #E45649;">head</span><span>&gt;</span></span>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="html"><span class="giallo-l"><span>&lt;!</span><span style="color: light-dark(#E45649, #E06C75);">DOCTYPE</span><span style="color: light-dark(#986801, #D19A66);"> html</span><span>&gt;</span></span>
+<span class="giallo-l"><span>&lt;</span><span style="color: light-dark(#E45649, #E06C75);">html</span><span>&gt;</span></span>
+<span class="giallo-l"><span>  &lt;</span><span style="color: light-dark(#E45649, #E06C75);">head</span><span>&gt;</span></span>
+<span class="giallo-l"><span>    &lt;</span><span style="color: light-dark(#E45649, #E06C75);">link</span><span style="color: light-dark(#986801, #D19A66);"> rel</span><span>=</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#50A14F, #98C379);">shortcut icon</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#986801, #D19A66);"> type</span><span>=</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#50A14F, #98C379);">image/png</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#986801, #D19A66);"> href</span><span>=</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#50A14F, #98C379);">/assets/images/favicon.png</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span>/&gt;</span></span>
+<span class="giallo-l"><span>  &lt;/</span><span style="color: light-dark(#E45649, #E06C75);">head</span><span>&gt;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span>  &lt;</span><span style="color: #E45649;">body</span><span>&gt;</span></span>
-<span class="giallo-l"><span>    &lt;</span><span style="color: #E45649;">div</span><span style="color: #986801;"> id</span><span>=</span><span style="color: #50A14F;">&quot;app&quot;</span><span>&gt;&lt;/</span><span style="color: #E45649;">div</span><span>&gt;</span></span>
-<span class="giallo-l"><span>  &lt;/</span><span style="color: #E45649;">body</span><span>&gt;</span></span>
-<span class="giallo-l"><span>&lt;/</span><span style="color: #E45649;">html</span><span>&gt;</span></span></code></pre><h4 id="src-router-index-js"><a class="permalink" href="#src-router-index-js">
+<span class="giallo-l"><span>  &lt;</span><span style="color: light-dark(#E45649, #E06C75);">body</span><span>&gt;</span></span>
+<span class="giallo-l"><span>    &lt;</span><span style="color: light-dark(#E45649, #E06C75);">div</span><span style="color: light-dark(#986801, #D19A66);"> id</span><span>=</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#50A14F, #98C379);">app</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span>&gt;</span><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">div</span><span>&gt;</span></span>
+<span class="giallo-l"><span>  &lt;/</span><span style="color: light-dark(#E45649, #E06C75);">body</span><span>&gt;</span></span>
+<span class="giallo-l"><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">html</span><span>&gt;</span></span></code></pre><h4 id="src-router-index-js"><a class="permalink" href="#src-router-index-js">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -196,21 +196,21 @@ index.html</h4>
 </a>
 src/router/index.js</h4>
 <p>This is the file which initiates <a rel="external" href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="javascript"><span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> Vue</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;vue&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> VueRouter</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;vue-router&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> Hello</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;@/components/Hello&#39;</span><span>;</span></span>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="javascript"><span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> Vue</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">vue</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> VueRouter</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">vue-router</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> Hello</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">@/components/Hello</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span>Vue.</span><span style="color: #4078F2;">use</span><span>(VueRouter);</span></span>
+<span class="giallo-l"><span style="color: light-dark(#383A42, #E5C07B);">Vue</span><span>.</span><span style="color: light-dark(#4078F2, #61AFEF);">use</span><span>(</span><span style="color: light-dark(#383A42, #E06C75);">VueRouter</span><span>)</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span style="color: #A626A4;">const</span><span style="color: #986801;"> routes</span><span style="color: #0184BC;"> =</span><span> [</span></span>
-<span class="giallo-l"><span>  {</span><span style="color: #E45649;"> path</span><span style="color: #0184BC;">:</span><span style="color: #50A14F;"> &#39;/&#39;</span><span>,</span><span style="color: #E45649;"> name</span><span style="color: #0184BC;">:</span><span style="color: #50A14F;"> &#39;Hello&#39;</span><span>,</span><span style="color: #E45649;"> component</span><span style="color: #0184BC;">:</span><span> Hello },</span></span>
-<span class="giallo-l"><span>];</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">const</span><span style="color: light-dark(#986801, #E5C07B);"> routes</span><span style="color: light-dark(#0184BC, #56B6C2);"> =</span><span> [</span></span>
+<span class="giallo-l"><span>  {</span><span style="color: light-dark(#E45649, #E06C75);"> path</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">/</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span><span style="color: light-dark(#E45649, #E06C75);"> name</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">Hello</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span><span style="color: light-dark(#E45649, #E06C75);"> component</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#383A42, #E06C75);"> Hello</span><span> }</span><span>,</span></span>
+<span class="giallo-l"><span>]</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">/* eslint-disable no-new */</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">export</span><span style="color: #E45649;"> default</span><span style="color: #A626A4;"> new</span><span style="color: #4078F2;"> VueRouter</span><span>({</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  routes</span><span>,</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  mode</span><span style="color: #0184BC;">:</span><span style="color: #50A14F;"> &#39;history&#39;</span><span>,</span></span>
-<span class="giallo-l"><span>});</span></span></code></pre><h4 id="src-store-index-js"><a class="permalink" href="#src-store-index-js">
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">/*</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> eslint-disable no-new </span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">*/</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">export</span><span style="color: light-dark(#E45649, #C678DD);"> default</span><span style="color: light-dark(#A626A4, #C678DD);"> new</span><span style="color: light-dark(#4078F2, #61AFEF);"> VueRouter</span><span>(</span><span>{</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  routes</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  mode</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">history</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span></span>
+<span class="giallo-l"><span>}</span><span>)</span><span>;</span></span></code></pre><h4 id="src-store-index-js"><a class="permalink" href="#src-store-index-js">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -234,20 +234,20 @@ src/router/index.js</h4>
 </a>
 src/store/index.js</h4>
 <p>This is the file which initiates <a rel="external" href="https://vuex.vuejs.org/en/">vuex</a> store with the given modules.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="javascript"><span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> Vue</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;vue&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> Vuex</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;vuex&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> Hello</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;@/store/Hello&#39;</span><span>;</span></span>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="javascript"><span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> Vue</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">vue</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> Vuex</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">vuex</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> Hello</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">@/store/Hello</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span>Vue.</span><span style="color: #4078F2;">use</span><span>(Vuex);</span></span>
+<span class="giallo-l"><span style="color: light-dark(#383A42, #E5C07B);">Vue</span><span>.</span><span style="color: light-dark(#4078F2, #61AFEF);">use</span><span>(</span><span style="color: light-dark(#383A42, #E06C75);">Vuex</span><span>)</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">/* eslint-disable no-new */</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">const</span><span style="color: #986801;"> store</span><span style="color: #0184BC;"> =</span><span style="color: #A626A4;"> new</span><span> Vuex.</span><span style="color: #4078F2;">Store</span><span>({</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  modules</span><span style="color: #0184BC;">:</span><span> {</span></span>
-<span class="giallo-l"><span>    Hello,</span></span>
-<span class="giallo-l"><span>  },</span></span>
-<span class="giallo-l"><span>});</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">/*</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> eslint-disable no-new </span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">*/</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">const</span><span style="color: light-dark(#986801, #E5C07B);"> store</span><span style="color: light-dark(#0184BC, #56B6C2);"> =</span><span style="color: light-dark(#A626A4, #C678DD);"> new</span><span style="color: light-dark(#383A42, #E5C07B);"> Vuex</span><span>.</span><span style="color: light-dark(#4078F2, #61AFEF);">Store</span><span>(</span><span>{</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  modules</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span> {</span></span>
+<span class="giallo-l"><span style="color: light-dark(#383A42, #E06C75);">    Hello</span><span>,</span></span>
+<span class="giallo-l"><span>  }</span><span>,</span></span>
+<span class="giallo-l"><span>}</span><span>)</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span style="color: #A626A4;">export</span><span style="color: #E45649;"> default store</span><span>;</span></span></code></pre><h4 id="src-app-vue"><a class="permalink" href="#src-app-vue">
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">export</span><span style="color: light-dark(#E45649, #C678DD);"> default</span><span style="color: light-dark(#E45649, #E06C75);"> store</span><span>;</span></span></code></pre><h4 id="src-app-vue"><a class="permalink" href="#src-app-vue">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -271,15 +271,15 @@ src/store/index.js</h4>
 </a>
 src/App.vue</h4>
 <p>This is the application's main <a rel="external" href="https://vuejs.org">Vue.js</a> component which is basically just a wrapper for <a rel="external" href="https://router.vuejs.org/en/">vue-router</a>.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="vue"><span class="giallo-l"><span>&lt;</span><span style="color: #E45649;">template</span><span>&gt;</span></span>
-<span class="giallo-l"><span>  &lt;</span><span style="color: #E45649;">div</span><span style="color: #986801;"> id</span><span>=</span><span style="color: #50A14F;">&quot;app&quot;</span><span>&gt;</span></span>
-<span class="giallo-l"><span>    &lt;</span><span style="color: #E45649;">router-view</span><span>&gt;&lt;/</span><span style="color: #E45649;">router-view</span><span>&gt;</span></span>
-<span class="giallo-l"><span>  &lt;/</span><span style="color: #E45649;">div</span><span>&gt;</span></span>
-<span class="giallo-l"><span>&lt;/</span><span style="color: #E45649;">template</span><span>&gt;</span></span>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="vue"><span class="giallo-l"><span>&lt;</span><span style="color: light-dark(#E45649, #E06C75);">template</span><span>&gt;</span></span>
+<span class="giallo-l"><span>  &lt;</span><span style="color: light-dark(#E45649, #E06C75);">div</span><span style="color: light-dark(#986801, #D19A66);"> id</span><span>=</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#50A14F, #98C379);">app</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span>&gt;</span></span>
+<span class="giallo-l"><span>    &lt;</span><span style="color: light-dark(#E45649, #E06C75);">router-view</span><span>&gt;</span><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">router-view</span><span>&gt;</span></span>
+<span class="giallo-l"><span>  &lt;/</span><span style="color: light-dark(#E45649, #E06C75);">div</span><span>&gt;</span></span>
+<span class="giallo-l"><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">template</span><span>&gt;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span>&lt;</span><span style="color: #E45649;">script</span><span>&gt;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">export</span><span style="color: #E45649;"> default</span><span> {};</span></span>
-<span class="giallo-l"><span>&lt;/</span><span style="color: #E45649;">script</span><span>&gt;</span></span></code></pre><h4 id="src-main-js"><a class="permalink" href="#src-main-js">
+<span class="giallo-l"><span>&lt;</span><span style="color: light-dark(#E45649, #E06C75);">script</span><span>&gt;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">export</span><span style="color: light-dark(#E45649, #C678DD);"> default</span><span> {</span><span>}</span><span>;</span></span>
+<span class="giallo-l"><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">script</span><span>&gt;</span></span></code></pre><h4 id="src-main-js"><a class="permalink" href="#src-main-js">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -303,18 +303,18 @@ src/App.vue</h4>
 </a>
 src/main.js</h4>
 <p>This is the application entry file where you initiate your <a rel="external" href="https://vuejs.org">Vue.js</a> application with a router, store and the main <strong>App.vue</strong> component.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="javascript"><span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> Vue</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;vue&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> router</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;@/router&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> store</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;@/store&#39;</span><span>;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span style="color: #E45649;"> App</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;@/App&#39;</span><span>;</span></span>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="javascript"><span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> Vue</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">vue</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> router</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">@/router</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> store</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">@/store</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span style="color: light-dark(#E45649, #E06C75);"> App</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">@/App</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;">/* eslint-disable no-new */</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">new</span><span style="color: #4078F2;"> Vue</span><span>({</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  el</span><span style="color: #0184BC;">:</span><span style="color: #50A14F;"> &#39;#app&#39;</span><span>,</span></span>
-<span class="giallo-l"><span>  router,</span></span>
-<span class="giallo-l"><span>  store,</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">  render</span><span style="color: #0184BC;">:</span><span> h</span><span style="color: #A626A4;"> =&gt;</span><span style="color: #4078F2;"> h</span><span>(App),</span></span>
-<span class="giallo-l"><span>});</span></span></code></pre><h4 id="src-store-hello-js"><a class="permalink" href="#src-store-hello-js">
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">/*</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> eslint-disable no-new </span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">*/</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">new</span><span style="color: light-dark(#4078F2, #61AFEF);"> Vue</span><span>(</span><span>{</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  el</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">#app</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#383A42, #E06C75);">  router</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#383A42, #E06C75);">  store</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">  render</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#383A42, #E06C75);"> h</span><span style="color: light-dark(#A626A4, #C678DD);"> =&gt;</span><span style="color: light-dark(#4078F2, #61AFEF);"> h</span><span>(</span><span style="color: light-dark(#383A42, #E06C75);">App</span><span>)</span><span>,</span></span>
+<span class="giallo-l"><span>}</span><span>)</span><span>;</span></span></code></pre><h4 id="src-store-hello-js"><a class="permalink" href="#src-store-hello-js">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -338,12 +338,12 @@ src/main.js</h4>
 </a>
 src/store/Hello.js</h4>
 <p>This file represents a sample <a rel="external" href="https://vuex.vuejs.org/en/">vuex</a> module.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="javascript"><span class="giallo-l"><span style="color: #A626A4;">export</span><span style="color: #E45649;"> default</span><span> {</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  namespaced</span><span style="color: #0184BC;">:</span><span style="color: #986801;"> true</span><span>,</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  state</span><span style="color: #0184BC;">:</span><span> {</span></span>
-<span class="giallo-l"><span style="color: #E45649;">    message</span><span style="color: #0184BC;">:</span><span style="color: #50A14F;"> &#39;Hello Vue!&#39;</span><span>,</span></span>
-<span class="giallo-l"><span>  },</span></span>
-<span class="giallo-l"><span>};</span></span></code></pre><h4 id="src-components-hello-vue"><a class="permalink" href="#src-components-hello-vue">
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="javascript"><span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">export</span><span style="color: light-dark(#E45649, #C678DD);"> default</span><span> {</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  namespaced</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#986801, #D19A66);"> true</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  state</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span> {</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">    message</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">Hello Vue!</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span></span>
+<span class="giallo-l"><span>  }</span><span>,</span></span>
+<span class="giallo-l"><span>}</span><span>;</span></span></code></pre><h4 id="src-components-hello-vue"><a class="permalink" href="#src-components-hello-vue">
   <svg
     viewBox="0 0 16 16"
     version="1.1"
@@ -367,24 +367,24 @@ src/store/Hello.js</h4>
 </a>
 src/components/Hello.vue</h4>
 <p>This file represents a sample <a rel="external" href="https://vuejs.org">Vue.js</a> component which will be used by the <a rel="external" href="https://router.vuejs.org/en/">vue-router</a>. Please note that <strong>Hello</strong> module's state is being used in here.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="vue"><span class="giallo-l"><span>&lt;</span><span style="color: #E45649;">template</span><span>&gt;</span></span>
-<span class="giallo-l"><span>  &lt;</span><span style="color: #E45649;">div</span><span style="color: #986801;"> class</span><span>=</span><span style="color: #50A14F;">&quot;hello&quot;</span><span>&gt;</span></span>
-<span class="giallo-l"><span>    &lt;</span><span style="color: #E45649;">h1</span><span>&gt;{{ message }}&lt;/</span><span style="color: #E45649;">h1</span><span>&gt;</span></span>
-<span class="giallo-l"><span>  &lt;/</span><span style="color: #E45649;">div</span><span>&gt;</span></span>
-<span class="giallo-l"><span>&lt;/</span><span style="color: #E45649;">template</span><span>&gt;</span></span>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="vue"><span class="giallo-l"><span>&lt;</span><span style="color: light-dark(#E45649, #E06C75);">template</span><span>&gt;</span></span>
+<span class="giallo-l"><span>  &lt;</span><span style="color: light-dark(#E45649, #E06C75);">div</span><span style="color: light-dark(#986801, #D19A66);"> class</span><span>=</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span style="color: light-dark(#50A14F, #98C379);">hello</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span><span>&gt;</span></span>
+<span class="giallo-l"><span>    &lt;</span><span style="color: light-dark(#E45649, #E06C75);">h1</span><span>&gt;</span><span>{{ message }}</span><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">h1</span><span>&gt;</span></span>
+<span class="giallo-l"><span>  &lt;/</span><span style="color: light-dark(#E45649, #E06C75);">div</span><span>&gt;</span></span>
+<span class="giallo-l"><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">template</span><span>&gt;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span>&lt;</span><span style="color: #E45649;">script</span><span>&gt;</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">import</span><span> {</span><span style="color: #E45649;"> mapState</span><span> }</span><span style="color: #A626A4;"> from</span><span style="color: #50A14F;"> &#39;vuex&#39;</span><span>;</span></span>
+<span class="giallo-l"><span>&lt;</span><span style="color: light-dark(#E45649, #E06C75);">script</span><span>&gt;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">import</span><span> {</span><span style="color: light-dark(#E45649, #E06C75);"> mapState</span><span> }</span><span style="color: light-dark(#A626A4, #C678DD);"> from</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">vuex</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>;</span></span>
 <span class="giallo-l"></span>
-<span class="giallo-l"><span style="color: #A626A4;">export</span><span style="color: #E45649;"> default</span><span> {</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">  data</span><span>() {</span></span>
-<span class="giallo-l"><span style="color: #A626A4;">    return</span><span> {};</span></span>
-<span class="giallo-l"><span>  },</span></span>
-<span class="giallo-l"><span style="color: #E45649;">  computed</span><span style="color: #0184BC;">:</span><span style="color: #4078F2;"> mapState</span><span>({</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">    message</span><span style="color: #0184BC;">:</span><span> state</span><span style="color: #A626A4;"> =&gt;</span><span> state.</span><span style="color: #E45649;">Hello</span><span>.</span><span style="color: #E45649;">message</span><span>,</span></span>
-<span class="giallo-l"><span>  }),</span></span>
-<span class="giallo-l"><span>};</span></span>
-<span class="giallo-l"><span>&lt;/</span><span style="color: #E45649;">script</span><span>&gt;</span></span></code></pre><h2 id="questions"><a class="permalink" href="#questions">
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">export</span><span style="color: light-dark(#E45649, #C678DD);"> default</span><span> {</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">  data</span><span>(</span><span>)</span><span> {</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A626A4, #C678DD);">    return</span><span> {</span><span>}</span><span>;</span></span>
+<span class="giallo-l"><span>  }</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">  computed</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#4078F2, #61AFEF);"> mapState</span><span>(</span><span>{</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">    message</span><span style="color: light-dark(#0184BC, #ABB2BF);">:</span><span style="color: light-dark(#383A42, #E06C75);"> state</span><span style="color: light-dark(#A626A4, #C678DD);"> =&gt;</span><span style="color: light-dark(#383A42, #E5C07B);"> state</span><span>.</span><span style="color: light-dark(#E45649, #E5C07B);">Hello</span><span>.</span><span style="color: light-dark(#E45649, #E06C75);">message</span><span>,</span></span>
+<span class="giallo-l"><span>  }</span><span>)</span><span>,</span></span>
+<span class="giallo-l"><span>}</span><span>;</span></span>
+<span class="giallo-l"><span>&lt;/</span><span style="color: light-dark(#E45649, #E06C75);">script</span><span>&gt;</span></span></code></pre><h2 id="questions"><a class="permalink" href="#questions">
   <svg
     viewBox="0 0 16 16"
     version="1.1"

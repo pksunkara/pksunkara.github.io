@@ -142,21 +142,21 @@ Editing an old commit</h3>
 <p>This is a classic scenario. You've spotted a typo or a small bug in a commit from five changes ago.</p>
 <p><strong>In Git:</strong>
 You start an interactive rebase, find the commit, mark it for editing, make your changes, amend the commit, and finally, continue the rebase.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Start the interactive rebase</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> -i</span><span style="color: #50A14F;"> HEAD~5</span><span style="color: #A0A1A7;font-style: italic;"> # And mark the commit you want to edit</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your code changes</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Amend the commit</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add .</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> --amend</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Finish the rebase</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> --continue</span></span></code></pre>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Start the interactive rebase</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> rebase</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">i</span><span style="color: light-dark(#50A14F, #98C379);"> HEAD~5</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> And mark the commit you want to edit</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Make your code changes</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">vim</span><span style="color: light-dark(#50A14F, #98C379);"> lib/edit.ts</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Amend the commit</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> add</span><span style="color: light-dark(#50A14F, #98C379);"> .</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> commit</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-amend</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Finish the rebase</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> rebase</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-continue</span></span></code></pre>
 <p><strong>In Jujutsu:</strong>
 You simply tell it which change you want to edit. It checks it out, you make your changes, and you're done. Jujutsu handles the rebase automatically in the background.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Edit the change directly</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> edit</span><span> &lt;</span><span style="color: #50A14F;">change-i</span><span>d&gt;</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your code changes...</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span></code></pre>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Edit the change directly</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> edit</span><span> &lt;</span><span style="color: light-dark(#50A14F, #98C379);">change-i</span><span>d</span><span>&gt;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Make your code changes...</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">vim</span><span style="color: light-dark(#50A14F, #98C379);"> lib/edit.ts</span></span></code></pre>
 <p>There's no interactive editor, no <code>--continue</code> step. It's direct and to the point.</p>
 <h3 id="splitting-a-commit"><a class="permalink" href="#splitting-a-commit">
   <svg
@@ -184,22 +184,22 @@ Splitting a commit</h3>
 <p>You've just realized you bundled two unrelated changes into a single commit.</p>
 <p><strong>In Git:</strong>
 This requires another interactive rebase, mark it for editing, reset it to unstage the changes, and then carefully using <code>git add -p</code> to rebuild the commits piece by piece.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Start the interactive rebase</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> -i</span><span> &lt;</span><span style="color: #50A14F;">commi</span><span>t&gt;</span><span style="color: #50A14F;">^</span><span style="color: #A0A1A7;font-style: italic;"> # And mark the commit you want to edit</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Reset the commit but keep the changes in the working directory</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> reset HEAD^</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Interactively add the first set of changes</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add</span><span style="color: #986801;"> -p</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;First part&quot;</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Add the remaining changes</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add .</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;Second part&quot;</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Finish the rebase</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> rebase</span><span style="color: #986801;"> --continue</span></span></code></pre>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Start the interactive rebase</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> rebase</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">i</span><span> &lt;</span><span style="color: light-dark(#50A14F, #98C379);">commi</span><span>t</span><span>&gt;</span><span style="color: light-dark(#50A14F, #98C379);">^</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> #</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> And mark the commit you want to edit</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Reset the commit but keep the changes in the working directory</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> reset</span><span style="color: light-dark(#50A14F, #98C379);"> HEAD^</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Interactively add the first set of changes</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> add</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">p</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> commit</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">m</span><span style="color: light-dark(#50A14F, #98C379);"> &quot;</span><span style="color: light-dark(#50A14F, #98C379);">First part</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Add the remaining changes</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> add</span><span style="color: light-dark(#50A14F, #98C379);"> .</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> commit</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">m</span><span style="color: light-dark(#50A14F, #98C379);"> &quot;</span><span style="color: light-dark(#50A14F, #98C379);">Second part</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Finish the rebase</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> rebase</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-continue</span></span></code></pre>
 <p><strong>In Jujutsu:</strong>
 A single command initiates an interactive diff editor, allowing you to decide what to keep in the original commit and what to move to a new one.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> split</span><span> &lt;</span><span style="color: #50A14F;">change-i</span><span>d&gt;</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># This creates two new commits. You can then use `jj describe` to edit the commit messages.</span></span></code></pre>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> split</span><span> &lt;</span><span style="color: light-dark(#50A14F, #98C379);">change-i</span><span>d</span><span>&gt;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> This creates two new commits. You can then use `jj describe` to edit the commit messages.</span></span></code></pre>
 <p>This is far more intuitive and significantly faster.</p>
 <h3 id="creating-a-quick-pr"><a class="permalink" href="#creating-a-quick-pr">
   <svg
@@ -226,27 +226,27 @@ A single command initiates an interactive diff editor, allowing you to decide wh
 Creating a quick PR</h3>
 <p><strong>In Git:</strong>
 The standard procedure is to create a branch, commit your changes, push that branch, and then open a pull request on your hosting platform.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Create a new branch</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> checkout</span><span style="color: #986801;"> -b</span><span style="color: #50A14F;"> my-feature-branch</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your changes</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Stage and commit your changes</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> add .</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> commit</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;My feature&quot;</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Push the branch to the remote</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">git</span><span style="color: #50A14F;"> push origin my-feature-branch</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Create a pull request</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">gh</span><span style="color: #50A14F;"> pr create</span></span></code></pre>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Create a new branch</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> checkout</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">b</span><span style="color: light-dark(#50A14F, #98C379);"> my-feature-branch</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Make your changes</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">vim</span><span style="color: light-dark(#50A14F, #98C379);"> lib/edit.ts</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Stage and commit your changes</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> add</span><span style="color: light-dark(#50A14F, #98C379);"> .</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> commit</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">m</span><span style="color: light-dark(#50A14F, #98C379);"> &quot;</span><span style="color: light-dark(#50A14F, #98C379);">My feature</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Push the branch to the remote</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">git</span><span style="color: light-dark(#50A14F, #98C379);"> push</span><span style="color: light-dark(#50A14F, #98C379);"> origin</span><span style="color: light-dark(#50A14F, #98C379);"> my-feature-branch</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Create a pull request</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">gh</span><span style="color: light-dark(#50A14F, #98C379);"> pr</span><span style="color: light-dark(#50A14F, #98C379);"> create</span></span></code></pre>
 <p><strong>In Jujutsu:</strong>
 You can push your current change directly to the remote, which Jujutsu will place on a new branch for you. No need to manage local branches.</p>
-<pre class="giallo" style="color: #383A42; background-color: #FAFAFA;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Start a new change</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> new</span><span style="color: #986801;"> -m</span><span style="color: #50A14F;"> &quot;My feature&quot;</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Make your changes</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">vim</span><span style="color: #50A14F;"> lib/edit.ts</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Push the change to the remote</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">jj</span><span style="color: #50A14F;"> git push</span><span style="color: #986801;"> --change</span><span style="color: #50A14F;"> @</span></span>
-<span class="giallo-l"><span style="color: #A0A1A7;font-style: italic;"># Create a pull request</span></span>
-<span class="giallo-l"><span style="color: #4078F2;">gh</span><span style="color: #50A14F;"> pr create</span><span style="color: #986801;"> --head</span><span> &lt;</span><span style="color: #50A14F;">created-bookmark-nam</span><span>e&gt;</span></span></code></pre><h2 id="conclusion"><a class="permalink" href="#conclusion">
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Start a new change</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> new</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">m</span><span style="color: light-dark(#50A14F, #98C379);"> &quot;</span><span style="color: light-dark(#50A14F, #98C379);">My feature</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Make your changes</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">vim</span><span style="color: light-dark(#50A14F, #98C379);"> lib/edit.ts</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Push the change to the remote</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> git</span><span style="color: light-dark(#50A14F, #98C379);"> push</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-change</span><span style="color: light-dark(#50A14F, #98C379);"> @</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Create a pull request</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">gh</span><span style="color: light-dark(#50A14F, #98C379);"> pr</span><span style="color: light-dark(#50A14F, #98C379);"> create</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-head</span><span> &lt;</span><span style="color: light-dark(#50A14F, #98C379);">created-bookmark-nam</span><span>e</span><span>&gt;</span></span></code></pre><h2 id="conclusion"><a class="permalink" href="#conclusion">
   <svg
     viewBox="0 0 16 16"
     version="1.1"

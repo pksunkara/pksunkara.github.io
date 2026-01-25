@@ -19,13 +19,13 @@
     <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>AI recruiters: Faster, cheaper, and still clueless &middot; pksunkara</title>
+    <title>Jujutsu: Keeping a file untracked &middot; pksunkara</title>
 
     <meta name="description" content="My personal blog" />
 
     <link href="https://pksunkara.com/atom.xml" rel="alternate" type="application/atom+xml" title="pksunkara" />
 
-    <link rel="canonical" href="https://pksunkara.com/thoughts/ai-recruiters-faster-cheaper-and-still-clueless/" />
+    <link rel="canonical" href="https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/" />
 
     <!-- <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/rrssb/1.14.0/css/rrssb.css"> -->
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
@@ -66,50 +66,58 @@
 
     
 <main id="content">
-  <article id="ai-recruiters-faster-cheaper-and-still-clueless" class="_index.md">
+  <article id="jujutsu-keeping-a-file-untracked" class="_index.md-tech-notes/_index.md">
     
 <div class="post-stamp">
-  <time datetime="2026-01-22T00:00:00+05:30">
-  Jan 22, 2026
+  <time datetime="2026-01-25T17:46:03+05:30">
+  Jan 25, 2026
 </time>
 <span class="separator">&middot;</span>
-3 min
+2 min
 
   <span class="taglist">
     &middot;
     
-      <a href="https://pksunkara.com/tags/hiring/">hiring</a>
+      <a href="https://pksunkara.com/tags/git/">git</a>
     
-      <a href="https://pksunkara.com/tags/llm/">llm</a>
-    
-      <a href="https://pksunkara.com/tags/career/">career</a>
+      <a href="https://pksunkara.com/tags/jujutsu/">jujutsu</a>
     
   </span>
 
 
   
+    <span class="series-stamp">
+      <span class="separator">&middot;</span>
+      
+      Part of <a href="https://pksunkara.com/series/jujutsu-tips-and-tricks/">Jujutsu: Tips &amp; Tricks</a>
+    </span>
+  
 </div>
-<h1 class="post-title">AI recruiters: Faster, cheaper, and still clueless</h1>
-<p>Remember the days when you'd open your inbox to find a <em>thrilling opportunity</em> for a Senior Java Developer role. You'd blink, look at your GitHub profile filled with Rust &amp; JavaScript, and wonder if they even read your name, let alone your history. It was the classic "<strong>wrong stack</strong>" email. Or maybe you got the <strong>time-traveler</strong> special: a recruiter demanding 10 years of Kubernetes experience in 2018. We laughed about them, deleted them, and moved on.</p>
-<p>Now? We've pivoted to <em>hyper-personalized, AI-powered recruitment efficiency</em>.<sup class="footnote-reference"><a href="#1">1</a></sup></p>
-<p>On the surface, sure, it looks different. The emails are shinier. They mention your experience at your last three jobs, reference a couple of obscure repos you pushed to years ago, and even summarize that one blog post you wrote. The tone is conversational, almost human. It feels personal.</p>
-<p>But then you keep reading, and that familiar disconnect kicks in.</p>
-<p>The AI might have correctly spotted that you know Rust, but it's pitching a role needing five years in some niche embedded framework you touched once for a weekend hack. Or it praises your "deep understanding of frontend architecture" because you have a few commits in a React project, only to suggest a backend-heavy position where you'll never touch the UI.</p>
-<p>The tech has changed, but the problem hasn't. It's still <strong>spray-and-pray</strong>.</p>
-<p>AI recruiting emails are really just "wrong stack" emails with a fresh coat of paint and better grammar. Instead of a recruiter manually (and badly) keyword-matching, we have an LLM doing "semantic matching." It's just as shallow because it still has zero clue what you actually <em>enjoy</em> or <em>want</em> to do next.</p>
-<p>At least the old "wrong stack" emails were honest in their laziness. You knew where you stood. AI emails are trickier because they mimic genuine interest. They waste more of your time because you actually have to read a bit of them to realize they're still missing the point.</p>
-<p>Handing this off to an LLM isn't <em>optimizing talent acquisition</em>.<sup class="footnote-reference"><a href="#1">1</a></sup> It's just automating the process of annoying us.</p>
-<p>Real recruiting isn't a regex match. It's a relationship. You can't prompt-engineer a genuine connection. The best recruiters know that just because I <em>can</em> write Python doesn't mean I <em>want</em> to spend my next three years maintaining a legacy Django monolith. They get the vibe. They actually talk to you.</p>
-<p>So yeah, the volume is up and the emails are politer. But until recruiters start acting like humans again, the signal is buried under a mountain of <strong>fake empathy</strong>.</p>
-<hr />
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>Did that sound buzzworthy enough? I had an LLM draft it for maximum engagement.</p>
-</div>
+<h1 class="post-title">Jujutsu: Keeping a file untracked</h1>
+<p>Coming from <a rel="external" href="https://git-scm.com">Git</a>, I am used to a workflow where I can create a file in my repository <em>(maybe a temporary script, or a local configuration file)</em> and just never <code>git add</code> it. It sits there, listed as untracked in <code>git status</code>, invisible to my commits but available for my use. I never needed to add it to <code>.gitignore</code> since I simply never staged it.</p>
+<p>When I started using <a rel="external" href="https://github.com/jj-vcs/jj">Jujutsu</a>, I ran into a small friction point with this habit. Jujutsu is designed to be more automatic than Git. By default, it automatically tracks all files in your working copy that aren't ignored by <code>.gitignore</code>. This means as soon as I create that temporary file, it will be included in the next snapshot, and <code>jj status</code> shows it as added.</p>
+<p>This behavior is controlled by the <code>snapshot.auto-track</code> configuration setting. You can customize this setting using <a rel="external" href="https://docs.jj-vcs.dev/latest/filesets/#file-patterns">file patterns</a> to exclude specific files. For example, to keep a file named <code>foo.txt</code> untracked, you can run:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> config</span><span style="color: light-dark(#50A14F, #98C379);"> set</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-repo</span><span style="color: light-dark(#50A14F, #98C379);"> snapshot.auto-track</span><span style="color: light-dark(#50A14F, #98C379);"> &quot;</span><span style="color: light-dark(#50A14F, #98C379);">all() &amp; ~foo.txt</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span></span>
+<span class="giallo-l"><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;">#</span><span style="color: light-dark(#A0A1A7, #7F848E);font-style: italic;"> Run the following if the file has already been snapshotted</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> file</span><span style="color: light-dark(#50A14F, #98C379);"> untrack</span><span style="color: light-dark(#50A14F, #98C379);"> foo.txt</span></span></code></pre>
+<p>You can still manually track it later if needed using <code>jj file track foo.txt</code>.</p>
+<p>To untrack additional files later, you can append a new pattern to the existing configuration:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> config</span><span style="color: light-dark(#50A14F, #98C379);"> set</span><span style="color: light-dark(#986801, #D19A66);"> -</span><span style="color: light-dark(#986801, #D19A66);">-repo</span><span style="color: light-dark(#50A14F, #98C379);"> snapshot.auto-track</span><span style="color: light-dark(#50A14F, #98C379);"> &quot;</span><span style="color: light-dark(#50A14F, #98C379);">$(</span><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> config</span><span style="color: light-dark(#50A14F, #98C379);"> get</span><span style="color: light-dark(#50A14F, #98C379);"> snapshot.auto-track</span><span style="color: light-dark(#50A14F, #98C379);">)</span><span style="color: light-dark(#50A14F, #98C379);"> &amp; ~bar.txt</span><span style="color: light-dark(#50A14F, #98C379);">&quot;</span></span></code></pre>
+<p>If this is too much to type every time, you can define a Jujutsu alias in <code>~/.config/jj/config.toml</code>:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="toml"><span class="giallo-l"><span>[</span><span style="color: light-dark(#4078F2, #61AFEF);">aliases</span><span>]</span></span>
+<span class="giallo-l"><span style="color: light-dark(#E45649, #E06C75);">ignore</span><span> =</span><span> [</span></span>
+<span class="giallo-l"><span style="color: light-dark(#50A14F, #98C379);">  &#39;</span><span style="color: light-dark(#50A14F, #98C379);">util</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">exec</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">--</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">bash</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span><span style="color: light-dark(#50A14F, #98C379);"> &#39;</span><span style="color: light-dark(#50A14F, #98C379);">-c</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: light-dark(#50A14F, #98C379);">  &#39;</span><span style="color: light-dark(#50A14F, #98C379);">jj config set --repo snapshot.auto-track &quot;$(jj config get snapshot.auto-track) &amp; ~$0&quot; &amp;&amp; jj file untrack $0</span><span style="color: light-dark(#50A14F, #98C379);">&#39;</span></span>
+<span class="giallo-l"><span>]</span></span></code></pre>
+<p>Then, simply run:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);"><code data-lang="shellscript"><span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> ignore</span><span style="color: light-dark(#50A14F, #98C379);"> foo.txt</span></span>
+<span class="giallo-l"><span style="color: light-dark(#4078F2, #61AFEF);">jj</span><span style="color: light-dark(#50A14F, #98C379);"> ignore</span><span style="color: light-dark(#50A14F, #98C379);"> bar.txt</span></span></code></pre>
+<p>I've been using this approach with my <a rel="external" href="https://gist.github.com/pksunkara/622bc04242d402c4e43c7328234fd01c">jj aliases</a> for a while, and it works great!</p>
 
 <div id="social-bar">
   <ul class="rrssb-buttons clearfix">
       <li class="email">
-          <a href="mailto:?subject=AI recruiters: Faster, cheaper, and still clueless&amp;body=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;">
+          <a href="mailto:?subject=Jujutsu: Keeping a file untracked&amp;body=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path transform="scale(0.014,-0.014) translate(0,-1670)" d="M1792 826v-794q0 -66 -47 -113t-113 -47h-1472q-66 0 -113 47t-47 113v794q44 -49 101 -87q362 -246 497 -345q57 -42 92.5 -65.5t94.5 -48t110 -24.5h1h1q51 0 110 24.5t94.5 48t92.5 65.5q170 123 498 345q57 39 100 87zM1792 1120q0 -79 -49 -151t-122 -123 q-376 -261 -468 -325q-10 -7 -42.5 -30.5t-54 -38t-52 -32.5t-57.5 -27t-50 -9h-1h-1q-23 0 -50 9t-57.5 27t-52 32.5t-54 38t-42.5 30.5q-91 64 -262 182.5t-205 142.5q-62 42 -117 115.5t-55 136.5q0 78 41.5 130t118.5 52h1472q65 0 112.5 -47t47.5 -113z"/>
@@ -119,7 +127,7 @@
           </a>
       </li>
       <li class="facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;" class="popup">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;" class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path d="M27.825,4.783c0-2.427-2.182-4.608-4.608-4.608H4.783c-2.422,0-4.608,2.182-4.608,4.608v18.434 c0,2.427,2.181,4.608,4.608,4.608H14V17.379h-3.379v-4.608H14v-1.795c0-3.089,2.335-5.885,5.192-5.885h3.718v4.608h-3.726 c-0.408,0-0.884,0.492-0.884,1.236v1.836h4.609v4.608h-4.609v10.446h4.916c2.422,0,4.608-2.188,4.608-4.608V4.783z"/>
@@ -129,7 +137,7 @@
           </a>
       </li>
       <li class="twitter">
-          <a href="http://twitter.com/home?status=AI recruiters: Faster, cheaper, and still clueless%20https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;" class="popup">
+          <a href="http://twitter.com/home?status=Jujutsu: Keeping a file untracked%20https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;" class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path d="M24.253,8.756C24.689,17.08,18.297,24.182,9.97,24.62c-3.122,0.162-6.219-0.646-8.861-2.32 c2.703,0.179,5.376-0.648,7.508-2.321c-2.072-0.247-3.818-1.661-4.489-3.638c0.801,0.128,1.62,0.076,2.399-0.155 C4.045,15.72,2.215,13.6,2.115,11.077c0.688,0.275,1.426,0.407,2.168,0.386c-2.135-1.65-2.729-4.621-1.394-6.965 C5.575,7.816,9.54,9.84,13.803,10.071c-0.842-2.739,0.694-5.64,3.434-6.482c2.018-0.623,4.212,0.044,5.546,1.683 c1.186-0.213,2.318-0.662,3.329-1.317c-0.385,1.256-1.247,2.312-2.399,2.942c1.048-0.106,2.069-0.394,3.019-0.851 C26.275,7.229,25.39,8.196,24.253,8.756z"/>
@@ -139,7 +147,7 @@
           </a>
       </li>
       <li class="linkedin">
-          <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;&amp;title=AI recruiters: Faster, cheaper, and still clueless&amp;summary=..." class="popup">
+          <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;&amp;title=Jujutsu: Keeping a file untracked&amp;summary=..." class="popup">
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803 c-0.129,0.315-0.162,0.753-0.162,1.194v8.216h-4.899c0,0,0.066-13.349,0-14.731h4.899v2.088c-0.01,0.016-0.023,0.032-0.033,0.048 h0.033V11.69c0.65-1.002,1.812-2.435,4.414-2.435C23.008,9.254,25.424,11.361,25.424,15.887z M5.348,2.501 c-1.676,0-2.772,1.092-2.772,2.539c0,1.421,1.066,2.538,2.717,2.546h0.032c1.709,0,2.771-1.132,2.771-2.546 C8.054,3.593,7.019,2.501,5.343,2.501H5.348z M2.867,24.334h4.897V9.603H2.867V24.334z"/>
@@ -150,7 +158,7 @@
       </li>
       <li class="tumblr">
           <script>
-            document.write('<a href="http://www.tumblr.com/share?v=3&amp;u=' + encodeURIComponent('https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;') + '&amp;t=AI recruiters: Faster, cheaper, and still clueless" class="popup">');
+            document.write('<a href="http://www.tumblr.com/share?v=3&amp;u=' + encodeURIComponent('https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;') + '&amp;t=Jujutsu: Keeping a file untracked" class="popup">');
           </script>
               <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -161,7 +169,7 @@
           <script>document.write('</a>');</script>
       </li>
       <li class="reddit">
-          <a href="http://www.reddit.com/submit?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;">
+          <a href="http://www.reddit.com/submit?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;">
               <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                       <g>
@@ -178,11 +186,11 @@
       <li class="pinterest">
           <script>
             var imgurl = "https://pksunkara.com/logo.png";
-            var firstimg = document.getElementsByClassName("_index.md")[0].getElementsByTagName("img")[0];
+            var firstimg = document.getElementsByClassName("_index.md-tech-notes/_index.md")[0].getElementsByTagName("img")[0];
             if (firstimg !== undefined) {
               imgurl = firstimg.src;
             }
-            document.write('<a href="http://pinterest.com/pin/create/button/?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;&amp;media=' + imgurl + '&amp;description=AI recruiters: Faster, cheaper, and still clueless" class="popup">');
+            document.write('<a href="http://pinterest.com/pin/create/button/?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;&amp;media=' + imgurl + '&amp;description=Jujutsu: Keeping a file untracked" class="popup">');
           </script>
               <span class="icon">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -193,7 +201,7 @@
           <script>document.write('</a>');</script>
       </li>
       <li class="pocket">
-          <a href="https://getpocket.com/save?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;thoughts&#x2F;ai-recruiters-faster-cheaper-and-still-clueless&#x2F;"  class="popup">
+          <a href="https://getpocket.com/save?url=https%3A&#x2F;&#x2F;pksunkara.com&#x2F;tech-notes&#x2F;jujutsu-keeping-a-file-untracked&#x2F;"  class="popup">
               <span class="icon">
                   <svg width="32px" height="28px" viewBox="0 0 32 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
                       <path d="M28.7817528,0.00172488695 C30.8117487,0.00431221738 31.9749312,1.12074529 31.9644402,3.10781507 C31.942147,6.67703739 32.1336065,10.2669583 31.8057648,13.8090137 C30.7147076,25.5813672 17.2181194,31.8996281 7.20714461,25.3808491 C2.71833574,22.4571656 0.196577202,18.3122624 0.0549495772,12.9357897 C-0.0342233715,9.5774348 0.00642900214,6.21519891 0.0300336062,2.85555035 C0.0405245414,1.1129833 1.21157517,0.0146615391 3.01995012,0.00819321302 C7.34746087,-0.00603710433 11.6775944,0.00431221738 16.0064164,0.00172488695 C20.2644248,0.00172488695 24.5237444,-0.00215610869 28.7817528,0.00172488695 L28.7817528,0.00172488695 Z M8.64885184,7.85611511 C7.38773662,7.99113854 6.66148108,8.42606978 6.29310958,9.33228474 C5.90114134,10.2969233 6.17774769,11.1421181 6.89875951,11.8276216 C9.35282156,14.161969 11.8108164,16.4924215 14.2976518,18.7943114 C15.3844131,19.7966007 16.5354102,19.7836177 17.6116843,18.7813283 C20.0185529,16.5495467 22.4070683,14.2982907 24.7824746,12.0327533 C25.9845979,10.8850542 26.1012707,9.56468083 25.1469132,8.60653379 C24.1361858,7.59255976 22.8449191,7.6743528 21.5890476,8.85191291 C19.9936451,10.3488554 18.3680912,11.8172352 16.8395462,13.3777945 C16.1342655,14.093159 15.7200114,14.0048744 15.0566806,13.3440386 C13.4599671,11.7484252 11.8081945,10.2060421 10.1262706,8.70001155 C9.65564653,8.27936164 9.00411403,8.05345704 8.64885184,7.85611511 L8.64885184,7.85611511 L8.64885184,7.85611511 Z"></path>

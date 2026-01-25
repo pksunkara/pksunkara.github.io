@@ -14,6 +14,9 @@
         <loc>https://pksunkara.com/series/</loc>
     </url>
     <url>
+        <loc>https://pksunkara.com/series/jujutsu-tips-and-tricks/</loc>
+    </url>
+    <url>
         <loc>https://pksunkara.com/tags/</loc>
     </url>
     <url>
@@ -122,6 +125,10 @@
     <url>
         <loc>https://pksunkara.com/tech-notes/complex-vuejs-app-structure/</loc>
         <lastmod>2017-01-25T03:23:55+05:30</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/</loc>
+        <lastmod>2026-01-25T17:46:03+05:30</lastmod>
     </url>
     <url>
         <loc>https://pksunkara.com/tech-notes/page/1/</loc>
