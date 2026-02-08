@@ -5,8 +5,175 @@
     <link rel="self" type="application/atom+xml" href="https://pksunkara.com/tags/git/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://pksunkara.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-01-25T17:46:03+05:30</updated>
+    <updated>2026-02-08T19:09:42+05:30</updated>
     <id>https://pksunkara.com/tags/git/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Jujutsu: Managing workspaces</title>
+        <published>2026-02-08T19:09:42+05:30</published>
+        <updated>2026-02-08T19:09:42+05:30</updated>
+        
+        <author>
+          <name>
+            
+              Pavan Sunkara
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://pksunkara.com/tech-notes/jujutsu-managing-workspaces/"/>
+        <id>https://pksunkara.com/tech-notes/jujutsu-managing-workspaces/</id>
+        
+        <content type="html" xml:base="https://pksunkara.com/tech-notes/jujutsu-managing-workspaces/">&lt;p&gt;One of my favorite features in &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&quot;&gt;Jujutsu&lt;&#x2F;a&gt; is its native support for workspaces (similar to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;git-scm.com&#x2F;&quot;&gt;Git&lt;&#x2F;a&gt; worktrees). They let you have multiple working copies of the same repo, which is super handy for running tests in the background while you keep coding, or for juggling multiple features without constantly switching contexts.&lt;&#x2F;p&gt;
+&lt;p&gt;While the built-in &lt;code&gt;jj workspace&lt;&#x2F;code&gt; commands are great, they can be a bit verbose. I use a few simple conventions and aliases to speed things up and make my workflow smoother.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Your repository must have been initialized with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&quot;&gt;Jujutsu&lt;&#x2F;a&gt; version &lt;strong&gt;0.38.0&lt;&#x2F;strong&gt; or later. Older repositories will not have the necessary workspace metadata for the &lt;strong&gt;default&lt;&#x2F;strong&gt; workspace.&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h4 id=&quot;creating-a-workspace&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#creating-a-workspace&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    16
+  
+&quot;
+    height=&quot;
+  
+    16
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill=&quot;currentColor&quot;
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Creating a workspace&lt;&#x2F;h4&gt;
+&lt;p&gt;This usually requires specifying a name and a path. I prefer a convention where my secondary workspaces are siblings of my default workspace directory, named with a suffix. Assuming your &lt;strong&gt;default&lt;&#x2F;strong&gt; workspace is at &lt;code&gt;~&#x2F;project&lt;&#x2F;code&gt;, I prefer the new workspace named &lt;code&gt;foo&lt;&#x2F;code&gt; to be at &lt;code&gt;~&#x2F;project.foo&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Get the path of the default workspace&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;repo_dir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#383A42, #56B6C2);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;$(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; workspace&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; root&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; default&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Create the new workspace at the same level with a suffix&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; workspace&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; add&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt; $&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;repo_dir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;.foo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To simplify this, you can define a Jujutsu alias in &lt;code&gt;~&#x2F;.config&#x2F;jj&#x2F;config.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;aliases&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;wa&lt;&#x2F;span&gt;&lt;span&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;util&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;exec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;bash&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;-c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;jj workspace add --name $0 $(jj workspace root --name default).$0&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then, you can simply run:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; wa&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;switching-between-workspaces&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#switching-between-workspaces&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    16
+  
+&quot;
+    height=&quot;
+  
+    16
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill=&quot;currentColor&quot;
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Switching between workspaces&lt;&#x2F;h4&gt;
+&lt;p&gt;If you have several active workspaces, it can be hard to remember their names or paths.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; List all workspaces to find the one you want to switch to&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; workspace&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; list&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Get the path of the workspace&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;ws_dir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#383A42, #56B6C2);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;$(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; workspace&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; root&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Change directory to the workspace&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#0184BC, #56B6C2);&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt; $&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;ws_dir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can combine the above with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf&quot;&gt;fzf&lt;&#x2F;a&gt; to interactively select a workspace from the list.&lt;&#x2F;p&gt;
+&lt;p&gt;To simplify this, you can define a Jujutsu alias in &lt;code&gt;~&#x2F;.config&#x2F;jj&#x2F;config.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;aliases&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;wo&lt;&#x2F;span&gt;&lt;span&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;util&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;exec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;bash&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;-c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;jj workspace root --name $(jj workspace list | fzf | cut -d&amp;quot;:&amp;quot; -f1)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then, you can explore and switch workspaces with a single command:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#0184BC, #56B6C2);&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span&gt; $(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; wo&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;deleting-a-workspace&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#deleting-a-workspace&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    16
+  
+&quot;
+    height=&quot;
+  
+    16
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill=&quot;currentColor&quot;
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Deleting a workspace&lt;&#x2F;h4&gt;
+&lt;p&gt;When you&#x27;re done with a workspace, &lt;code&gt;jj workspace forget&lt;&#x2F;code&gt; stops tracking it in the repository. However, it leaves the files on disk. To clean up, you can combine it with &lt;code&gt;rm -rf&lt;&#x2F;code&gt; to delete the workspace directory.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Forget the workspace&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; workspace&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; forget&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Get the path of the default workspace&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;repo_dir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#383A42, #56B6C2);&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt;$(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; workspace&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; root&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-name&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; default&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Remove the workspace directory&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;rm&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;rf&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt; $&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;repo_dir&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;.foo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To simplify this, you can define a Jujutsu alias in &lt;code&gt;~&#x2F;.config&#x2F;jj&#x2F;config.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;aliases&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;wff&lt;&#x2F;span&gt;&lt;span&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;util&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;exec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;bash&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;-c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;jj workspace forget $0 &amp;amp;&amp;amp; rm -rf $(jj workspace root --name default).$0&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then, you can simply run:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; wff&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h4 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;permalink&quot; href=&quot;#conclusion&quot;&gt;
+  &lt;svg
+    viewBox=&quot;0 0 16 16&quot;
+    version=&quot;1.1&quot;
+    width=&quot;
+  
+    16
+  
+&quot;
+    height=&quot;
+  
+    16
+  
+&quot;
+    aria-hidden=&quot;true&quot;
+  &gt;
+    &lt;path
+      fill=&quot;currentColor&quot;
+      fill-rule=&quot;evenodd&quot;
+      d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
+    &gt;&lt;&#x2F;path&gt;
+  &lt;&#x2F;svg&gt;
+&lt;&#x2F;a&gt;
+Conclusion&lt;&#x2F;h4&gt;
+&lt;p&gt;Using a simple naming convention coupled with these aliases makes workspaces feel like a natural part of my workflow, not a chore. It lets me switch tasks instantly, helping me stay focused while keeping my work organized.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve been using this approach with my &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;pksunkara&#x2F;622bc04242d402c4e43c7328234fd01c&quot;&gt;jj aliases&lt;&#x2F;a&gt; for a while, and it works great!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
+&lt;p&gt;I am the one who contributed that to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&quot;&gt;Jujutsu&lt;&#x2F;a&gt; in &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&#x2F;pull&#x2F;6858&quot;&gt;#6858&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Jujutsu: Keeping a file untracked</title>
         <published>2026-01-25T17:46:03+05:30</published>
@@ -82,6 +249,7 @@
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -106,6 +274,7 @@ Comparison&lt;&#x2F;h2&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -148,6 +317,7 @@ You simply tell it which change you want to edit. It checks it out, you make you
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -191,6 +361,7 @@ A single command initiates an interactive diff editor, allowing you to decide wh
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -236,6 +407,7 @@ You can push your current change directly to the remote, which Jujutsu will plac
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;

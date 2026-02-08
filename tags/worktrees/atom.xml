@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-    <title>pksunkara - jujutsu-tips-and-tricks</title>
+    <title>pksunkara - worktrees</title>
     <subtitle>My personal blog</subtitle>
-    <link rel="self" type="application/atom+xml" href="https://pksunkara.com/series/jujutsu-tips-and-tricks/atom.xml"/>
+    <link rel="self" type="application/atom+xml" href="https://pksunkara.com/tags/worktrees/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://pksunkara.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2026-02-08T19:09:42+05:30</updated>
-    <id>https://pksunkara.com/series/jujutsu-tips-and-tricks/atom.xml</id>
+    <id>https://pksunkara.com/tags/worktrees/atom.xml</id>
     <entry xml:lang="en">
         <title>Jujutsu: Managing workspaces</title>
         <published>2026-02-08T19:09:42+05:30</published>
@@ -171,44 +171,6 @@ Conclusion&lt;&#x2F;h4&gt;
 &lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
 &lt;p&gt;I am the one who contributed that to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&quot;&gt;Jujutsu&lt;&#x2F;a&gt; in &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&#x2F;pull&#x2F;6858&quot;&gt;#6858&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;&#x2F;div&gt;
-</content>
-        
-    </entry>
-    <entry xml:lang="en">
-        <title>Jujutsu: Keeping a file untracked</title>
-        <published>2026-01-25T17:46:03+05:30</published>
-        <updated>2026-01-25T17:46:03+05:30</updated>
-        
-        <author>
-          <name>
-            
-              Pavan Sunkara
-            
-          </name>
-        </author>
-        
-        <link rel="alternate" type="text/html" href="https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/"/>
-        <id>https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/</id>
-        
-        <content type="html" xml:base="https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/">&lt;p&gt;Coming from &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;git-scm.com&quot;&gt;Git&lt;&#x2F;a&gt;, I am used to a workflow where I can create a file in my repository &lt;em&gt;(maybe a temporary script, or a local configuration file)&lt;&#x2F;em&gt; and just never &lt;code&gt;git add&lt;&#x2F;code&gt; it. It sits there, listed as untracked in &lt;code&gt;git status&lt;&#x2F;code&gt;, invisible to my commits but available for my use. I never needed to add it to &lt;code&gt;.gitignore&lt;&#x2F;code&gt; since I simply never staged it.&lt;&#x2F;p&gt;
-&lt;p&gt;When I started using &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jj-vcs&#x2F;jj&quot;&gt;Jujutsu&lt;&#x2F;a&gt;, I ran into a small friction point with this habit. Jujutsu is designed to be more automatic than Git. By default, it automatically tracks all files in your working copy that aren&#x27;t ignored by &lt;code&gt;.gitignore&lt;&#x2F;code&gt;. This means as soon as I create that temporary file, it will be included in the next snapshot, and &lt;code&gt;jj status&lt;&#x2F;code&gt; shows it as added.&lt;&#x2F;p&gt;
-&lt;p&gt;This behavior is controlled by the &lt;code&gt;snapshot.auto-track&lt;&#x2F;code&gt; configuration setting. You can customize this setting using &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.jj-vcs.dev&#x2F;latest&#x2F;filesets&#x2F;#file-patterns&quot;&gt;file patterns&lt;&#x2F;a&gt; to exclude specific files. For example, to keep a file named &lt;code&gt;foo.txt&lt;&#x2F;code&gt; untracked, you can run:&lt;&#x2F;p&gt;
-&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; config&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; set&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-repo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; snapshot.auto-track&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;all() &amp;amp; ~foo.txt&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#A0A1A7, #7F848E);font-style: italic;&quot;&gt; Run the following if the file has already been snapshotted&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; file&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; untrack&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo.txt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;You can still manually track it later if needed using &lt;code&gt;jj file track foo.txt&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;To untrack additional files later, you can append a new pattern to the existing configuration:&lt;&#x2F;p&gt;
-&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; config&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; set&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#986801, #D19A66);&quot;&gt;-repo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; snapshot.auto-track&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;$(&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; config&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; get&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; snapshot.auto-track&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;amp; ~bar.txt&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;If this is too much to type every time, you can define a Jujutsu alias in &lt;code&gt;~&#x2F;.config&#x2F;jj&#x2F;config.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
-&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;aliases&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#E45649, #E06C75);&quot;&gt;ignore&lt;&#x2F;span&gt;&lt;span&gt; =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;util&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;exec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;bash&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;-c&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;  &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;jj config set --repo snapshot.auto-track &amp;quot;$(jj config get snapshot.auto-track) &amp;amp; ~$0&amp;quot; &amp;amp;&amp;amp; jj file untrack $0&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Then, simply run:&lt;&#x2F;p&gt;
-&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#383A42, #ABB2BF); background-color: light-dark(#FAFAFA, #282C34);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; ignore&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; foo.txt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#4078F2, #61AFEF);&quot;&gt;jj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; ignore&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#50A14F, #98C379);&quot;&gt; bar.txt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;I&#x27;ve been using this approach with my &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;pksunkara&#x2F;622bc04242d402c4e43c7328234fd01c&quot;&gt;jj aliases&lt;&#x2F;a&gt; for a while, and it works great!&lt;&#x2F;p&gt;
 </content>
         
     </entry>

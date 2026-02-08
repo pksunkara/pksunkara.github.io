@@ -116,6 +116,12 @@
         <loc>https://pksunkara.com/tags/web/page/1/</loc>
     </url>
     <url>
+        <loc>https://pksunkara.com/tags/worktrees/</loc>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tags/worktrees/page/1/</loc>
+    </url>
+    <url>
         <loc>https://pksunkara.com/tech-notes/</loc>
     </url>
     <url>
@@ -129,6 +135,10 @@
     <url>
         <loc>https://pksunkara.com/tech-notes/jujutsu-keeping-a-file-untracked/</loc>
         <lastmod>2026-01-25T17:46:03+05:30</lastmod>
+    </url>
+    <url>
+        <loc>https://pksunkara.com/tech-notes/jujutsu-managing-workspaces/</loc>
+        <lastmod>2026-02-08T19:09:42+05:30</lastmod>
     </url>
     <url>
         <loc>https://pksunkara.com/tech-notes/page/1/</loc>

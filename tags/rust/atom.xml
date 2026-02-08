@@ -53,6 +53,7 @@ this baseline.&lt;&#x2F;p&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -79,6 +80,7 @@ should return &lt;strong&gt;405&lt;&#x2F;strong&gt; HTTP status code if the none
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -103,6 +105,7 @@ Rails&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -128,6 +131,7 @@ Django&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -152,6 +156,7 @@ Laravel&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -185,6 +190,7 @@ Actix&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -213,6 +219,7 @@ Tide&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -236,6 +243,7 @@ Warp&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -259,6 +267,7 @@ Gotham&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -285,6 +294,7 @@ in the form of &lt;em&gt;regex patterns&lt;&#x2F;em&gt;. There might be a shorte
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -323,6 +333,7 @@ Rails&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -361,6 +372,7 @@ Django&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -400,6 +412,7 @@ Laravel&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -457,6 +470,7 @@ specified routes here as a prefix (with or without &lt;code&gt;&#x2F;&lt;&#x2F;c
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -493,6 +507,7 @@ Tide&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -554,6 +569,7 @@ implement dummy default filters for each param type. I think &lt;a rel=&quot;ext
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -629,6 +645,7 @@ Gotham&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -659,6 +676,7 @@ the possible scenarios related to this section.&lt;&#x2F;p&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -695,6 +713,7 @@ Rails&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -740,6 +759,7 @@ Actix&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -781,6 +801,7 @@ Tide&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -820,6 +841,7 @@ Warp&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -868,6 +890,7 @@ And if the routes themselves have params, you would need to define more custom e
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -895,6 +918,7 @@ have complicated relationships between their data resources and end up using nes
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -923,6 +947,7 @@ mentioned ambiguity in a simpler perspective.&lt;&#x2F;p&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -962,6 +987,7 @@ the bottom.&lt;&#x2F;p&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -986,6 +1012,7 @@ Rust&lt;&#x2F;h4&gt;
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;
@@ -1032,6 +1059,7 @@ responds with &lt;code&gt;foo::higher&lt;&#x2F;code&gt; for &lt;code&gt;&#x2F;fo
     aria-hidden=&quot;true&quot;
   &gt;
     &lt;path
+      fill=&quot;currentColor&quot;
       fill-rule=&quot;evenodd&quot;
       d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;
     &gt;&lt;&#x2F;path&gt;

@@ -57,6 +57,10 @@ em {
   border-bottom-style: inset;
 }
 
+a svg {
+  color: var(--color-text-muted);
+}
+
 .permalink {
   text-decoration: none !important;
 }
