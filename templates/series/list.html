@@ -1,5 +1,8 @@
-{% extends "shared/base.html" %} {% block title %}{{ taxonomy.name | capitalize
-}} &middot; {% endblock title %} {% block content %}
+{% extends "shared/base.html" %}
+
+{% block title %}{{ taxonomy.name | capitalize }} &middot; {% endblock title %}
+
+{% block content %}
 <main id="content">
   <h1 class="post-title">{{ taxonomy.name | capitalize }}</h1>
   <ul id="taxonomy-terms-{{ taxonomy.name }}" class="serieslist">

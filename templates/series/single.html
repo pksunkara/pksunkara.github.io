@@ -12,7 +12,11 @@
   <span class="series-status {{ series.status }}">{{ series.status }}</span>
   <h2 class="post-title">{{ series.title }}</h2>
   <p class="series-description">{{ series.description }}</p>
-  {% for page in term.pages | reverse %}
+  {% set pages = term.pages %}
+  {% if series.chronological != false %}
+    {% set_global pages = pages | reverse %}
+  {% endif %}
+  {% for page in pages %}
     {% include "shared/post-item.html" %}
   {% endfor %}
 </main>
