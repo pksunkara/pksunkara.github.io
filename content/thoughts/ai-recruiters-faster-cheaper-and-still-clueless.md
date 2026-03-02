@@ -1,7 +1,7 @@
 +++
 date = 2026-01-22T00:00:00+05:30
 draft = false
-title = "AI recruiters: Faster, cheaper, and still clueless"
+title = "AI recruiters: faster, cheaper, and still clueless"
 
 [taxonomies]
 tags = ["hiring", "llm", "career"]
@@ -31,4 +31,4 @@ So yeah, the volume is up and the emails are politer. But until recruiters start
 
 ---
 
-[^1]: Did that sound buzzworthy enough? I had an LLM draft it for maximum engagement.
+[^1]: Did that sound buzzworthy enough? I had an LLM generate this part for maximum engagement.

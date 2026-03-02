@@ -5,4 +5,6 @@ title = "About"
 path = "about"
 +++
 
-I am **Pavan Sunkara**, Founder & CEO at [Automa](https://automa.app).
+I am **Pavan Sunkara**, Founder & CEO at [Jujubi](https://juju.bi).
+
+I am also a core-maintainer of: [clap](https://github.com/clap-rs), [diesel](https://github.com/diesel-rs), [eyre](https://github.com/eyre-rs/eyre).
