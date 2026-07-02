@@ -213,7 +213,7 @@ Conclusion&lt;&#x2F;h4&gt;
         
     </entry>
     <entry xml:lang="en">
-        <title>AI recruiters: Faster, cheaper, and still clueless</title>
+        <title>AI recruiters: faster, cheaper, and still clueless</title>
         <published>2026-01-22T00:00:00+05:30</published>
         <updated>2026-01-22T00:00:00+05:30</updated>
         
@@ -241,7 +241,7 @@ Conclusion&lt;&#x2F;h4&gt;
 &lt;p&gt;So yeah, the volume is up and the emails are politer. But until recruiters start acting like humans again, the signal is buried under a mountain of &lt;strong&gt;fake empathy&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
-&lt;p&gt;Did that sound buzzworthy enough? I had an LLM draft it for maximum engagement.&lt;&#x2F;p&gt;
+&lt;p&gt;Did that sound buzzworthy enough? I had an LLM generate this part for maximum engagement.&lt;&#x2F;p&gt;
 &lt;&#x2F;div&gt;
 </content>
         
@@ -2552,7 +2552,8 @@ Addendum&lt;&#x2F;h2&gt;
         <link rel="alternate" type="text/html" href="https://pksunkara.com/about/"/>
         <id>https://pksunkara.com/about/</id>
         
-        <content type="html" xml:base="https://pksunkara.com/about/">&lt;p&gt;I am &lt;strong&gt;Pavan Sunkara&lt;&#x2F;strong&gt;, Founder &amp;amp; CEO at &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;automa.app&quot;&gt;Automa&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://pksunkara.com/about/">&lt;p&gt;I am &lt;strong&gt;Pavan Sunkara&lt;&#x2F;strong&gt;, Founder &amp;amp; CEO at &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;juju.bi&quot;&gt;Jujubi&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I am also a core-maintainer of: &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clap-rs&quot;&gt;clap&lt;&#x2F;a&gt;, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;diesel-rs&quot;&gt;diesel&lt;&#x2F;a&gt;, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;eyre-rs&#x2F;eyre&quot;&gt;eyre&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
