@@ -74,31 +74,24 @@ cd $(jj wo)
 
 #### Deleting a workspace
 
-When you're done with a workspace, `jj workspace forget` stops tracking it in the repository. However, it leaves the files on disk. To clean up, you can combine it with `rm -rf` to delete the workspace directory.
+When you're done with a workspace, you can use `jj workspace remove` to clean up.
 
 ```bash
-# Forget the workspace
-jj workspace forget --name foo
-# Get the path of the default workspace
-repo_dir=$(jj workspace root --name default)
-# Remove the workspace directory
-rm -rf $repo_dir.foo
+# Remove the workspace from both metadata and disk
+jj workspace remove foo
 ```
 
 To simplify this, you can define a Jujutsu alias in `~/.config/jj/config.toml`:
 
 ```toml
 [aliases]
-wff = [
-  'util', 'exec', '--', 'bash', '-c',
-  'jj workspace forget $0 && rm -rf $(jj workspace root --name default).$0'
-]
+wr = ['workspace', 'remove']
 ```
 
 Then, you can simply run:
 
 ```bash
-jj wff foo
+jj wr foo
 ```
 
 #### Conclusion
